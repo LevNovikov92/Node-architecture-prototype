@@ -1,5 +1,7 @@
 package com.levnovikov.core_profile;
 
+import com.levnovikov.core_profile.model.UserProfile;
+
 import io.reactivex.Single;
 
 /**
@@ -9,5 +11,7 @@ import io.reactivex.Single;
 
 public interface UserRepository {
 
-    Single<Boolean> isUserLogedIn();
+    Single<Boolean> isUserLoggedIn();
+
+    Single<UserProfile> updateUserProfile();
 }

@@ -1,1 +1,1 @@
-include ':app', ':system-base', ':core-profile', ':core-auth'
+include ':app', ':system-base', ':core-profile', ':feature-onboarding', ':core-auth'

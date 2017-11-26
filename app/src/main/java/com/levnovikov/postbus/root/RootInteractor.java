@@ -21,22 +21,32 @@ public class RootInteractor implements Interactor {
             UserRepository userRepository) {
         this.userRepository = userRepository;
         this.router = router;
+        onGetActive();
     }
 
     @Override
     public void onGetActive() {
-        router.splash();
-        initializeProfile();
+        checkUserData();
     }
 
-    private void initializeProfile() {
-        userRepository.isUserLogedIn()
+    private void checkUserData() {
+        userRepository.isUserLoggedIn()
                 .subscribe(isLoggedIn -> {
                     if (isLoggedIn) {
-                        router.home();
+                        loadProfile();
                     } else {
                         router.onboarding();
                     }
-                }, error -> { /*TODO handle it*/ });
+                }, this::handleInitError);
+    }
+
+    private void loadProfile() {
+        userRepository.updateUserProfile()
+                .subscribe(userProfile -> router.home(),
+                        this::handleInitError);
+    }
+
+    private void handleInitError(Throwable error) {
+        // TODO handle error
     }
 }

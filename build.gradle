@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -20,6 +20,26 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+}
+
+ext {
+    androidConfiguration = {
+
+        compileSdkVersion 26
+
+        defaultConfig {
+
+            vectorDrawables.useSupportLibrary = true
+
+            minSdkVersion 15
+            targetSdkVersion 26
+        }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
 }
 

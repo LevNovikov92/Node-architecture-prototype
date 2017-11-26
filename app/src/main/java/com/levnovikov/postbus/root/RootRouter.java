@@ -1,5 +1,8 @@
 package com.levnovikov.postbus.root;
 
+import com.example.feature_onboarding.OnboardingActivity;
+import com.levnovikov.system_base.ActivityStarter;
+
 import javax.inject.Inject;
 
 /**
@@ -9,17 +12,15 @@ import javax.inject.Inject;
 
 public class RootRouter {
 
+    private final ActivityStarter starter;
+
     @Inject
-    RootRouter() {
-
-    }
-
-    void splash() {
-
+    RootRouter(ActivityStarter starter) {
+        this.starter = starter;
     }
 
     void onboarding() {
-
+        starter.startActivity(OnboardingActivity.class, null);
     }
 
     void home() {
