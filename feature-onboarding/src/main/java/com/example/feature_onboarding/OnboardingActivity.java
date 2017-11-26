@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.feature_onboarding.di.ActivityModule;
-import com.example.feature_onboarding.di.DaggerOnboardnigComponent;
+import com.example.feature_onboarding.di.DaggerOnboardingComponent;
+import com.example.feature_onboarding.di.OnboardingComponent;
 import com.example.feature_onboarding.di.OnboardingModule;
-import com.example.feature_onboarding.di.OnboardnigComponent;
 
 import javax.inject.Inject;
 
@@ -16,7 +16,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
     @Inject OnboardingInteractor interactor;
 
-    private OnboardnigComponent component;
+    private OnboardingComponent component;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class OnboardingActivity extends AppCompatActivity {
     }
 
     private void injectDependencies() {
-        component = DaggerOnboardnigComponent.builder()
+        component = DaggerOnboardingComponent.builder()
                 .activityModule(new ActivityModule(this))
                 .onboardingModule(new OnboardingModule())
                 .build();

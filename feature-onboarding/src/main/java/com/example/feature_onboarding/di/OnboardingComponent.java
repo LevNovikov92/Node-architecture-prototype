@@ -12,11 +12,11 @@ import dagger.Component;
 
 @OnboardingScope
 @Component(modules = { ActivityModule.class, OnboardingModule.class })
-public interface OnboardnigComponent {
+public interface OnboardingComponent {
 
     OnboardingView provideView();
 
-    OnboardnigComponent provideComponent();
+    OnboardingComponent provideComponent();
 
     void inject(OnboardingActivity onboardingActivity);
 }

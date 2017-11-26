@@ -11,8 +11,6 @@ public class FacebookAuthProvider implements AuthProvider {
 
     @Override
     public Completable login() {
-        return Completable.fromAction(() -> {
-            Thread.sleep(1000);
-        });
+        return Completable.error(new Exception());
     }
 }

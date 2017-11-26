@@ -3,7 +3,7 @@ package com.example.feature_onboarding.login;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.feature_onboarding.di.OnboardnigComponent;
+import com.example.feature_onboarding.di.OnboardingComponent;
 import com.example.feature_onboarding.login.di.DaggerLoginComponent;
 import com.example.feature_onboarding.login.di.LoginComponent;
 import com.example.feature_onboarding.login.di.LoginModule;
@@ -16,12 +16,12 @@ import com.example.feature_onboarding.login.di.LoginModule;
 public class LoginBuilder {
 
     private final ViewGroup parent;
-    private final OnboardnigComponent parentComponent;
+    private final OnboardingComponent parentComponent;
     private final LayoutInflater inflater;
 
     private LoginComponent component;
 
-    public LoginBuilder(ViewGroup parent, OnboardnigComponent component, LayoutInflater inflater) {
+    public LoginBuilder(ViewGroup parent, OnboardingComponent component, LayoutInflater inflater) {
         this.parentComponent = component;
         this.parent = parent;
         this.inflater = inflater;

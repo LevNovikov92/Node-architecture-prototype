@@ -25,7 +25,7 @@ public class OnboardingModule {
 
     @OnboardingScope
     @Provides
-    LoginBuilder provideLoginBuilder(OnboardingView view, OnboardnigComponent component,
+    LoginBuilder provideLoginBuilder(OnboardingView view, OnboardingComponent component,
                                      LayoutInflater inflater) {
         return new LoginBuilder(view, component, inflater);
     }
