@@ -23,6 +23,7 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         injectDependencies();
         setContentView(onboardingView);
+        interactor.onGetActive();
     }
 
     private void injectDependencies() {

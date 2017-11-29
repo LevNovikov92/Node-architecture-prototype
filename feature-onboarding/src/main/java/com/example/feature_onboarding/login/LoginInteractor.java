@@ -2,6 +2,8 @@ package com.example.feature_onboarding.login;
 
 import com.example.core_auth.provider.AuthProvider;
 import com.example.core_auth.provider.di.AuthProviderModule;
+import com.example.feature_onboarding.login.di.LoginScope;
+import com.levnovikov.system_base.Interactor;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,27 +13,51 @@ import javax.inject.Named;
  * Date: 23/11/17.
  */
 
-public class LoginInteractor {
+@LoginScope
+public class LoginInteractor implements Interactor {
+
 
     public interface LogInListener {
         void onLogIn();
     }
 
+    public interface StartSignUpListener {
+        void startSignUp();
+    }
+
+    private final LoginPresenter presenter;
     private final LoginRouter router;
     private final AuthProvider googleProvider;
     private final AuthProvider facebookProvider;
+    private final LogInListener loginListener;
+    private final StartSignUpListener startSignUpListener;
 
     @Inject
     LoginInteractor(
             LoginRouter router,
+            LogInListener loginListener,
+            StartSignUpListener startSignUpListener,
+            LoginPresenter presenter,
             @Named(AuthProviderModule.GOOGLE_AUTH_PROVIDER) AuthProvider googleProvider,
             @Named(AuthProviderModule.FACEBOOK_AUTH_PROVIDER) AuthProvider facebookProvider) {
         this.router = router;
         this.googleProvider = googleProvider;
         this.facebookProvider = facebookProvider;
+        this.loginListener = loginListener;
+        this.startSignUpListener = startSignUpListener;
+        this.presenter = presenter;
+        onGetActive();
+    }
+
+    @Override
+    public void onGetActive() {
+        presenter.getFacebookClickStream().subscribe(o -> loginWithFacebook(), this::onError);
+        presenter.getGoogleClickStream().subscribe(o -> loginWithGoogle(), this::onError);
+        presenter.getSignUpClickStream().subscribe(o -> signUp(), this::onError);
     }
 
     void loginWithGoogle() {
+        presenter.showProgress();
         googleProvider.login()
                 .subscribe(this::onLogIn, this::onError);
     }
@@ -41,11 +67,17 @@ public class LoginInteractor {
                 .subscribe(this::onLogIn, this::onError);
     }
 
+    void signUp() {
+        startSignUpListener.startSignUp();
+    }
+
     private void onLogIn() {
-        //TODO communicate with parent
+        presenter.hideProgress();
+        loginListener.onLogIn();
     }
 
     private void onError(Throwable error) {
-        //TODO communicate with parent
+        presenter.hideProgress();
+        presenter.showMessage("Error");
     }
 }

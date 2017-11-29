@@ -8,12 +8,17 @@ import com.example.feature_onboarding.login.di.DaggerLoginComponent;
 import com.example.feature_onboarding.login.di.LoginComponent;
 import com.example.feature_onboarding.login.di.LoginModule;
 
+import javax.inject.Inject;
+
 /**
  * Created by lev.novikov
  * Date: 23/11/17.
  */
 
 public class LoginBuilder {
+
+    @Inject
+    LoginInteractor interactor;
 
     private final ViewGroup parent;
     private final OnboardingComponent parentComponent;
@@ -34,9 +39,10 @@ public class LoginBuilder {
 
     public LoginRouter build() {
         component = DaggerLoginComponent.builder()
-                .onboardnigComponent(parentComponent)
+                .onboardingComponent(parentComponent)
                 .loginModule(new LoginModule(buildView(parent)))
                 .build();
+        component.inject(this);
         parent.addView(component.view());
         return component.router();
     }

@@ -1,5 +1,6 @@
 package com.example.feature_onboarding;
 
+import com.example.feature_onboarding.di.OnboardingScope;
 import com.example.feature_onboarding.login.LoginBuilder;
 import com.example.feature_onboarding.login.LoginRouter;
 import com.levnovikov.system_base.Router;
@@ -11,6 +12,7 @@ import javax.inject.Inject;
  * Date: 22/11/17.
  */
 
+@OnboardingScope
 public class OnboardingRouter extends Router {
 
     private final LoginBuilder loginBuilder;

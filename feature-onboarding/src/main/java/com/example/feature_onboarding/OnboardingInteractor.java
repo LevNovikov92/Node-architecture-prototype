@@ -1,5 +1,6 @@
 package com.example.feature_onboarding;
 
+import com.example.feature_onboarding.di.OnboardingScope;
 import com.example.feature_onboarding.login.LoginInteractor;
 import com.levnovikov.system_base.Interactor;
 
@@ -10,7 +11,16 @@ import javax.inject.Inject;
  * Date: 22/11/17.
  */
 
-public class OnboardingInteractor implements Interactor, LoginInteractor.LogInListener {
+@OnboardingScope
+public class OnboardingInteractor implements
+        Interactor,
+        LoginInteractor.LogInListener,
+        LoginInteractor.StartSignUpListener {
+
+    @Override
+    public void startSignUp() {
+        showSignInScreen();
+    }
 
     public interface LogInListener {
         void onLogIn();
@@ -21,7 +31,6 @@ public class OnboardingInteractor implements Interactor, LoginInteractor.LogInLi
     @Inject
     OnboardingInteractor(OnboardingRouter router) {
         this.router = router;
-        onGetActive();
     }
 
     @Override
@@ -34,7 +43,7 @@ public class OnboardingInteractor implements Interactor, LoginInteractor.LogInLi
         router.attachLogInScreen();
     }
 
-    public void showSigninScreen() {
+    private void showSignInScreen() {
         router.removeAll();
         router.attachSignInScreen();
     }

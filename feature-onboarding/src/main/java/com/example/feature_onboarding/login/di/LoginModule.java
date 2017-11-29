@@ -1,5 +1,6 @@
 package com.example.feature_onboarding.login.di;
 
+import com.example.feature_onboarding.login.LoginPresenter;
 import com.example.feature_onboarding.login.LoginRouter;
 import com.example.feature_onboarding.login.LoginView;
 
@@ -29,6 +30,12 @@ public class LoginModule {
     @LoginScope
     @Provides
     LoginView provideView() {
+        return view;
+    }
+
+    @LoginScope
+    @Provides
+    LoginPresenter providePresenter() {
         return view;
     }
 }
