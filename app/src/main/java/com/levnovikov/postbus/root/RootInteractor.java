@@ -1,6 +1,8 @@
 package com.levnovikov.postbus.root;
 
+import com.example.feature_onboarding.OnboardingInteractor;
 import com.levnovikov.core_profile.UserRepository;
+import com.levnovikov.postbus.root.di.RootScope;
 import com.levnovikov.system_base.Interactor;
 
 import javax.inject.Inject;
@@ -10,7 +12,8 @@ import javax.inject.Inject;
  * Date: 20/11/17.
  */
 
-public class RootInteractor implements Interactor {
+@RootScope
+public class RootInteractor implements Interactor, OnboardingInteractor.LogInListener {
 
     private final UserRepository userRepository;
     private final RootRouter router;
@@ -48,5 +51,10 @@ public class RootInteractor implements Interactor {
 
     private void handleInitError(Throwable error) {
         // TODO handle error
+    }
+
+    @Override
+    public void onLogIn() {
+        router.home();
     }
 }

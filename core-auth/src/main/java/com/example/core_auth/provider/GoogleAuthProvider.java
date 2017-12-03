@@ -11,8 +11,11 @@ public class GoogleAuthProvider implements AuthProvider {
 
     @Override
     public Completable login() {
-        return Completable.fromAction(() -> {
-            Thread.sleep(1000);
-        });
+        return Completable.fromAction(() -> Thread.sleep(1000));
+    }
+
+    @Override
+    public Completable signUp(String phoneNumber) {
+        return Completable.fromAction(() -> Thread.sleep(1000));
     }
 }

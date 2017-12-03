@@ -7,6 +7,8 @@ import com.example.feature_onboarding.OnboardingInteractor;
 import com.example.feature_onboarding.OnboardingView;
 import com.example.feature_onboarding.login.LoginInteractor;
 import com.example.feature_onboarding.login.LoginBuilder;
+import com.example.feature_onboarding.signup.SignUpBuilder;
+import com.example.feature_onboarding.signup.SignUpInteractor;
 
 import dagger.Binds;
 import dagger.Module;
@@ -33,6 +35,13 @@ public class OnboardingModule {
         return new LoginBuilder(view, component, inflater);
     }
 
+    @OnboardingScope
+    @Provides
+    SignUpBuilder provideSignUpBuilder(OnboardingView view, OnboardingComponent component,
+                                      LayoutInflater inflater) {
+        return new SignUpBuilder(view, component, inflater);
+    }
+
     @Module
     public interface BindsModule {
         @Binds
@@ -42,5 +51,13 @@ public class OnboardingModule {
         @Binds
         @OnboardingScope
         LoginInteractor.StartSignUpListener bindStartSignUp(OnboardingInteractor impl);
+
+        @Binds
+        @OnboardingScope
+        SignUpInteractor.SignUpListener bindSignUpListener(OnboardingInteractor impl);
+
+        @Binds
+        @OnboardingScope
+        SignUpInteractor.StartLogInListener bindStartLogin(OnboardingInteractor impl);
     }
 }

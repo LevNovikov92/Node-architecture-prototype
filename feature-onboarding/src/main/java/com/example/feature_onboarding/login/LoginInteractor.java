@@ -27,10 +27,11 @@ public class LoginInteractor implements Interactor {
 
     private final LoginPresenter presenter;
     private final LoginRouter router;
-    private final AuthProvider googleProvider;
-    private final AuthProvider facebookProvider;
     private final LogInListener loginListener;
     private final StartSignUpListener startSignUpListener;
+
+    private final AuthProvider googleProvider;
+    private final AuthProvider facebookProvider;
 
     @Inject
     LoginInteractor(
@@ -56,18 +57,19 @@ public class LoginInteractor implements Interactor {
         presenter.getSignUpClickStream().subscribe(o -> signUp(), this::onError);
     }
 
-    void loginWithGoogle() {
+    private void loginWithGoogle() {
         presenter.showProgress();
         googleProvider.login()
                 .subscribe(this::onLogIn, this::onError);
     }
 
-    void loginWithFacebook() {
+    private void loginWithFacebook() {
+        presenter.showProgress();
         facebookProvider.login()
                 .subscribe(this::onLogIn, this::onError);
     }
 
-    void signUp() {
+    private void signUp() {
         startSignUpListener.startSignUp();
     }
 

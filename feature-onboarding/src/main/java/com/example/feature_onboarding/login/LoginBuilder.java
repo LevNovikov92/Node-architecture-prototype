@@ -7,6 +7,7 @@ import com.example.feature_onboarding.di.OnboardingComponent;
 import com.example.feature_onboarding.login.di.DaggerLoginComponent;
 import com.example.feature_onboarding.login.di.LoginComponent;
 import com.example.feature_onboarding.login.di.LoginModule;
+import com.levnovikov.system_base.Builder;
 
 import javax.inject.Inject;
 
@@ -15,7 +16,7 @@ import javax.inject.Inject;
  * Date: 23/11/17.
  */
 
-public class LoginBuilder {
+public class LoginBuilder implements Builder<LoginRouter> {
 
     @Inject
     LoginInteractor interactor;
@@ -24,7 +25,7 @@ public class LoginBuilder {
     private final OnboardingComponent parentComponent;
     private final LayoutInflater inflater;
 
-    private LoginComponent component;
+    private LoginView loginView;
 
     public LoginBuilder(ViewGroup parent, OnboardingComponent component, LayoutInflater inflater) {
         this.parentComponent = component;
@@ -32,13 +33,19 @@ public class LoginBuilder {
         this.inflater = inflater;
     }
 
-    public void removeAllViews() {
-        // TODO
+    public void removeView() {
+        if (loginView != null) {
+            parent.removeView(loginView);
+            loginView = null;
+        }
     }
 
-
+    @Override
     public LoginRouter build() {
-        component = DaggerLoginComponent.builder()
+        if (loginView != null) {
+            throw new UnsupportedOperationException("View already attached");
+        }
+        final LoginComponent component = DaggerLoginComponent.builder()
                 .onboardingComponent(parentComponent)
                 .loginModule(new LoginModule(buildView(parent)))
                 .build();
@@ -48,6 +55,7 @@ public class LoginBuilder {
     }
 
     private LoginView buildView(ViewGroup parent) {
-        return (LoginView) inflater.inflate(LoginView.layout, parent, false);
+        loginView = (LoginView) inflater.inflate(LoginView.layout, parent, false);
+        return loginView;
     }
 }

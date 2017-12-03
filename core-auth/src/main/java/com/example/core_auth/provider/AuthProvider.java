@@ -10,4 +10,6 @@ import io.reactivex.Completable;
 public interface AuthProvider {
 
     Completable login();
+
+    Completable signUp(String phoneNumber);
 }

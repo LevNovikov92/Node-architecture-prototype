@@ -2,6 +2,8 @@ package com.levnovikov.postbus.root.di;
 
 import android.content.Context;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,6 +22,8 @@ public class AppModule {
     }
 
     @Provides
+    @RootScope
+    @Named("AppContext")
     Context provideContext() {
         return appContext;
     }

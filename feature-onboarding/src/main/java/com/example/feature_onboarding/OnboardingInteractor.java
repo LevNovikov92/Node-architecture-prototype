@@ -2,6 +2,7 @@ package com.example.feature_onboarding;
 
 import com.example.feature_onboarding.di.OnboardingScope;
 import com.example.feature_onboarding.login.LoginInteractor;
+import com.example.feature_onboarding.signup.SignUpInteractor;
 import com.levnovikov.system_base.Interactor;
 
 import javax.inject.Inject;
@@ -15,11 +16,14 @@ import javax.inject.Inject;
 public class OnboardingInteractor implements
         Interactor,
         LoginInteractor.LogInListener,
-        LoginInteractor.StartSignUpListener {
+        LoginInteractor.StartSignUpListener,
+        SignUpInteractor.SignUpListener,
+        SignUpInteractor.StartLogInListener {
+
 
     @Override
     public void startSignUp() {
-        showSignInScreen();
+        showSignUpScreen();
     }
 
     public interface LogInListener {
@@ -27,10 +31,12 @@ public class OnboardingInteractor implements
     }
 
     private final OnboardingRouter router;
+    private final LogInListener logInListener;
 
     @Inject
-    OnboardingInteractor(OnboardingRouter router) {
+    OnboardingInteractor(OnboardingRouter router, LogInListener logInListener) {
         this.router = router;
+        this.logInListener = logInListener;
     }
 
     @Override
@@ -43,13 +49,24 @@ public class OnboardingInteractor implements
         router.attachLogInScreen();
     }
 
-    private void showSignInScreen() {
+    private void showSignUpScreen() {
         router.removeAll();
-        router.attachSignInScreen();
+        router.attachSignUpScreen();
     }
 
     @Override
     public void onLogIn() {
-        
+        logInListener.onLogIn();
+    }
+
+    @Override
+    public void onSignUp() {
+        logInListener.onLogIn();
+    }
+
+    @Override
+    public void startLogIn() {
+        router.removeAll();
+        router.attachLogInScreen();
     }
 }

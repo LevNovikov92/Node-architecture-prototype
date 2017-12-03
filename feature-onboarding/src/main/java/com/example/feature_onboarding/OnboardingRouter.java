@@ -3,6 +3,8 @@ package com.example.feature_onboarding;
 import com.example.feature_onboarding.di.OnboardingScope;
 import com.example.feature_onboarding.login.LoginBuilder;
 import com.example.feature_onboarding.login.LoginRouter;
+import com.example.feature_onboarding.signup.SignUpBuilder;
+import com.example.feature_onboarding.signup.SignUpRouter;
 import com.levnovikov.system_base.Router;
 
 import javax.inject.Inject;
@@ -16,24 +18,26 @@ import javax.inject.Inject;
 public class OnboardingRouter extends Router {
 
     private final LoginBuilder loginBuilder;
-    private final OnboardingView view;
+    private final SignUpBuilder signUpBuilder;
 
     @Inject
-    OnboardingRouter(OnboardingView view, LoginBuilder loginBuilder) {
-        this.view = view;
+    OnboardingRouter(LoginBuilder loginBuilder, SignUpBuilder signUpBuilder) {
         this.loginBuilder = loginBuilder;
+        this.signUpBuilder = signUpBuilder;
     }
 
-    public void attachLogInScreen() {
+    void attachLogInScreen() {
         final LoginRouter router = loginBuilder.build();
         attachRouter(router);
     }
 
-    public void removeAll() {
-        loginBuilder.removeAllViews();
+    void removeAll() {
+        loginBuilder.removeView();
+        signUpBuilder.removeView();
     }
 
-    public void attachSignInScreen() {
-
+    void attachSignUpScreen() {
+        final SignUpRouter router = signUpBuilder.build();
+        attachRouter(router);
     }
 }

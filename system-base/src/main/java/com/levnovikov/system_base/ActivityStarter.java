@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import io.reactivex.annotations.Nullable;
 
@@ -16,12 +17,12 @@ import io.reactivex.annotations.Nullable;
 
 public class ActivityStarter {
 
-    public static final String EXTRA = "EXTRA";
+    private static final String EXTRA = "EXTRA";
 
     private final Context context;
 
     @Inject
-    public ActivityStarter(Context context) {
+    ActivityStarter(@Named("AppContext") Context context) {
         this.context = context;
     }
 

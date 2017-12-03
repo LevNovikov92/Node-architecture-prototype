@@ -13,4 +13,9 @@ public class FacebookAuthProvider implements AuthProvider {
     public Completable login() {
         return Completable.error(new Exception());
     }
+
+    @Override
+    public Completable signUp(String phoneNumber) {
+        return Completable.error(new Exception());
+    }
 }

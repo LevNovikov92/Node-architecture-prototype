@@ -45,12 +45,12 @@ public class LoginView extends ConstraintLayout implements LoginPresenter {
 
     @Override
     public void showProgress() {
-
+        //TODO
     }
 
     @Override
     public void hideProgress() {
-
+        //TODO
     }
 
     @Override
