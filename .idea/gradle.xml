@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/core-auth" />
             <option value="$PROJECT_DIR$/core-profile" />
             <option value="$PROJECT_DIR$/feature-onboarding" />
+            <option value="$PROJECT_DIR$/stream-state" />
             <option value="$PROJECT_DIR$/system-base" />
           </set>
         </option>
