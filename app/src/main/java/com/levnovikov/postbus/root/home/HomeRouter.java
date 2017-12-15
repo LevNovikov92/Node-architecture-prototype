@@ -9,10 +9,10 @@ import javax.inject.Inject;
  * Date: 14/12/17.
  */
 
+@HomeScope
 class HomeRouter {
 
     @Inject
-    @HomeScope
     HomeRouter() {
 
     }

@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/feature-onboarding/feature-onboarding.iml" filepath="$PROJECT_DIR$/feature-onboarding/feature-onboarding.iml" />
       <module fileurl="file://$PROJECT_DIR$/post-bus.iml" filepath="$PROJECT_DIR$/post-bus.iml" />
       <module fileurl="file://$PROJECT_DIR$/stream-state/stream-state.iml" filepath="$PROJECT_DIR$/stream-state/stream-state.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stream-state/stream-state.iml" filepath="$PROJECT_DIR$/stream-state/stream-state.iml" />
       <module fileurl="file://$PROJECT_DIR$/system-base/system-base.iml" filepath="$PROJECT_DIR$/system-base/system-base.iml" />
     </modules>
   </component>

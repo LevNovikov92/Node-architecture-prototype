@@ -12,11 +12,11 @@ import io.reactivex.Observable;
  * Date: 14/12/17.
  */
 
+@HomeScope
 class HomeInteractor {
 
     private final Observable<AppState> appStateStream;
 
-    @HomeScope
     @Inject
     HomeInteractor(Observable<AppState> appStateStream) {
 

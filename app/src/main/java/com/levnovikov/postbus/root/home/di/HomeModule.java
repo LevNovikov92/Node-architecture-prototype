@@ -7,6 +7,7 @@ import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.stream_state.AppStateStreamProvider;
 
+import dagger.Module;
 import dagger.Provides;
 import io.reactivex.Observable;
 
@@ -15,11 +16,12 @@ import io.reactivex.Observable;
  * Date: 14/12/17.
  */
 
-class HomeModule {
+@Module
+public class HomeModule {
 
     private Activity activity;
 
-    HomeModule(Activity activity) {
+    public HomeModule(Activity activity) {
         this.activity = activity;
     }
 

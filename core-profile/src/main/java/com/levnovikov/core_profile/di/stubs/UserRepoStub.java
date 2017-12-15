@@ -13,7 +13,7 @@ import io.reactivex.Single;
 public class UserRepoStub implements UserRepository {
     @Override
     public Single<Boolean> isUserLoggedIn() {
-        return Single.just(false);
+        return Single.just(true);
     }
 
     @Override

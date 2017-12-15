@@ -34,6 +34,7 @@ public class OnboardingRouter extends Router {
     void removeAll() {
         loginBuilder.removeView();
         signUpBuilder.removeView();
+        detachAll();
     }
 
     void attachSignUpScreen() {

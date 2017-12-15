@@ -2,6 +2,7 @@ package com.levnovikov.postbus.root;
 
 import com.example.feature_onboarding.OnboardingActivity;
 import com.levnovikov.postbus.root.di.RootScope;
+import com.levnovikov.postbus.root.home.HomeActivity;
 import com.levnovikov.system_base.ActivityStarter;
 
 import javax.inject.Inject;
@@ -26,6 +27,6 @@ public class RootRouter {
     }
 
     void home() {
-
+        starter.startActivity(HomeActivity.class, null);
     }
 }
