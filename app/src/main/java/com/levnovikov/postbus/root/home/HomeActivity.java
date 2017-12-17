@@ -20,6 +20,9 @@ public class HomeActivity extends AppCompatActivity {
     @Inject
     HomeView view;
 
+    @Inject
+    HomeInteractor interactor;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

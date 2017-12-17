@@ -13,11 +13,10 @@ import io.reactivex.subjects.BehaviorSubject;
 public class AppStateStreamProvider {
 
     @Inject
-    public AppStateStreamProvider() {
+    public AppStateStreamProvider() { }
 
-    }
-
+    private BehaviorSubject<AppState> appStateSubject = BehaviorSubject.createDefault(AppState.PREBOOKING);
     public Observable<AppState> provideAppStateStream() {
-        return BehaviorSubject.createDefault(AppState.PREBOOKING).distinctUntilChanged(); //TODO stub
+        return appStateSubject.distinctUntilChanged(); //TODO stub
     }
 }

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
  * Date: 30/11/17.
  */
 
-public abstract class ViewBuilder<V extends View, R extends Router> {
+public abstract class ViewBuilder<V extends View, R extends Router> implements Builder<R> {
 
     protected V view;
     private final LayoutInflater inflater;
@@ -26,8 +26,6 @@ public abstract class ViewBuilder<V extends View, R extends Router> {
             view = null;
         }
     }
-
-    public abstract R build();
 
     public abstract int getLayout();
 

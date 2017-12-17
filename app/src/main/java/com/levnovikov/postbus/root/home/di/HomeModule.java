@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.levnovikov.postbus.root.home.HomeView;
+import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.stream_state.AppStateStreamProvider;
 
@@ -29,6 +30,12 @@ public class HomeModule {
     @Provides
     Context provideContext() {
         return activity;
+    }
+
+    @HomeScope
+    @Provides
+    PrebookingBuilder providePrebookingBuilder(HomeComponent component) {
+        return new PrebookingBuilder(component);
     }
 
     @HomeScope
