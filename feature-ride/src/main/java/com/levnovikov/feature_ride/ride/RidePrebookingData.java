@@ -13,7 +13,7 @@ public class RidePrebookingData extends PrebookingData {
     public int carType;
     public String promoCode; //TODO implement promo module
 
-    public RidePrebookingData copy() {
+    RidePrebookingData copy() {
         final RidePrebookingData data = new RidePrebookingData();
         data.pickUpPoint = pickUpPoint;
         data.dropOffPoint = dropOffPoint;

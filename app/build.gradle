@@ -46,4 +46,5 @@ dependencies {
     compile project(path: ':core-profile')
     compile project(path: ':feature-onboarding')
     compile project(path: ':stream-state')
+    compile project(path: ':feature-ride')
 }
