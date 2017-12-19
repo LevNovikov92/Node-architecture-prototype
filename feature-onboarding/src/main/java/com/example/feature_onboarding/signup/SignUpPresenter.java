@@ -1,6 +1,6 @@
 package com.example.feature_onboarding.signup;
 
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.Observable;
 
 /**
  * Created by lev.novikov
@@ -12,9 +12,9 @@ public interface SignUpPresenter {
     void hideProgress();
     void showMessage(String error);
 
-    PublishSubject<String> getFacebookClickStream();
+    Observable<String> getFacebookClickStream();
 
-    PublishSubject<String> getGoogleClickStream();
+    Observable<String> getGoogleClickStream();
 
-    PublishSubject<String> getSignUpClickStream();
+    Observable<String> getSignUpClickStream();
 }

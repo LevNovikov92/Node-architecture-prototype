@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.feature_onboarding.R;
 
+import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
 /**
@@ -16,8 +17,6 @@ import io.reactivex.subjects.PublishSubject;
  */
 
 public class SignUpView extends ConstraintLayout implements SignUpPresenter {
-
-    static final int layout = R.layout.onboarding_signup;
 
     public SignUpView(Context context) {
         super(context);
@@ -60,17 +59,17 @@ public class SignUpView extends ConstraintLayout implements SignUpPresenter {
     }
 
     @Override
-    public PublishSubject<String> getFacebookClickStream() {
+    public Observable<String> getFacebookClickStream() {
         return facebookClickSubject;
     }
 
     @Override
-    public PublishSubject<String> getGoogleClickStream() {
+    public Observable<String> getGoogleClickStream() {
         return googleClickSubject;
     }
 
     @Override
-    public PublishSubject<String> getSignUpClickStream() {
+    public Observable<String> getSignUpClickStream() {
         return signUpClickSubject;
     }
 

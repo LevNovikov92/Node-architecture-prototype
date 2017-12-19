@@ -30,12 +30,12 @@ public class LoginBuilder extends ViewBuilder<LoginView, LoginRouter> {
     }
 
     @Override
-    public LoginRouter build() {
+    public LoginRouter build(PrebookingComponent parentComponent) {
         if (view != null) {
             throw new UnsupportedOperationException("View already attached");
         }
         final LoginComponent component = DaggerLoginComponent.builder()
-                .onboardingComponent(parentComponent)
+                .onboardingComponent(this.parentComponent)
                 .loginModule(new LoginModule(buildView()))
                 .build();
         component.inject(this);

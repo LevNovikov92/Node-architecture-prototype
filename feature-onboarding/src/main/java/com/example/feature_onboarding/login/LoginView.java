@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.feature_onboarding.R;
 
+import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
 /**
@@ -16,8 +17,6 @@ import io.reactivex.subjects.PublishSubject;
  */
 
 public class LoginView extends ConstraintLayout implements LoginPresenter {
-
-    static final int layout = R.layout.onboarding_login;
 
     public LoginView(Context context) {
         super(context);
@@ -31,16 +30,16 @@ public class LoginView extends ConstraintLayout implements LoginPresenter {
         super(context, attrs, defStyleAttr);
     }
 
-    private PublishSubject<Object> facebookClickSubject = PublishSubject.create();
-    private PublishSubject<Object> googleClickSubject = PublishSubject.create();
-    private PublishSubject<Object> signUpClickSubject = PublishSubject.create();
+    private PublishSubject<Void> facebookClickSubject = PublishSubject.create();
+    private PublishSubject<Void> googleClickSubject = PublishSubject.create();
+    private PublishSubject<Void> signUpClickSubject = PublishSubject.create();
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        findViewById(R.id.facebook).setOnClickListener(v -> facebookClickSubject.onNext(new Object()));
-        findViewById(R.id.google).setOnClickListener(v -> googleClickSubject.onNext(new Object()));
-        findViewById(R.id.sign_up).setOnClickListener(v -> signUpClickSubject.onNext(new Object()));
+        findViewById(R.id.facebook).setOnClickListener(v -> facebookClickSubject.onNext(null));
+        findViewById(R.id.google).setOnClickListener(v -> googleClickSubject.onNext(null));
+        findViewById(R.id.sign_up).setOnClickListener(v -> signUpClickSubject.onNext(null));
     }
 
     @Override
@@ -59,17 +58,17 @@ public class LoginView extends ConstraintLayout implements LoginPresenter {
     }
 
     @Override
-    public PublishSubject<Object> getFacebookClickStream() {
+    public Observable<Void> getFacebookClickStream() {
         return facebookClickSubject;
     }
 
     @Override
-    public PublishSubject<Object> getGoogleClickStream() {
+    public Observable<Void> getGoogleClickStream() {
         return googleClickSubject;
     }
 
     @Override
-    public PublishSubject<Object> getSignUpClickStream() {
+    public Observable<Void> getSignUpClickStream() {
         return signUpClickSubject;
     }
 

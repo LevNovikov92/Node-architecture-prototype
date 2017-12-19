@@ -24,7 +24,7 @@ class HomeRouter extends Router {
     }
 
     void startPrebooking() {
-        final PrebookingRouter router = prebookingBuilder.build();
+        final PrebookingRouter router = prebookingBuilder.build(parentComponent);
         detachAll();
         attachRouter(router);
     }

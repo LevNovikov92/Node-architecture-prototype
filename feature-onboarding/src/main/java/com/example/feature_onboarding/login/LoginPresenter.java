@@ -1,6 +1,6 @@
 package com.example.feature_onboarding.login;
 
-import io.reactivex.subjects.PublishSubject;
+import io.reactivex.Observable;
 
 /**
  * Created by lev.novikov
@@ -12,9 +12,9 @@ public interface LoginPresenter {
     void hideProgress();
     void showMessage(String error);
 
-    PublishSubject<Object> getFacebookClickStream();
+    Observable<Void> getFacebookClickStream();
 
-    PublishSubject<Object> getGoogleClickStream();
+    Observable<Void> getGoogleClickStream();
 
-    PublishSubject<Object> getSignUpClickStream();
+    Observable<Void> getSignUpClickStream();
 }

@@ -27,7 +27,7 @@ public class OnboardingRouter extends Router {
     }
 
     void attachLogInScreen() {
-        final LoginRouter router = loginBuilder.build();
+        final LoginRouter router = loginBuilder.build(parentComponent);
         attachRouter(router);
     }
 
@@ -38,7 +38,7 @@ public class OnboardingRouter extends Router {
     }
 
     void attachSignUpScreen() {
-        final SignUpRouter router = signUpBuilder.build();
+        final SignUpRouter router = signUpBuilder.build(parentComponent);
         attachRouter(router);
     }
 }

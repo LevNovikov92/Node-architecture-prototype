@@ -3,6 +3,7 @@ package com.example.feature_onboarding.signup;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.feature_onboarding.R;
 import com.example.feature_onboarding.di.OnboardingComponent;
 import com.example.feature_onboarding.signup.di.DaggerSignUpComponent;
 import com.example.feature_onboarding.signup.di.SignUpComponent;
@@ -29,12 +30,12 @@ public class SignUpBuilder extends ViewBuilder<SignUpView, SignUpRouter> {
     }
 
     @Override
-    public SignUpRouter build() {
+    public SignUpRouter build(PrebookingComponent parentComponent) {
         if (view != null) {
             throw new UnsupportedOperationException("View already attached");
         }
         final SignUpComponent component = DaggerSignUpComponent.builder()
-                .onboardingComponent(parentComponent)
+                .onboardingComponent(this.parentComponent)
                 .signUpModule(new SignUpModule(buildView()))
                 .build();
         component.inject(this);
@@ -44,6 +45,6 @@ public class SignUpBuilder extends ViewBuilder<SignUpView, SignUpRouter> {
 
     @Override
     public int getLayout() {
-        return SignUpView.layout; //TODO refactor
+        return R.layout.onboarding_signup; //TODO refactor
     }
 }
