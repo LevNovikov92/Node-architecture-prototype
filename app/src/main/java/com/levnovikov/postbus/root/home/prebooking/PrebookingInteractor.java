@@ -29,7 +29,6 @@ public class PrebookingInteractor implements
     PrebookingInteractor(PrebookingRouter router, RidePrebookingRepo prebookingRepo) {
         this.router = router;
         this.prebookingRepo = prebookingRepo;
-        onGetActive();
     }
 
     @Override

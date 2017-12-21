@@ -14,6 +14,7 @@ import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInter
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
 
+import dagger.Binds;
 import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
@@ -29,12 +30,12 @@ public interface PrebookingComponent {
 
     void inject(PrebookingBuilder prebookingBuilder);
 
-    @Module
+    @Module(includes = PrebookingModule.Binders.class)
     class PrebookingModule {
 
         @PrebookingScope
         @Provides
-        RidePrebookingData provideDefaultPrebooingData() {
+        RidePrebookingData provideDefaultPrebookingData() {
             return new RidePrebookingData();
         }
 
@@ -56,16 +57,14 @@ public interface PrebookingComponent {
             return new PoiSelectorBuilder(inflater, parent, component);
         }
 
-        @PrebookingScope
-        @Provides
-        PoiSelectorInteractor.PoiSelectionListener provideSelectionListener(PrebookingInteractor interactor) {
-            return interactor;
-        }
+        @Module
+        public interface Binders {
 
-        @PrebookingScope
-        @Provides
-        PoiWidgetInteractor.PoiClickListener providePoiClickListener(PrebookingInteractor interactor) {
-            return interactor;
+            @Binds
+            PoiSelectorInteractor.PoiSelectionListener provideSelectionListener(PrebookingInteractor interactor);
+
+            @Binds
+            PoiWidgetInteractor.PoiClickListener providePoiClickListener(PrebookingInteractor interactor);
         }
     }
 

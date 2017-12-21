@@ -5,6 +5,7 @@ import java.lang.annotation.RetentionPolicy;
 
 import javax.inject.Scope;
 
+
 /**
  * Author: lev.novikov
  * Date: 17/12/17.

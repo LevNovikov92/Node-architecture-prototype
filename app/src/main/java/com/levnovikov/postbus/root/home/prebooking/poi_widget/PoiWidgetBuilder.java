@@ -35,6 +35,7 @@ public class PoiWidgetBuilder extends ViewBuilder<PoiWidgetView, PoiWidgetRouter
                 .poiWidgetModule(new PoiWidgetComponent.PoiWidgetModule(buildView()))
                 .build();
         component.inject(this);
+        interactor.onGetActive();
         return component.router();
     }
 

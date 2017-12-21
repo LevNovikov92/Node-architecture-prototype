@@ -2,13 +2,23 @@
 <com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <EditText
         android:id="@+id/poi_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Point of interest"/>
+        android:hint="Point of interest"
+        android:inputType="text"
+        android:text="@string/app_name"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="button"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

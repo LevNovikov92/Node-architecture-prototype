@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.stream_state.AppState;
@@ -41,8 +42,8 @@ public class HomeModule {
 
     @HomeScope
     @Provides
-    HomeView provideView(Context context) {
-        return new HomeView(context);
+    HomeView provideView(LayoutInflater inflater) {
+        return (HomeView) inflater.inflate(R.layout.home_view, null, true);
     }
 
     @HomeScope

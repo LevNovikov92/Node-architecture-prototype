@@ -3,6 +3,7 @@ package com.levnovikov.postbus.root.home.prebooking.poi_widget;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.levnovikov.postbus.R;
@@ -29,16 +30,16 @@ public class PoiWidgetView extends LinearLayout implements PoiWidgetInteractor.P
         super(context, attrs, defStyleAttr);
     }
 
-    private PublishSubject<Void> pickUpSubject = PublishSubject.create();
-    private PublishSubject<Void> dropOffSubject = PublishSubject.create();
+    private PublishSubject<Object> pickUpSubject = PublishSubject.create();
+    private PublishSubject<Object> dropOffSubject = PublishSubject.create();
 
     @Override
-    public Observable<Void> onPickUpClick() {
+    public Observable<Object> onPickUpClick() {
         return pickUpSubject;
     }
 
     @Override
-    public Observable<Void> onDropOffClick() {
+    public Observable<Object> onDropOffClick() {
         return dropOffSubject;
     }
 
@@ -49,7 +50,10 @@ public class PoiWidgetView extends LinearLayout implements PoiWidgetInteractor.P
     }
 
     private void initView() {
-        findViewById(R.id.pickUpButton).setOnClickListener((v) -> pickUpSubject.onNext(null));
-        findViewById(R.id.dropOffButton).setOnClickListener((v) -> dropOffSubject.onNext(null));
+        findViewById(R.id.pickUpButton).setOnClickListener((v) -> {
+            Log.i(">>>", "click");
+            pickUpSubject.onNext(new Object());
+        });
+        findViewById(R.id.dropOffButton).setOnClickListener((v) -> dropOffSubject.onNext(new Object()));
     }
 }

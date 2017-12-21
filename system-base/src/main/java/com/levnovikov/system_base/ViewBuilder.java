@@ -31,6 +31,7 @@ public abstract class ViewBuilder<V extends View, R extends Router> implements B
 
     protected V buildView() {
         view = (V) inflater.inflate(getLayout(), parent, false);
+        parent.addView(view);
         return view;
     }
 }

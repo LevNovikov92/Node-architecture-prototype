@@ -3,12 +3,16 @@ package com.levnovikov.postbus.root.home.prebooking.poi_selector;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.core_geo.Point;
 import com.levnovikov.postbus.R;
@@ -46,12 +50,36 @@ public class PoiSelectorView extends LinearLayout implements PoiSelectorInteract
     }
 
     private BehaviorSubject<Point> selectedPoiStream = BehaviorSubject.create();
+    private BehaviorSubject<String> placesStream = BehaviorSubject.create();
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         adapter = new Adapter((LayoutInflater) this.getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE ));
         interactor.onGetActive();
+        initView();
+    }
+
+    private void initView() {
+        findViewById(R.id.button).setOnClickListener(v -> {
+            Toast.makeText(this.getContext(), "Click", Toast.LENGTH_SHORT).show(); });
+        final EditText editText = findViewById(R.id.poi_text);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                placesStream.onNext(editable.toString());
+            }
+        });
     }
 
     @Override
@@ -61,7 +89,7 @@ public class PoiSelectorView extends LinearLayout implements PoiSelectorInteract
 
     @Override
     public Observable<String> getPlaceTitleStream() {
-        return null;
+        return placesStream;
     }
 
     @Override

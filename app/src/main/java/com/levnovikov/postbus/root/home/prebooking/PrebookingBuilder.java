@@ -15,6 +15,7 @@ import javax.inject.Inject;
 public class PrebookingBuilder implements Builder<PrebookingRouter> {
 
     private final HomeComponent component;
+
     @Inject
     PrebookingInteractor interactor;
 
@@ -28,6 +29,7 @@ public class PrebookingBuilder implements Builder<PrebookingRouter> {
                 .homeComponent(component)
                 .build();
         cmp.inject(this);
+        interactor.onGetActive();
         return cmp.getRouter();
     }
 }
