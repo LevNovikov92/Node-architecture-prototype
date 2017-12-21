@@ -1,7 +1,7 @@
 package com.levnovikov.feature_ride.ride;
 
 import com.example.core_booking.PrebookingRepo;
-import com.example.core_booking.geo.Point;
+import com.example.core_geo.Point;
 
 /**
  * Created by lev.novikov

@@ -9,6 +9,8 @@ import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.DaggerPoiWidget
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.PoiWidgetComponent;
 import com.levnovikov.system_base.ViewBuilder;
 
+import javax.inject.Inject;
+
 /**
  * Author: lev.novikov
  * Date: 19/12/17.
@@ -17,6 +19,9 @@ import com.levnovikov.system_base.ViewBuilder;
 public class PoiWidgetBuilder extends ViewBuilder<PoiWidgetView, PoiWidgetRouter> {
 
     private final PrebookingComponent parentComponent;
+
+    @Inject
+    PoiWidgetInteractor interactor;
 
     public PoiWidgetBuilder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
         super(inflater, parent);
@@ -27,8 +32,10 @@ public class PoiWidgetBuilder extends ViewBuilder<PoiWidgetView, PoiWidgetRouter
     public PoiWidgetRouter build() {
         final PoiWidgetComponent component = DaggerPoiWidgetComponent.builder()
                 .prebookingComponent(parentComponent)
+                .poiWidgetModule(new PoiWidgetComponent.PoiWidgetModule(buildView()))
                 .build();
-        return null;
+        component.inject(this);
+        return component.router();
     }
 
     @Override

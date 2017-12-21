@@ -1,7 +1,10 @@
 package com.levnovikov.postbus.root.home.prebooking.poi_widget;
 
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
+import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.PoiWidgetScope;
 import com.levnovikov.system_base.Interactor;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
@@ -10,13 +13,15 @@ import io.reactivex.Observable;
  * Date: 19/12/17.
  */
 
+@PoiWidgetScope
 public class PoiWidgetInteractor implements Interactor {
 
     private final PoiWidgetRouter router;
     private final Presenter presenter;
     private final RidePrebookingRepo ridePrebookingRepo;
 
-    PoiWidgetInteractor(
+    @Inject
+    public PoiWidgetInteractor(
             PoiWidgetRouter router,
             Presenter presenter,
             RidePrebookingRepo ridePrebookingRepo) {
@@ -27,13 +32,14 @@ public class PoiWidgetInteractor implements Interactor {
 
     @Override
     public void onGetActive() {
-        presenter.onPickUpClick()
-                .subscribe((v) -> {
+        presenter.onPickUpClick() //TODO unsubscribe
+                .subscribe((v) -> router.startPickUpPointSelection(), (error) -> { /*handle it*/ });
 
-                }, (error) -> { /*handle it*/ });
+        presenter.onDropOffClick() //TODO unsubscribe
+                .subscribe((v) -> router.startDropOffPointSelection(), (error) -> { /*handle it*/ });
     }
 
-    interface Presenter {
+    public interface Presenter {
         Observable<Void> onPickUpClick();
         Observable<Void> onDropOffClick();
     }

@@ -22,7 +22,7 @@ public class PrebookingBuilder implements Builder<PrebookingRouter> {
     }
 
     @Override
-    public PrebookingRouter build(PrebookingComponent parentComponent) {
+    public PrebookingRouter build() {
         final PrebookingComponent cmp = DaggerPrebookingComponent.builder()
                 .homeComponent(component)
                 .build();

@@ -30,7 +30,7 @@ public class LoginBuilder extends ViewBuilder<LoginView, LoginRouter> {
     }
 
     @Override
-    public LoginRouter build(PrebookingComponent parentComponent) {
+    public LoginRouter build() {
         if (view != null) {
             throw new UnsupportedOperationException("View already attached");
         }

@@ -30,7 +30,7 @@ public class SignUpBuilder extends ViewBuilder<SignUpView, SignUpRouter> {
     }
 
     @Override
-    public SignUpRouter build(PrebookingComponent parentComponent) {
+    public SignUpRouter build() {
         if (view != null) {
             throw new UnsupportedOperationException("View already attached");
         }

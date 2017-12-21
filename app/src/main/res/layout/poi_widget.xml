@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:layout_alignParentBottom="true">
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/pickUpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@mipmap/ic_launcher_round"
@@ -13,7 +15,7 @@
         android:text="PICK-UP POINT" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/dropOffButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@mipmap/ic_launcher_round"

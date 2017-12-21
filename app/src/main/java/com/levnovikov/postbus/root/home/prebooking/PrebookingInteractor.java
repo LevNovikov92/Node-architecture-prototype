@@ -22,5 +22,6 @@ class PrebookingInteractor implements Interactor {
     @Override
     public void onGetActive() {
         //TODO make init, start some views
+        router.startPoiChoice();
     }
 }
