@@ -15,7 +15,8 @@ import javax.inject.Inject;
 public class PrebookingBuilder implements Builder<PrebookingRouter> {
 
     private final HomeComponent component;
-    @Inject PrebookingInteractor interactor;
+    @Inject
+    PrebookingInteractor interactor;
 
     public PrebookingBuilder(HomeComponent component) {
         this.component = component;

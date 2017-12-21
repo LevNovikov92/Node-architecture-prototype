@@ -1,10 +1,18 @@
 package com.levnovikov.postbus.root.home.prebooking.di;
 
+import android.view.LayoutInflater;
+
 import com.levnovikov.feature_ride.ride.RidePrebookingData;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
+import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
+import com.levnovikov.postbus.root.home.prebooking.PrebookingInteractor;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
+import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
+import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
+import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
+import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
 
 import dagger.Component;
 import dagger.Module;
@@ -35,10 +43,38 @@ public interface PrebookingComponent {
         RidePrebookingRepo providePrebookingRepo(RidePrebookingData defaultData) {
             return new RidePrebookingRepo(defaultData);
         }
+
+        @PrebookingScope
+        @Provides
+        PoiWidgetBuilder providePoiWidgetBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
+            return new PoiWidgetBuilder(inflater, parent, component);
+        }
+
+        @PrebookingScope
+        @Provides
+        PoiSelectorBuilder providePoiSelectorBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
+            return new PoiSelectorBuilder(inflater, parent, component);
+        }
+
+        @PrebookingScope
+        @Provides
+        PoiSelectorInteractor.PoiSelectionListener provideSelectionListener(PrebookingInteractor interactor) {
+            return interactor;
+        }
+
+        @PrebookingScope
+        @Provides
+        PoiWidgetInteractor.PoiClickListener providePoiClickListener(PrebookingInteractor interactor) {
+            return interactor;
+        }
     }
 
 
     PrebookingRouter getRouter();
 
     RidePrebookingRepo prebookingRepo();
+
+    PoiSelectorInteractor.PoiSelectionListener selectionListener();
+
+    PoiWidgetInteractor.PoiClickListener clickListener();
 }

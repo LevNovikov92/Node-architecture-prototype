@@ -2,6 +2,7 @@ package com.levnovikov.postbus.root.home.di;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
 
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
@@ -48,5 +49,11 @@ public class HomeModule {
     @Provides
     Observable<AppState> provideAppStateStream(AppStateStreamProvider provider) {
         return provider.provideAppStateStream();
+    }
+
+    @HomeScope
+    @Provides
+    LayoutInflater provideInflater() {
+        return activity.getLayoutInflater();
     }
 }

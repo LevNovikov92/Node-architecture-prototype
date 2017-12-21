@@ -18,11 +18,4 @@ public class PoiWidgetRouter extends Router {
 
     }
 
-    public void startPickUpPointSelection() {
-
-    }
-
-    public void startDropOffPointSelection() {
-
-    }
 }

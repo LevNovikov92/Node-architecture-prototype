@@ -7,7 +7,12 @@ package com.example.core_geo;
 
 public class Coordinates {
 
-    float x;
+    final float x;
 
-    float y;
+    final float y;
+
+    public Coordinates(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 }

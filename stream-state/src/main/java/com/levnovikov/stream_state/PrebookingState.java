@@ -6,8 +6,9 @@ package com.levnovikov.stream_state;
  */
 
 public enum PrebookingState {
-    INITIAL_STATE,
-    SET_POI,
+    INITIAL,
+    PICK_UP_SELECTION,
+    DROP_OFF_SELECTION,
     SET_SERVICE_TYPE,
     APPLY_PROMO
 }

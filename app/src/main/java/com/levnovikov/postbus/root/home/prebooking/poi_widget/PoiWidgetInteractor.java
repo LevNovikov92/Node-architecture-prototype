@@ -16,16 +16,21 @@ import io.reactivex.Observable;
 @PoiWidgetScope
 public class PoiWidgetInteractor implements Interactor {
 
-    private final PoiWidgetRouter router;
+    public interface PoiClickListener {
+        void onPickUpSelected();
+        void onDropOffSelected();
+    }
+
+    private final PoiClickListener poiSelectionListener;
     private final Presenter presenter;
     private final RidePrebookingRepo ridePrebookingRepo;
 
     @Inject
     public PoiWidgetInteractor(
-            PoiWidgetRouter router,
+            PoiClickListener poiClickListener,
             Presenter presenter,
             RidePrebookingRepo ridePrebookingRepo) {
-        this.router = router;
+        this.poiSelectionListener = poiClickListener;
         this.presenter = presenter;
         this.ridePrebookingRepo = ridePrebookingRepo;
     }
@@ -33,10 +38,10 @@ public class PoiWidgetInteractor implements Interactor {
     @Override
     public void onGetActive() {
         presenter.onPickUpClick() //TODO unsubscribe
-                .subscribe((v) -> router.startPickUpPointSelection(), (error) -> { /*handle it*/ });
+                .subscribe((v) -> poiSelectionListener.onPickUpSelected(), (error) -> { /*handle it*/ });
 
         presenter.onDropOffClick() //TODO unsubscribe
-                .subscribe((v) -> router.startDropOffPointSelection(), (error) -> { /*handle it*/ });
+                .subscribe((v) -> poiSelectionListener.onDropOffSelected(), (error) -> { /*handle it*/ });
     }
 
     public interface Presenter {

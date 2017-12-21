@@ -7,7 +7,12 @@ package com.example.core_geo;
 
 public class Point {
 
-    public Coordinates coordinates;
+    public final Coordinates coordinates;
 
-    public String title;
+    public final String title;
+
+    public Point(Coordinates coordinates, String title) {
+        this.coordinates = coordinates;
+        this.title = title;
+    }
 }

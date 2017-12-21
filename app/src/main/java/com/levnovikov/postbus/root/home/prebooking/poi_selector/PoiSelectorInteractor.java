@@ -2,9 +2,12 @@ package com.levnovikov.postbus.root.home.prebooking.poi_selector;
 
 import com.example.core_geo.Point;
 import com.example.core_location.PoiSuggestionProvider;
+import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.PoiSelectorScope;
 import com.levnovikov.system_base.Interactor;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
@@ -13,9 +16,10 @@ import io.reactivex.Observable;
  * Date: 20/12/17.
  */
 
+@PoiSelectorScope
 public class PoiSelectorInteractor implements Interactor {
 
-    interface PoiSelectionListener {
+    public interface PoiSelectionListener {
         void onPoiSelected(Point point);
     }
 
@@ -23,6 +27,7 @@ public class PoiSelectorInteractor implements Interactor {
     private Presenter presenter;
     private PoiSelectionListener listener;
 
+    @Inject
     public PoiSelectorInteractor(
             PoiSuggestionProvider poiProvider,
             Presenter presenter,
@@ -46,7 +51,7 @@ public class PoiSelectorInteractor implements Interactor {
                 .subscribe(point -> listener.onPoiSelected(point), error -> {});
     }
 
-    interface Presenter {
+    public interface Presenter {
         Observable<Point> getSelectedPoi();
         Observable<String> getPlaceTitleStream();
         void updateSuggestions(List<Point> poiList);

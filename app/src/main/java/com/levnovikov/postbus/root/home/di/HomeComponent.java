@@ -1,6 +1,9 @@
 package com.levnovikov.postbus.root.home.di;
 
+import android.view.LayoutInflater;
+
 import com.levnovikov.postbus.root.home.HomeActivity;
+import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.system_base.base_di.ComponentBuilder;
 
 import dagger.Subcomponent;
@@ -17,8 +20,11 @@ public interface HomeComponent {
     void inject(HomeActivity homeActivity);
 
     @Subcomponent.Builder
-    public interface Builder extends ComponentBuilder {
+    interface Builder extends ComponentBuilder {
         HomeComponent.Builder homeModule(HomeModule module);
         HomeComponent build();
     }
+
+    LayoutInflater inflater();
+    HomeView homeView();
 }
