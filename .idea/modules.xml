@@ -7,8 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/core-auth/core-auth.iml" filepath="$PROJECT_DIR$/core-auth/core-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-booking/core-booking.iml" filepath="$PROJECT_DIR$/core-booking/core-booking.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-geo/core-geo.iml" filepath="$PROJECT_DIR$/core-geo/core-geo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core-geo/core-geo.iml" filepath="$PROJECT_DIR$/core-geo/core-geo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core-location/core-location.iml" filepath="$PROJECT_DIR$/core-location/core-location.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-location/core-location.iml" filepath="$PROJECT_DIR$/core-location/core-location.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-profile/core-profile.iml" filepath="$PROJECT_DIR$/core-profile/core-profile.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-onboarding/feature-onboarding.iml" filepath="$PROJECT_DIR$/feature-onboarding/feature-onboarding.iml" />

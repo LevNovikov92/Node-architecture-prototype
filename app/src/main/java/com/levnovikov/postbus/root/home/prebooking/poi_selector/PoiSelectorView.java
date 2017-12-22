@@ -2,6 +2,7 @@ package com.levnovikov.postbus.root.home.prebooking.poi_selector;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,8 +21,6 @@ import com.levnovikov.postbus.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 
@@ -31,11 +30,6 @@ import io.reactivex.subjects.BehaviorSubject;
  */
 
 public class PoiSelectorView extends LinearLayout implements PoiSelectorInteractor.Presenter {
-
-    private Adapter adapter;
-
-    @Inject
-    PoiSelectorInteractor interactor;
 
     public PoiSelectorView(Context context) {
         super(context);
@@ -51,12 +45,12 @@ public class PoiSelectorView extends LinearLayout implements PoiSelectorInteract
 
     private BehaviorSubject<Point> selectedPoiStream = BehaviorSubject.create();
     private BehaviorSubject<String> placesStream = BehaviorSubject.create();
+    private Adapter adapter;
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         adapter = new Adapter((LayoutInflater) this.getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE ));
-        interactor.onGetActive();
         initView();
     }
 
@@ -66,20 +60,19 @@ public class PoiSelectorView extends LinearLayout implements PoiSelectorInteract
         final EditText editText = findViewById(R.id.poi_text);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void afterTextChanged(Editable editable) {
                 placesStream.onNext(editable.toString());
             }
         });
+        final RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override

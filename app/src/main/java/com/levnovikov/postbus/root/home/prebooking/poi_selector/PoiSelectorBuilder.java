@@ -9,6 +9,8 @@ import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.DaggerPoiSele
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.PoiSelectorComponent;
 import com.levnovikov.system_base.ViewBuilder;
 
+import javax.inject.Inject;
+
 /**
  * Created by lev.novikov
  * Date: 20/12/17.
@@ -17,6 +19,9 @@ import com.levnovikov.system_base.ViewBuilder;
 public class PoiSelectorBuilder extends ViewBuilder<PoiSelectorView, PoiSelectorRouter> {
 
     private final PrebookingComponent parentComponent;
+
+    @Inject
+    PoiSelectorInteractor interactor;
 
     public PoiSelectorBuilder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
         super(inflater, parent);
@@ -29,7 +34,8 @@ public class PoiSelectorBuilder extends ViewBuilder<PoiSelectorView, PoiSelector
                 .prebookingComponent(parentComponent)
                 .poiSelectorModule(new PoiSelectorComponent.PoiSelectorModule(buildView()))
                 .build();
-        component.inject(view);
+        component.inject(this);
+        interactor.onGetActive();
         return component.router();
     }
 
