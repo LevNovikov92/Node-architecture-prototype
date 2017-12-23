@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector;
 
+import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class CarTypeSelectorBuilder extends ViewBuilder<CarTypeSelectorView, Car
         final CarTypeSelectorView view = buildView();
         final FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
         params.gravity = Gravity.BOTTOM;
+        params.setMargins(0, 0, 0, getDp(view.getContext(), 180));
         view.setLayoutParams(params);
 
         final CarTypeSelectorComponent component = DaggerCarTypeSelectorComponent.builder()
@@ -42,6 +44,11 @@ public class CarTypeSelectorBuilder extends ViewBuilder<CarTypeSelectorView, Car
         component.inject(view);
         attachView();
         return component.router();
+    }
+
+    private int getDp(Context context, int dps) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dps * scale + 0.5f);
     }
 
     @Override

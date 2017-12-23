@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.root.home.prebooking;
 
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraBuilder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
@@ -20,15 +21,18 @@ public class PrebookingRouter extends Router {
     private final PoiWidgetBuilder poiWidgetBuilder;
     private final PoiSelectorBuilder poiSelectorBuilder;
     private final CarTypeSelectorBuilder carTypeSelectorBuilder;
+    private BookingExtraBuilder bookingExtraBuilder;
 
     @Inject
     PrebookingRouter(
             PoiWidgetBuilder poiWidgetBuilder,
             PoiSelectorBuilder poiSelectorBuilder,
-            CarTypeSelectorBuilder carTypeSelectorBuilder) {
+            CarTypeSelectorBuilder carTypeSelectorBuilder,
+            BookingExtraBuilder bookingExtraBuilder) {
         this.poiWidgetBuilder = poiWidgetBuilder;
         this.poiSelectorBuilder = poiSelectorBuilder;
         this.carTypeSelectorBuilder = carTypeSelectorBuilder;
+        this.bookingExtraBuilder = bookingExtraBuilder;
     }
 
     void showPoiWidget() {
@@ -41,6 +45,10 @@ public class PrebookingRouter extends Router {
         detachAll();
 
         attachRouter(carTypeSelectorBuilder.build());
+    }
+
+    void startBookingExtra() {
+        attachRouter(bookingExtraBuilder.build());
     }
 
     void startPoiChoice() {

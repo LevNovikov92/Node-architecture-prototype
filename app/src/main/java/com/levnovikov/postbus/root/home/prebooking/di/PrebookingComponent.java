@@ -9,6 +9,7 @@ import com.levnovikov.postbus.root.home.di.HomeComponent;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingInteractor;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraBuilder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
@@ -57,6 +58,12 @@ public interface PrebookingComponent {
         @Provides
         PoiSelectorBuilder providePoiSelectorBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
             return new PoiSelectorBuilder(inflater, parent, component);
+        }
+
+        @PrebookingScope
+        @Provides
+        BookingExtraBuilder provideBookingExtraBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
+            return new BookingExtraBuilder(inflater, parent, component);
         }
 
         @PrebookingScope

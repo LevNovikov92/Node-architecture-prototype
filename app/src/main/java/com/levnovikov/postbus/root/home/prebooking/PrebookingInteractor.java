@@ -50,6 +50,7 @@ public class PrebookingInteractor implements
             prebookingRepo.dropOffPoint.set(point);
             state = PrebookingState.SET_SERVICE_TYPE;
             router.startServiceType();
+            router.startBookingExtra();
         }
     }
 

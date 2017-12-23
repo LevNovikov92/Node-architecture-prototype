@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/payment_method"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/ic_attach_money_black_24dp" />
+
+        <ImageView
+            android:id="@+id/promo"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/ic_receipt_black_24dp"/>
+
+        <ImageView
+            android:id="@+id/more"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            app:srcCompat="@drawable/ic_more_horiz_black_24dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/eta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="ETA"/>
+
+    <Button
+        android:id="@+id/book_button"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:text="LOG OUT"/>
+
+</com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraView>
