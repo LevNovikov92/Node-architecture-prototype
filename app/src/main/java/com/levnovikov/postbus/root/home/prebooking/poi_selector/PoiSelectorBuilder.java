@@ -9,8 +9,6 @@ import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.DaggerPoiSele
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.PoiSelectorComponent;
 import com.levnovikov.system_base.ViewBuilder;
 
-import javax.inject.Inject;
-
 /**
  * Created by lev.novikov
  * Date: 20/12/17.
@@ -18,25 +16,30 @@ import javax.inject.Inject;
 
 public class PoiSelectorBuilder extends ViewBuilder<PoiSelectorView, PoiSelectorRouter> {
 
+    private final LayoutInflater inflater;
     private final PrebookingComponent parentComponent;
-
-    @Inject
-    PoiSelectorInteractor interactor;
 
     public PoiSelectorBuilder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
         super(inflater, parent);
+        this.inflater = inflater;
         this.parentComponent = parentComponent;
     }
 
     @Override
     public PoiSelectorRouter build() {
+        final PoiSelectorView view = buildView();
         final PoiSelectorComponent component = DaggerPoiSelectorComponent.builder()
                 .prebookingComponent(parentComponent)
-                .poiSelectorModule(new PoiSelectorComponent.PoiSelectorModule(buildView()))
+                .poiSelectorModule(new PoiSelectorComponent.PoiSelectorModule(view))
                 .build();
-        component.inject(this);
-        interactor.onGetActive();
+        component.inject(view);
+        parent.addView(view);
         return component.router();
+    }
+
+    protected PoiSelectorView buildView() {
+        view = (PoiSelectorView) inflater.inflate(getLayout(), null, false);
+        return view;
     }
 
     @Override

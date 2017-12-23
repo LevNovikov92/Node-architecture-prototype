@@ -21,6 +21,8 @@ import com.levnovikov.postbus.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 
@@ -43,6 +45,9 @@ public class PoiSelectorView extends LinearLayout implements PoiSelectorInteract
         super(context, attrs, defStyleAttr);
     }
 
+    @Inject
+    PoiSelectorInteractor interactor;
+
     private BehaviorSubject<Point> selectedPoiStream = BehaviorSubject.create();
     private BehaviorSubject<String> placesStream = BehaviorSubject.create();
     private Adapter adapter;
@@ -52,6 +57,7 @@ public class PoiSelectorView extends LinearLayout implements PoiSelectorInteract
         super.onAttachedToWindow();
         adapter = new Adapter((LayoutInflater) this.getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE ));
         initView();
+        interactor.onGetActive();
     }
 
     private void initView() {
