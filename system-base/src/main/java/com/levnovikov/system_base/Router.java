@@ -19,8 +19,8 @@ public class Router {
         children.put(router.getClass(), router);
     }
 
-    protected void detachRouter(Router router) {
-        children.remove(router.getClass());
+    protected void detachRouter(Class<? extends Router> router) {
+        children.remove(router);
     }
 
     protected void detachAll() {

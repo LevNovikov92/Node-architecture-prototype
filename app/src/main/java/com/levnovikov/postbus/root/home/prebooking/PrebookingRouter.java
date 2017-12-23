@@ -1,7 +1,9 @@
 package com.levnovikov.postbus.root.home.prebooking;
 
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
+import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorRouter;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
 import com.levnovikov.system_base.Router;
 
@@ -17,24 +19,36 @@ public class PrebookingRouter extends Router {
 
     private final PoiWidgetBuilder poiWidgetBuilder;
     private final PoiSelectorBuilder poiSelectorBuilder;
+    private final CarTypeSelectorBuilder carTypeSelectorBuilder;
 
     @Inject
-    public  PrebookingRouter(
+    PrebookingRouter(
             PoiWidgetBuilder poiWidgetBuilder,
-            PoiSelectorBuilder poiSelectorBuilder) {
+            PoiSelectorBuilder poiSelectorBuilder,
+            CarTypeSelectorBuilder carTypeSelectorBuilder) {
         this.poiWidgetBuilder = poiWidgetBuilder;
         this.poiSelectorBuilder = poiSelectorBuilder;
+        this.carTypeSelectorBuilder = carTypeSelectorBuilder;
     }
 
-    public void showPoiWidget() {
+    void showPoiWidget() {
         attachRouter(poiWidgetBuilder.build());
     }
 
-    public void startServiceType() {
+    void startServiceType() {
+        poiSelectorBuilder.removeView();
+        poiWidgetBuilder.removeView();
+        detachAll();
 
+        attachRouter(carTypeSelectorBuilder.build());
     }
 
-    public void startPoiChoice() {
+    void startPoiChoice() {
         attachRouter(poiSelectorBuilder.build());
+    }
+
+    void hidePoiChoice() {
+        poiSelectorBuilder.removeView();
+        detachRouter(PoiSelectorRouter.class);
     }
 }

@@ -32,7 +32,7 @@ public class PoiWidgetBuilder extends ViewBuilder<PoiWidgetView, PoiWidgetRouter
     public PoiWidgetRouter build() {
         final PoiWidgetComponent component = DaggerPoiWidgetComponent.builder()
                 .prebookingComponent(parentComponent)
-                .poiWidgetModule(new PoiWidgetComponent.PoiWidgetModule(buildView()))
+                .poiWidgetModule(new PoiWidgetComponent.PoiWidgetModule(buildAndAttachView()))
                 .build();
         component.inject(this);
         interactor.onGetActive();

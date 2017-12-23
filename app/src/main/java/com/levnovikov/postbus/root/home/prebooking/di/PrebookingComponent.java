@@ -9,6 +9,8 @@ import com.levnovikov.postbus.root.home.di.HomeComponent;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingInteractor;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
@@ -57,6 +59,12 @@ public interface PrebookingComponent {
             return new PoiSelectorBuilder(inflater, parent, component);
         }
 
+        @PrebookingScope
+        @Provides
+        CarTypeSelectorBuilder provideCarType(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
+            return new CarTypeSelectorBuilder(inflater, parent, component);
+        }
+
         @Module
         public interface Binders {
 
@@ -65,9 +73,11 @@ public interface PrebookingComponent {
 
             @Binds
             PoiWidgetInteractor.PoiClickListener providePoiClickListener(PrebookingInteractor interactor);
+
+            @Binds
+            CarTypeSelectorInteractor.Listener provideCarTypeClickListener(PrebookingInteractor interactor);
         }
     }
-
 
     PrebookingRouter getRouter();
 
@@ -76,4 +86,6 @@ public interface PrebookingComponent {
     PoiSelectorInteractor.PoiSelectionListener selectionListener();
 
     PoiWidgetInteractor.PoiClickListener clickListener();
+
+    CarTypeSelectorInteractor.Listener carTypeListener();
 }

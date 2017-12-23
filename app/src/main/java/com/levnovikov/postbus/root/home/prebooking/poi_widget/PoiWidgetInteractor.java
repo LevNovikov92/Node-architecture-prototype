@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.root.home.prebooking.poi_widget;
 
+import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.PoiWidgetScope;
 import com.levnovikov.system_base.Interactor;
 
@@ -26,9 +27,16 @@ public class PoiWidgetInteractor implements Interactor {
     @Inject
     public PoiWidgetInteractor(
             PoiClickListener poiClickListener,
-            Presenter presenter) {
+            Presenter presenter,
+            RidePrebookingRepo prebookingRepo) {
         this.poiSelectionListener = poiClickListener;
         this.presenter = presenter;
+
+        prebookingRepo.pickupPoint.getStream()
+                .subscribe(point -> presenter.setPickUp(point.title), e -> { /*handle*/ });
+
+        prebookingRepo.dropOffPoint.getStream()
+                .subscribe(point -> presenter.setDropOff(point.title), e -> { /*handle*/ });
     }
 
     @Override
@@ -45,5 +53,8 @@ public class PoiWidgetInteractor implements Interactor {
     public interface Presenter {
         Observable<Object> onPickUpClick();
         Observable<Object> onDropOffClick();
+
+        void setPickUp(String placeTitle);
+        void setDropOff(String placeTitle);
     }
 }

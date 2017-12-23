@@ -33,13 +33,8 @@ public class PoiSelectorBuilder extends ViewBuilder<PoiSelectorView, PoiSelector
                 .poiSelectorModule(new PoiSelectorComponent.PoiSelectorModule(view))
                 .build();
         component.inject(view);
-        parent.addView(view);
+        attachView();
         return component.router();
-    }
-
-    protected PoiSelectorView buildView() {
-        view = (PoiSelectorView) inflater.inflate(getLayout(), null, false);
-        return view;
     }
 
     @Override

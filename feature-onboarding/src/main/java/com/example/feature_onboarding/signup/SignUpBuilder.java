@@ -36,7 +36,7 @@ public class SignUpBuilder extends ViewBuilder<SignUpView, SignUpRouter> {
         }
         final SignUpComponent component = DaggerSignUpComponent.builder()
                 .onboardingComponent(this.parentComponent)
-                .signUpModule(new SignUpModule(buildView()))
+                .signUpModule(new SignUpModule(buildAndAttachView()))
                 .build();
         component.inject(this);
         parent.addView(component.view());

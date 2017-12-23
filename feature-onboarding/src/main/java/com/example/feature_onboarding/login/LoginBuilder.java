@@ -36,7 +36,7 @@ public class LoginBuilder extends ViewBuilder<LoginView, LoginRouter> {
         }
         final LoginComponent component = DaggerLoginComponent.builder()
                 .onboardingComponent(this.parentComponent)
-                .loginModule(new LoginModule(buildView()))
+                .loginModule(new LoginModule(buildAndAttachView()))
                 .build();
         component.inject(this);
         parent.addView(component.view());

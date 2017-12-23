@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.levnovikov.postbus.R;
@@ -41,6 +42,16 @@ public class PoiWidgetView extends LinearLayout implements PoiWidgetInteractor.P
     @Override
     public Observable<Object> onDropOffClick() {
         return dropOffSubject;
+    }
+
+    @Override
+    public void setPickUp(String placeTitle) {
+        ((Button) findViewById(R.id.pickUpButton)).setText(placeTitle);
+    }
+
+    @Override
+    public void setDropOff(String placeTitle) {
+        ((Button) findViewById(R.id.dropOffButton)).setText(placeTitle);
     }
 
     @Override

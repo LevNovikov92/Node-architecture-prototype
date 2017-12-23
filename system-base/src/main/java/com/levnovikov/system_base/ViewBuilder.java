@@ -29,9 +29,18 @@ public abstract class ViewBuilder<V extends View, R extends Router> implements B
 
     public abstract int getLayout();
 
-    protected V buildView() {
+    protected V buildAndAttachView() {
         view = (V) inflater.inflate(getLayout(), parent, false);
         parent.addView(view);
         return view;
+    }
+
+    protected V buildView() {
+        view = (V) inflater.inflate(getLayout(), parent, false);
+        return view;
+    }
+
+    protected void attachView() {
+        parent.addView(view);
     }
 }
