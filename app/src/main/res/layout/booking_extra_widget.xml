@@ -50,6 +50,6 @@
         android:id="@+id/book_button"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:text="LOG OUT"/>
+        android:text="BOOKING"/>
 
 </com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraView>

@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.root.home;
 
+import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
 import com.levnovikov.postbus.root.home.di.HomeScope;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
@@ -17,10 +18,12 @@ import javax.inject.Inject;
 class HomeRouter extends Router {
 
     private final PrebookingBuilder prebookingBuilder;
+    private AllocatingBuilder allocatingBuilder;
 
     @Inject
-    HomeRouter(PrebookingBuilder prebookingBuilder) {
+    HomeRouter(PrebookingBuilder prebookingBuilder, AllocatingBuilder allocatingBuilder) {
         this.prebookingBuilder = prebookingBuilder;
+        this.allocatingBuilder = allocatingBuilder;
     }
 
     void startPrebooking() {
@@ -30,7 +33,8 @@ class HomeRouter extends Router {
     }
 
     void startAllocating() {
-
+        detachAll();
+        attachRouter(allocatingBuilder.build());
     }
 
     void startTracking() {
@@ -49,5 +53,10 @@ class HomeRouter extends Router {
                 startTracking();
                 break;
         }
+    }
+
+    @Override
+    protected void detach() {
+
     }
 }

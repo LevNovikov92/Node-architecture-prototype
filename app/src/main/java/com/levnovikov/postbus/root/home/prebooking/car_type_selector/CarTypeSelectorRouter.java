@@ -17,4 +17,9 @@ public class CarTypeSelectorRouter extends Router {
     CarTypeSelectorRouter() {
 
     }
+
+    @Override
+    protected void detach() {
+
+    }
 }

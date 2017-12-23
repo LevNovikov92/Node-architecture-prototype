@@ -8,7 +8,7 @@ import java.util.Map;
  * Date: 20/11/17.
  */
 
-public class Router {
+public abstract class Router {
 
     private final Map<Class<? extends Router>, Router> children = new HashMap<>();
 
@@ -24,6 +24,13 @@ public class Router {
     }
 
     protected void detachAll() {
+        for (Map.Entry<Class<? extends Router>, Router> entry : children.entrySet()) {
+            final Router router = entry.getValue();
+            router.detachAll();
+            router.detach();
+        }
         children.clear();
     }
+
+    protected abstract void detach();
 }

@@ -1,6 +1,7 @@
 package com.levnovikov.postbus.root.home;
 
 import com.levnovikov.postbus.root.home.di.HomeScope;
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.system_base.Interactor;
 
@@ -15,7 +16,7 @@ import io.reactivex.disposables.Disposable;
  */
 
 @HomeScope
-class HomeInteractor implements Interactor {
+public class HomeInteractor implements Interactor, BookingExtraInteractor.Listener {
 
     private final Observable<AppState> appStateStream;
     private final HomeRouter router;
@@ -37,5 +38,10 @@ class HomeInteractor implements Interactor {
                 }, error -> {
                     //TODO handle error
                 });
+    }
+
+    @Override
+    public void onBookClick() {
+        router.startAllocating();
     }
 }

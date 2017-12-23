@@ -59,4 +59,14 @@ public class PrebookingRouter extends Router {
         poiSelectorBuilder.removeView();
         detachRouter(PoiSelectorRouter.class);
     }
+
+
+    @Override
+    protected void detach() {
+        poiWidgetBuilder.removeView();
+        poiSelectorBuilder.removeView();
+        carTypeSelectorBuilder.removeView();
+        bookingExtraBuilder.removeView();
+        detachAll();
+    }
 }

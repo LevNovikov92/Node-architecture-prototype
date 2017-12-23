@@ -18,4 +18,8 @@ public class PoiWidgetRouter extends Router {
 
     }
 
+    @Override
+    protected void detach() {
+
+    }
 }

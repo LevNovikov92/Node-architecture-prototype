@@ -1,7 +1,9 @@
 package com.levnovikov.postbus.root.home.prebooking.poi_widget;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
@@ -30,6 +32,11 @@ public class PoiWidgetBuilder extends ViewBuilder<PoiWidgetView, PoiWidgetRouter
 
     @Override
     public PoiWidgetRouter build() {
+        final PoiWidgetView view = buildView();
+        final FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
+        params.gravity = Gravity.BOTTOM;
+        view.setLayoutParams(params);
+
         final PoiWidgetComponent component = DaggerPoiWidgetComponent.builder()
                 .prebookingComponent(parentComponent)
                 .poiWidgetModule(new PoiWidgetComponent.PoiWidgetModule(buildAndAttachView()))

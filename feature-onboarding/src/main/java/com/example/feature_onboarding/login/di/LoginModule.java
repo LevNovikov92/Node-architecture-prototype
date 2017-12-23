@@ -1,7 +1,6 @@
 package com.example.feature_onboarding.login.di;
 
 import com.example.feature_onboarding.login.LoginPresenter;
-import com.example.feature_onboarding.login.LoginRouter;
 import com.example.feature_onboarding.login.LoginView;
 
 import dagger.Module;
@@ -19,12 +18,6 @@ public class LoginModule {
 
     public LoginModule(LoginView view) {
         this.view = view;
-    }
-
-    @LoginScope
-    @Provides
-    LoginRouter provideLoginRouter() {
-        return new LoginRouter();
     }
 
     @LoginScope

@@ -1,6 +1,6 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di;
 
-import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraBuilder;
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraRouter;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraView;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
@@ -18,7 +18,7 @@ import dagger.Provides;
 @Component(dependencies = PrebookingComponent.class, modules = BookingExtraComponent.BookingExtraModule.class)
 public interface BookingExtraComponent {
 
-    void inject(BookingExtraBuilder bookingExtraBuilder);
+    void inject(BookingExtraView bookingExtraBuilder);
 
     BookingExtraRouter router();
 
@@ -34,6 +34,12 @@ public interface BookingExtraComponent {
         @BookingExtraScope
         @Provides
         BookingExtraView provideView() {
+            return view;
+        }
+
+        @BookingExtraScope
+        @Provides
+        BookingExtraInteractor.Presenter providePresenter() {
             return view;
         }
     }

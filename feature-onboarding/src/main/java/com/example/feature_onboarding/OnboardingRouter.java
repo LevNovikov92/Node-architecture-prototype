@@ -41,4 +41,9 @@ public class OnboardingRouter extends Router {
         final SignUpRouter router = signUpBuilder.build();
         attachRouter(router);
     }
+
+    @Override
+    protected void detach() {
+        removeAll();
+    }
 }

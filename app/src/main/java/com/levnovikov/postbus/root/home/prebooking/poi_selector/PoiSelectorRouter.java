@@ -17,4 +17,9 @@ public class PoiSelectorRouter extends Router {
     public PoiSelectorRouter() {
 
     }
+
+    @Override
+    protected void detach() {
+
+    }
 }

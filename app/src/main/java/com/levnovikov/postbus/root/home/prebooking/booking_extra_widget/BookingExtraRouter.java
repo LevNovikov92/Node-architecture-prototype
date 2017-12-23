@@ -17,4 +17,9 @@ public class BookingExtraRouter extends Router {
     public BookingExtraRouter() {
 
     }
+
+    @Override
+    protected void detach() {
+
+    }
 }

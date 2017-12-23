@@ -17,4 +17,9 @@ public class SignUpRouter extends Router {
     SignUpRouter() {
 
     }
+
+    @Override
+    protected void detach() {
+
+    }
 }

@@ -10,6 +10,7 @@ import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingInteractor;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraBuilder;
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
@@ -95,4 +96,6 @@ public interface PrebookingComponent {
     PoiWidgetInteractor.PoiClickListener clickListener();
 
     CarTypeSelectorInteractor.Listener carTypeListener();
+
+    BookingExtraInteractor.Listener bookingListener();
 }

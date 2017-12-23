@@ -5,8 +5,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 
 import com.levnovikov.postbus.R;
+import com.levnovikov.postbus.root.home.HomeInteractor;
 import com.levnovikov.postbus.root.home.HomeView;
+import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.stream_state.AppStateStreamProvider;
 
@@ -42,6 +45,12 @@ public class HomeModule {
 
     @HomeScope
     @Provides
+    AllocatingBuilder provideAllocatingBuilder(LayoutInflater inflater, HomeView parent, HomeComponent component) {
+        return new AllocatingBuilder(inflater, parent, component);
+    }
+
+    @HomeScope
+    @Provides
     HomeView provideView(LayoutInflater inflater) {
         return (HomeView) inflater.inflate(R.layout.home_view, null, true);
     }
@@ -56,5 +65,11 @@ public class HomeModule {
     @Provides
     LayoutInflater provideInflater() {
         return activity.getLayoutInflater();
+    }
+
+    @HomeScope
+    @Provides
+    BookingExtraInteractor.Listener provideBookingListener(HomeInteractor interactor) {
+        return interactor;
     }
 }
