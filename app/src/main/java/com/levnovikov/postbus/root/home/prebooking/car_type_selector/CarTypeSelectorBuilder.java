@@ -1,7 +1,9 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorComponent;
@@ -29,6 +31,10 @@ public class CarTypeSelectorBuilder extends ViewBuilder<CarTypeSelectorView, Car
     @Override
     public CarTypeSelectorRouter build() {
         final CarTypeSelectorView view = buildView();
+        final FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
+        params.gravity = Gravity.BOTTOM;
+        view.setLayoutParams(params);
+
         final CarTypeSelectorComponent component = DaggerCarTypeSelectorComponent.builder()
                 .prebookingComponent(parentComponent)
                 .carTypeModule(new CarTypeSelectorComponent.CarTypeModule(view))
