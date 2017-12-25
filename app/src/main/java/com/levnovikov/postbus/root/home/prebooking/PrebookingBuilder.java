@@ -19,6 +19,9 @@ public class PrebookingBuilder implements Builder<PrebookingRouter> {
     @Inject
     PrebookingInteractor interactor;
 
+    @Inject
+    PrebookingRouter router;
+
     public PrebookingBuilder(HomeComponent component) {
         this.component = component;
     }
@@ -30,6 +33,14 @@ public class PrebookingBuilder implements Builder<PrebookingRouter> {
                 .build();
         cmp.inject(this);
         interactor.onGetActive();
-        return cmp.getRouter();
+        return router;
+    }
+
+    @Override
+    public void destroy() {
+//        interactor.onDestroy(); TODO
+        if (router != null) {
+            router.destroyNode();
+        }
     }
 }

@@ -3,7 +3,6 @@ package com.levnovikov.postbus.root.home;
 import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
 import com.levnovikov.postbus.root.home.di.HomeScope;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
-import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.system_base.Router;
 
@@ -27,13 +26,12 @@ class HomeRouter extends Router {
     }
 
     void startPrebooking() {
-        final PrebookingRouter router = prebookingBuilder.build();
-        detachAll();
-        attachRouter(router);
+        allocatingBuilder.destroy();
+        attachRouter(prebookingBuilder.build());
     }
 
     void startAllocating() {
-        detachAll();
+        prebookingBuilder.destroy();
         attachRouter(allocatingBuilder.build());
     }
 
@@ -56,7 +54,7 @@ class HomeRouter extends Router {
     }
 
     @Override
-    protected void detach() {
+    protected void destroyNode() {
 
     }
 }

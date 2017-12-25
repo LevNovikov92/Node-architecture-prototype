@@ -40,9 +40,9 @@ public class PrebookingRouter extends Router {
     }
 
     void startServiceType() {
-        poiSelectorBuilder.removeView();
-        poiWidgetBuilder.removeView();
-        detachAll();
+        poiSelectorBuilder.destroy();
+        poiWidgetBuilder.destroy();
+        detachChildren();
 
         attachRouter(carTypeSelectorBuilder.build());
     }
@@ -56,17 +56,16 @@ public class PrebookingRouter extends Router {
     }
 
     void hidePoiChoice() {
-        poiSelectorBuilder.removeView();
+        poiSelectorBuilder.destroy();
         detachRouter(PoiSelectorRouter.class);
     }
 
-
     @Override
-    protected void detach() {
-        poiWidgetBuilder.removeView();
-        poiSelectorBuilder.removeView();
-        carTypeSelectorBuilder.removeView();
-        bookingExtraBuilder.removeView();
-        detachAll();
+    protected void destroyNode() {
+        poiWidgetBuilder.destroy();
+        poiSelectorBuilder.destroy();
+        carTypeSelectorBuilder.destroy();
+        bookingExtraBuilder.destroy();
+        detachChildren();
     }
 }

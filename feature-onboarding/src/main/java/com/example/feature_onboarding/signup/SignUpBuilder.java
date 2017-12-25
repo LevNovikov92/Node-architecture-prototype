@@ -22,6 +22,9 @@ public class SignUpBuilder extends ViewBuilder<SignUpView, SignUpRouter> {
     @Inject
     SignUpInteractor interactor;
 
+    @Inject
+    SignUpRouter router;
+
     private final OnboardingComponent parentComponent;
 
     public SignUpBuilder(ViewGroup parent, OnboardingComponent component, LayoutInflater inflater) {
@@ -31,15 +34,14 @@ public class SignUpBuilder extends ViewBuilder<SignUpView, SignUpRouter> {
 
     @Override
     public SignUpRouter build() {
-        if (view != null) {
-            throw new UnsupportedOperationException("View already attached");
-        }
+        final SignUpView view = buildView();
         final SignUpComponent component = DaggerSignUpComponent.builder()
                 .onboardingComponent(this.parentComponent)
-                .signUpModule(new SignUpModule(buildAndAttachView()))
+                .signUpModule(new SignUpModule(view))
                 .build();
         component.inject(this);
-        parent.addView(component.view());
+        component.inject(view);
+        attachView();
         return component.router();
     }
 

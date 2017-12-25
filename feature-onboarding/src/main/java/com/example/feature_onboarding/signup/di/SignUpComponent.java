@@ -20,4 +20,6 @@ public interface SignUpComponent {
     SignUpView view();
 
     void inject(SignUpBuilder signUpBuilder);
+
+    void inject(SignUpView view);
 }

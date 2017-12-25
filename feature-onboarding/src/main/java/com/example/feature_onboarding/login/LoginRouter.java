@@ -19,7 +19,7 @@ public class LoginRouter extends Router {
     }
 
     @Override
-    protected void detach() {
+    protected void destroyNode() {
 
     }
 }

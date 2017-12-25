@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di;
 
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraBuilder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraRouter;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraView;
@@ -21,6 +22,8 @@ public interface BookingExtraComponent {
     void inject(BookingExtraView bookingExtraBuilder);
 
     BookingExtraRouter router();
+
+    void inject(BookingExtraBuilder bookingExtraBuilder);
 
     @Module
     public class BookingExtraModule {

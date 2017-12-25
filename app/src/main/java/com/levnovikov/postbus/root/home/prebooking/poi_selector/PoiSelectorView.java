@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.core_geo.Point;
 import com.levnovikov.postbus.R;
@@ -61,8 +60,6 @@ public class PoiSelectorView extends LinearLayout implements PoiSelectorInteract
     }
 
     private void initView() {
-        findViewById(R.id.button).setOnClickListener(v -> {
-            Toast.makeText(this.getContext(), "Click", Toast.LENGTH_SHORT).show(); });
         final EditText editText = findViewById(R.id.poi_text);
         editText.addTextChangedListener(new TextWatcher() {
             @Override

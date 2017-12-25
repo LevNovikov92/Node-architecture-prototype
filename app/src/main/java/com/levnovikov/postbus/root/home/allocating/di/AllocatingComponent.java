@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.root.home.allocating.di;
 
+import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
 import com.levnovikov.postbus.root.home.allocating.AllocatingRouter;
 import com.levnovikov.postbus.root.home.allocating.AllocatingView;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
@@ -20,6 +21,8 @@ public interface AllocatingComponent {
     void inject(AllocatingView view);
 
     AllocatingRouter router();
+
+    void inject(AllocatingBuilder allocatingBuilder);
 
     @Module
     class AllocatingModule {

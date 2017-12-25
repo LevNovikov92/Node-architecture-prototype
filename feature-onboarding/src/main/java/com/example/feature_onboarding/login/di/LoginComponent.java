@@ -20,4 +20,6 @@ public interface LoginComponent {
     LoginView view();
 
     void inject(LoginBuilder loginBuilder);
+
+    void inject(LoginView view);
 }

@@ -31,8 +31,9 @@ public class AllocatingBuilder extends ViewBuilder<AllocatingView, AllocatingRou
                 .allocatingModule(new AllocatingComponent.AllocatingModule(view))
                 .build();
         component.inject(view);
+        component.inject(this);
         attachView();
-        return component.router();
+        return router;
     }
 
     @Override

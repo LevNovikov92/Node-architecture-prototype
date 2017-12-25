@@ -42,10 +42,12 @@ public class CarTypeSelectorBuilder extends ViewBuilder<CarTypeSelectorView, Car
                 .carTypeModule(new CarTypeSelectorComponent.CarTypeModule(view))
                 .build();
         component.inject(view);
+        component.inject(this);
         attachView();
-        return component.router();
+        return router;
     }
 
+    //TODO move to utils
     private int getDp(Context context, int dps) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dps * scale + 0.5f);

@@ -38,8 +38,9 @@ public class BookingExtraBuilder extends ViewBuilder<BookingExtraView, BookingEx
                 .bookingExtraModule(new BookingExtraComponent.BookingExtraModule(view))
                 .build();
         component.inject(view);
+        component.inject(this);
         attachView();
-        return component.router();
+        return router;
     }
 
     @Override

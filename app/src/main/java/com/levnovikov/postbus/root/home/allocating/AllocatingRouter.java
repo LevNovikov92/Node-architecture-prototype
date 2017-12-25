@@ -19,7 +19,7 @@ public class AllocatingRouter extends Router {
     }
 
     @Override
-    protected void detach() {
+    protected void destroyNode() {
 
     }
 }

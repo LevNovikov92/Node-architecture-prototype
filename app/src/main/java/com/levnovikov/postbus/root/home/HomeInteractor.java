@@ -33,9 +33,7 @@ public class HomeInteractor implements Interactor, BookingExtraInteractor.Listen
     @Override
     public void onGetActive() {
         Disposable disposable = appStateStream
-                .subscribe((state) -> {
-                    router.switchState(state);
-                }, error -> {
+                .subscribe(router::switchState, error -> {
                     //TODO handle error
                 });
     }

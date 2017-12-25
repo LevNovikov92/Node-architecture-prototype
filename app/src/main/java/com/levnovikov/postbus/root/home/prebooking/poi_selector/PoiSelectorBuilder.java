@@ -16,12 +16,10 @@ import com.levnovikov.system_base.ViewBuilder;
 
 public class PoiSelectorBuilder extends ViewBuilder<PoiSelectorView, PoiSelectorRouter> {
 
-    private final LayoutInflater inflater;
     private final PrebookingComponent parentComponent;
 
     public PoiSelectorBuilder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
         super(inflater, parent);
-        this.inflater = inflater;
         this.parentComponent = parentComponent;
     }
 
@@ -33,8 +31,9 @@ public class PoiSelectorBuilder extends ViewBuilder<PoiSelectorView, PoiSelector
                 .poiSelectorModule(new PoiSelectorComponent.PoiSelectorModule(view))
                 .build();
         component.inject(view);
+        component.inject(this);
         attachView();
-        return component.router();
+        return router;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.example.core_geo.Coordinates;
 import com.example.core_geo.Point;
 import com.example.core_location.PoiSuggestionProvider;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
+import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorRouter;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorView;
@@ -29,6 +30,8 @@ public interface PoiSelectorComponent {
     void inject(PoiSelectorView view);
 
     PoiSelectorRouter router();
+
+    void inject(PoiSelectorBuilder poiSelectorBuilder);
 
 
     @Module

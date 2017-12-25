@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.example.feature_onboarding.R;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
@@ -30,6 +32,9 @@ public class SignUpView extends ConstraintLayout implements SignUpPresenter {
         super(context, attrs, defStyleAttr);
     }
 
+    @Inject
+    SignUpInteractor interactor;
+
     private PublishSubject<String> facebookClickSubject = PublishSubject.create();
     private PublishSubject<String> googleClickSubject = PublishSubject.create();
     private PublishSubject<String> signUpClickSubject = PublishSubject.create();
@@ -41,6 +46,7 @@ public class SignUpView extends ConstraintLayout implements SignUpPresenter {
         findViewById(R.id.facebook).setOnClickListener(v -> facebookClickSubject.onNext(phoneNumber.getText().toString()));
         findViewById(R.id.google).setOnClickListener(v -> googleClickSubject.onNext(phoneNumber.getText().toString()));
         findViewById(R.id.sign_up).setOnClickListener(v -> signUpClickSubject.onNext(phoneNumber.getText().toString()));
+        interactor.onGetActive();
     }
 
     @Override

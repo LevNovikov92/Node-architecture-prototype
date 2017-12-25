@@ -98,4 +98,8 @@ public interface PrebookingComponent {
     CarTypeSelectorInteractor.Listener carTypeListener();
 
     BookingExtraInteractor.Listener bookingListener();
+
+    LayoutInflater inflater();
+
+    HomeView homeView();
 }

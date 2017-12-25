@@ -18,6 +18,7 @@ import io.reactivex.Observable;
 public class CarTypeSelectorInteractor implements Interactor {
 
     private Presenter presenter;
+    private CarTypeSelectorRouter router;
     private Listener listener;
     private RidePrebookingRepo prebookingRepo;
 
@@ -32,9 +33,11 @@ public class CarTypeSelectorInteractor implements Interactor {
     @Inject
     CarTypeSelectorInteractor(
             Presenter presenter,
+            CarTypeSelectorRouter router,
             Listener listener,
             RidePrebookingRepo prebookingRepo) {
         this.presenter = presenter;
+        this.router = router;
         this.listener = listener;
         this.prebookingRepo = prebookingRepo;
     }
@@ -43,7 +46,7 @@ public class CarTypeSelectorInteractor implements Interactor {
     public void onGetActive() {
         presenter.clickStream() //TODO unsubscribe
                 .subscribe(o -> {
-                    prebookingRepo.carType.set(1);
+                    router.attachTypeList();
                     listener.onServiceSelected();
                 }, e -> { /*handle error*/ });
     }

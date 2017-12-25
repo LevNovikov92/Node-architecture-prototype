@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.example.feature_onboarding.R;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
@@ -30,6 +32,9 @@ public class LoginView extends ConstraintLayout implements LoginPresenter {
         super(context, attrs, defStyleAttr);
     }
 
+    @Inject
+    LoginInteractor interactor;
+
     private PublishSubject<Void> facebookClickSubject = PublishSubject.create();
     private PublishSubject<Void> googleClickSubject = PublishSubject.create();
     private PublishSubject<Void> signUpClickSubject = PublishSubject.create();
@@ -40,6 +45,7 @@ public class LoginView extends ConstraintLayout implements LoginPresenter {
         findViewById(R.id.facebook).setOnClickListener(v -> facebookClickSubject.onNext(null));
         findViewById(R.id.google).setOnClickListener(v -> googleClickSubject.onNext(null));
         findViewById(R.id.sign_up).setOnClickListener(v -> signUpClickSubject.onNext(null));
+        interactor.onGetActive();
     }
 
     @Override

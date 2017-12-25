@@ -7,4 +7,5 @@ package com.levnovikov.system_base;
 
 public interface Builder<R extends Router> {
     R build();
+    void destroy();
 }

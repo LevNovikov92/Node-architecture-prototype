@@ -32,9 +32,9 @@ public class OnboardingRouter extends Router {
     }
 
     void removeAll() {
-        loginBuilder.removeView();
-        signUpBuilder.removeView();
-        detachAll();
+        loginBuilder.destroy();
+        signUpBuilder.destroy();
+        detachChildren();
     }
 
     void attachSignUpScreen() {
@@ -43,7 +43,7 @@ public class OnboardingRouter extends Router {
     }
 
     @Override
-    protected void detach() {
+    protected void destroyNode() {
         removeAll();
     }
 }
