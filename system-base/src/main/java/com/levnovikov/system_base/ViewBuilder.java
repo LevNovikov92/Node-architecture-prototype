@@ -39,6 +39,7 @@ public abstract class ViewBuilder<V extends View, R extends Router> implements B
         //interactor.onDestroy(); //TODO is it possible to detach view without calling destroy()?
         if (router != null) {
             router.destroyNode();
+            router = null;
             destroyView();
         }
     }

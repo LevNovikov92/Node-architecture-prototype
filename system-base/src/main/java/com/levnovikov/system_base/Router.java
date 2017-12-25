@@ -1,7 +1,5 @@
 package com.levnovikov.system_base;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,23 +13,23 @@ public abstract class Router {
     private final Map<Class<? extends Router>, Router> children = new HashMap<>();
 
     protected void attachRouter(Router router) {
-        Log.i(">>>>", "attachRouter " + router.getClass().getSimpleName() + " from " +
-                this.getClass().getSimpleName());
-        if (children.containsKey(router.getClass())) {
-            throw new UnsupportedOperationException(String.format("%s already attached", router.getClass()));
-        }
-        children.put(router.getClass(), router);
+//        Log.i(">>>>", "attachRouter " + router.getClass().getSimpleName() + " from " +
+//                this.getClass().getSimpleName());
+//        if (children.containsKey(router.getClass())) {
+//            throw new UnsupportedOperationException(String.format("%s already attached", router.getClass()));
+//        }
+//        children.put(router.getClass(), router);
     }
 
     protected void detachRouter(Class<? extends Router> router) {
-        Log.i(">>>>", "detachRouter " + router.getClass().getSimpleName() + " from " +
-                this.getClass().getSimpleName());
-        children.remove(router);
+//        Log.i(">>>>", "detachRouter " + router.getClass().getSimpleName() + " from " +
+//                this.getClass().getSimpleName());
+//        children.remove(router);
     }
 
     protected void detachChildren() {
-        Log.i(">>>>", "detachChildren " + this.getClass().getSimpleName());
-        children.clear();
+//        Log.i(">>>>", "detachChildren " + this.getClass().getSimpleName());
+//        children.clear();
     }
 
     protected abstract void destroyNode();
