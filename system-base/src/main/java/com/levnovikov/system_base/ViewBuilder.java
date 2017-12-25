@@ -5,28 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import javax.inject.Inject;
-
 /**
  * Created by lev.novikov
  * Date: 30/11/17.
  */
 
-public abstract class ViewBuilder<V extends View, R extends Router> implements Builder<R> {
+public abstract class ViewBuilder<V extends View, R extends Router> extends Builder<R> {
 
     private V view;
     private final LayoutInflater inflater;
     protected final ViewGroup parent;
-
-    @Inject
-    public R router; //TODO try to make protected
 
     public ViewBuilder(LayoutInflater inflater, ViewGroup parent) {
         this.inflater = inflater;
         this.parent = parent;
     }
 
-    protected void destroyView() {
+    private void destroyView() {
         if (view != null) {
             parent.removeView(view);
             view = null;
@@ -35,13 +30,8 @@ public abstract class ViewBuilder<V extends View, R extends Router> implements B
 
     @Override
     public void destroy() {
-        Log.i(">>>>", "destroy " + this.getClass().getSimpleName());
-        //interactor.onDestroy(); //TODO is it possible to detach view without calling destroy()?
-        if (router != null) {
-            router.destroyNode();
-            router = null;
-            destroyView();
-        }
+        super.destroy();
+        destroyView();
     }
 
     public abstract int getLayout();

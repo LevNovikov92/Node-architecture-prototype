@@ -23,6 +23,8 @@ public interface PoiWidgetComponent {
 
     PoiWidgetRouter router();
 
+    void inject(PoiWidgetView view);
+
     @Module
     class PoiWidgetModule {
 

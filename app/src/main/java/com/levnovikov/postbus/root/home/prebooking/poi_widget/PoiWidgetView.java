@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 
 import com.levnovikov.postbus.R;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
@@ -30,6 +32,9 @@ public class PoiWidgetView extends LinearLayout implements PoiWidgetInteractor.P
     public PoiWidgetView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
+    @Inject
+    PoiWidgetInteractor interactor;
 
     private PublishSubject<Object> pickUpSubject = PublishSubject.create();
     private PublishSubject<Object> dropOffSubject = PublishSubject.create();
@@ -58,6 +63,7 @@ public class PoiWidgetView extends LinearLayout implements PoiWidgetInteractor.P
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         initView();
+        interactor.onGetActive();
     }
 
     private void initView() {

@@ -5,22 +5,14 @@ import com.levnovikov.postbus.root.home.prebooking.di.DaggerPrebookingComponent;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
 import com.levnovikov.system_base.Builder;
 
-import javax.inject.Inject;
-
 /**
  * Author: lev.novikov
  * Date: 17/12/17.
  */
 
-public class PrebookingBuilder implements Builder<PrebookingRouter> {
+public class PrebookingBuilder extends Builder<PrebookingRouter> {
 
     private final HomeComponent component;
-
-    @Inject
-    PrebookingInteractor interactor;
-
-    @Inject
-    PrebookingRouter router;
 
     public PrebookingBuilder(HomeComponent component) {
         this.component = component;
@@ -32,15 +24,7 @@ public class PrebookingBuilder implements Builder<PrebookingRouter> {
                 .homeComponent(component)
                 .build();
         cmp.inject(this);
-        interactor.onGetActive();
+        cmp.interactor().onGetActive();
         return router;
-    }
-
-    @Override
-    public void destroy() {
-//        interactor.onDestroy(); TODO
-        if (router != null) {
-            router.destroyNode();
-        }
     }
 }

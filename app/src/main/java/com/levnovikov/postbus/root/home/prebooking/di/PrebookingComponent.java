@@ -34,6 +34,8 @@ public interface PrebookingComponent {
 
     void inject(PrebookingBuilder prebookingBuilder);
 
+    PrebookingInteractor interactor();
+
     @Module(includes = PrebookingModule.Binders.class)
     class PrebookingModule {
 
