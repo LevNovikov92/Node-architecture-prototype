@@ -37,13 +37,13 @@ public class CarTypeSelectorRouter extends Router {
     public NodeState getNodeState() {
         final NodeState nodeState = NodeState.create(this.getClass(), null);
         if (carTypeListBuilder.isActive())
-            nodeState.activeNodes.add(carTypeListBuilder.getClass().getSimpleName());
+            nodeState.activeNodes().add(carTypeListBuilder.getClass().getSimpleName());
         return nodeState;
     }
 
     @Override
     public void setState(NodeState state) {
-        if (state.activeNodes.contains(carTypeListBuilder.getClass().getSimpleName())) {
+        if (state.activeNodes().contains(carTypeListBuilder.getClass().getSimpleName())) {
             attachRouter(carTypeListBuilder.build());
         }
     }

@@ -19,4 +19,8 @@ public abstract class Interactor<R extends Router> {
             router.setState(state);
         }
     }
+
+    public boolean hasSavedState() {
+        return activityState.findNodeState(router.getClass()) != null;
+    }
 }

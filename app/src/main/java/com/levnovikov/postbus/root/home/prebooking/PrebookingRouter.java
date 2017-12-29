@@ -74,28 +74,28 @@ public class PrebookingRouter extends Router {
     public NodeState getNodeState() {
         final NodeState nodeState = NodeState.create(this.getClass(), null);
         if (poiWidgetBuilder.isActive())
-            nodeState.activeNodes.add(poiWidgetBuilder.getClass().getSimpleName());
+            nodeState.activeNodes().add(poiWidgetBuilder.getClass().getSimpleName());
         if (poiSelectorBuilder.isActive())
-            nodeState.activeNodes.add(poiSelectorBuilder.getClass().getSimpleName());
+            nodeState.activeNodes().add(poiSelectorBuilder.getClass().getSimpleName());
         if (carTypeSelectorBuilder.isActive())
-            nodeState.activeNodes.add(carTypeSelectorBuilder.getClass().getSimpleName());
+            nodeState.activeNodes().add(carTypeSelectorBuilder.getClass().getSimpleName());
         if (bookingExtraBuilder.isActive())
-            nodeState.activeNodes.add(bookingExtraBuilder.getClass().getSimpleName());
+            nodeState.activeNodes().add(bookingExtraBuilder.getClass().getSimpleName());
         return nodeState;
     }
 
     @Override
     public void setState(NodeState state) {
-        if (state.activeNodes.contains(poiWidgetBuilder.getClass().getSimpleName())) {
+        if (state.activeNodes().contains(poiWidgetBuilder.getClass().getSimpleName())) {
             attachRouter(poiWidgetBuilder.build());
         }
-        if (state.activeNodes.contains(poiSelectorBuilder.getClass().getSimpleName())) {
+        if (state.activeNodes().contains(poiSelectorBuilder.getClass().getSimpleName())) {
             attachRouter(poiSelectorBuilder.build());
         }
-        if (state.activeNodes.contains(carTypeSelectorBuilder.getClass().getSimpleName())) {
+        if (state.activeNodes().contains(carTypeSelectorBuilder.getClass().getSimpleName())) {
             attachRouter(carTypeSelectorBuilder.build());
         }
-        if (state.activeNodes.contains(bookingExtraBuilder.getClass().getSimpleName())) {
+        if (state.activeNodes().contains(bookingExtraBuilder.getClass().getSimpleName())) {
             attachRouter(bookingExtraBuilder.build());
         }
     }

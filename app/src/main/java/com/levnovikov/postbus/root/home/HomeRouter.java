@@ -58,6 +58,7 @@ class HomeRouter extends Router {
                 startTracking();
                 break;
         }
+        currentState = state;
     }
 
     @Override
@@ -69,19 +70,19 @@ class HomeRouter extends Router {
     public NodeState getNodeState() {
         final NodeState nodeState = NodeState.create(this.getClass(), null);
         if (prebookingBuilder.isActive())
-            nodeState.activeNodes.add(prebookingBuilder.getClass().getSimpleName());
+            nodeState.activeNodes().add(prebookingBuilder.getClass().getSimpleName());
         if (allocatingBuilder.isActive())
-            nodeState.activeNodes.add(allocatingBuilder.getClass().getSimpleName());
+            nodeState.activeNodes().add(allocatingBuilder.getClass().getSimpleName());
         return nodeState;
     }
 
     @Override
     public void setState(NodeState state) {
-        if (state.activeNodes.contains(prebookingBuilder.getClass().getSimpleName())) {
+        if (state.activeNodes().contains(prebookingBuilder.getClass().getSimpleName())) {
             attachRouter(prebookingBuilder.build());
         }
 
-        if (state.activeNodes.contains(allocatingBuilder.getClass().getSimpleName())) {
+        if (state.activeNodes().contains(allocatingBuilder.getClass().getSimpleName())) {
             attachRouter(allocatingBuilder.build());
         }
     }

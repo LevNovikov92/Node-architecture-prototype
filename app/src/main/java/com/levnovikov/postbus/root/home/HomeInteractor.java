@@ -31,16 +31,17 @@ public class HomeInteractor extends Interactor<HomeRouter> implements BookingExt
             ActivityState activityState) {
         super(router, activityState);
         this.appStateStream = appStateStream;
-        onGetActive();
     }
 
     @Override
     public void onGetActive() {
         super.onGetActive();
-        Disposable disposable = appStateStream
-                .subscribe(router::switchState, error -> {
-                    //TODO handle error
-                });
+        if (!hasSavedState()) {
+            Disposable disposable = appStateStream  //TODO remove checking
+                    .subscribe(router::switchState, error -> {
+                        //TODO handle error
+                    });
+        }
     }
 
     @Override

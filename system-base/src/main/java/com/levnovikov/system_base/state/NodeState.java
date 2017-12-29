@@ -5,8 +5,7 @@ import android.os.Parcelable;
 import com.google.auto.value.AutoValue;
 import com.levnovikov.system_base.Router;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 import io.reactivex.annotations.Nullable;
 
@@ -23,10 +22,10 @@ public abstract class NodeState implements Parcelable {
     @Nullable
     public abstract Parcelable data();
 
-    public final List<String> activeNodes = new ArrayList<>();
+    public abstract HashSet<String> activeNodes();
 
     public static NodeState create(Class<? extends Router> routerClass, @Nullable Parcelable data) {
-        return new AutoValue_NodeState(routerClass.getSimpleName(), data);
+        return new AutoValue_NodeState(routerClass.getSimpleName(), data, new HashSet<>());
     }
 
 }

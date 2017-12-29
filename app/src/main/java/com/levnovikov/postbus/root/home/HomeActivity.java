@@ -39,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         injectDependencies(activityState);
         setContentView(view);
+        interactor.onGetActive();
     }
 
     private void injectDependencies(@Nullable ActivityState activityState) { //TODO inject state in Activity scope
