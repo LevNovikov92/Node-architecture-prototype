@@ -1,6 +1,7 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget;
 
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope;
+import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
 
 import javax.inject.Inject;
@@ -20,6 +21,16 @@ public class BookingExtraRouter extends Router {
 
     @Override
     protected void destroyNode() {
+
+    }
+
+    @Override
+    public NodeState getNodeState() {
+        return NodeState.create(this.getClass(), null);
+    }
+
+    @Override
+    public void setState(NodeState state) {
 
     }
 }

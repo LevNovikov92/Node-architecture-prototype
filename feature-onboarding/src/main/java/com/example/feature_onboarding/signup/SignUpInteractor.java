@@ -3,7 +3,6 @@ package com.example.feature_onboarding.signup;
 import com.example.core_auth.provider.AuthProvider;
 import com.example.core_auth.provider.di.AuthProviderModule;
 import com.example.feature_onboarding.signup.di.SignUpScope;
-import com.levnovikov.system_base.Interactor;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +13,7 @@ import javax.inject.Named;
  */
 
 @SignUpScope
-public class SignUpInteractor implements Interactor {
+public class SignUpInteractor {
 
     public interface SignUpListener {
 
@@ -50,7 +49,6 @@ public class SignUpInteractor implements Interactor {
         onGetActive();
     }
 
-    @Override
     public void onGetActive() {
         presenter.getFacebookClickStream().subscribe(this::signUpWithFacebook, this::onError);
         presenter.getGoogleClickStream().subscribe(this::signUpWithGoogle, this::onError);

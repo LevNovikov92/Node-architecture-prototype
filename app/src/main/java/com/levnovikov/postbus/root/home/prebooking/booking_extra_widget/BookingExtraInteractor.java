@@ -2,6 +2,7 @@ package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget;
 
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope;
 import com.levnovikov.system_base.Interactor;
+import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
 
@@ -13,19 +14,19 @@ import io.reactivex.Observable;
  */
 
 @BookingExtraScope
-public class BookingExtraInteractor implements Interactor {
+public class BookingExtraInteractor extends Interactor<BookingExtraRouter> {
 
     @Inject
-    public BookingExtraInteractor(Presenter presenter, Listener listener) {
+    public BookingExtraInteractor(
+            Presenter presenter,
+            Listener listener,
+            BookingExtraRouter router,
+            ActivityState activityState) {
+        super(router, activityState);
         presenter.getClickStream()
                 .subscribe(o -> {
                     listener.onBookClick();
                 }, e -> {});
-    }
-
-    @Override
-    public void onGetActive() {
-
     }
 
     public interface Listener {

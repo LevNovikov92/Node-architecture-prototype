@@ -5,6 +5,7 @@ import com.example.feature_onboarding.login.LoginBuilder;
 import com.example.feature_onboarding.login.LoginRouter;
 import com.example.feature_onboarding.signup.SignUpBuilder;
 import com.example.feature_onboarding.signup.SignUpRouter;
+import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
 
 import javax.inject.Inject;
@@ -45,5 +46,15 @@ public class OnboardingRouter extends Router {
     @Override
     protected void destroyNode() {
         removeAll();
+    }
+
+    @Override
+    public NodeState getNodeState() { //TODO remove stub
+        return NodeState.create(this.getClass(), null);
+    }
+
+    @Override
+    public void setState(NodeState state) {
+        //TODO remove stub
     }
 }

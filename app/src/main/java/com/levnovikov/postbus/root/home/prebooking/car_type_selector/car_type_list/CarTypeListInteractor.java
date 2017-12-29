@@ -2,6 +2,7 @@ package com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_l
 
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.di.CarTypeListScope;
 import com.levnovikov.system_base.Interactor;
+import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
 
@@ -11,15 +12,10 @@ import javax.inject.Inject;
  */
 
 @CarTypeListScope
-public class CarTypeListInteractor implements Interactor  {
+public class CarTypeListInteractor extends Interactor<CarTypeListRouter>  {
 
     @Inject
-    public CarTypeListInteractor() {
-
-    }
-
-    @Override
-    public void onGetActive() {
-
+    public CarTypeListInteractor(CarTypeListRouter router, ActivityState activityState) {
+        super(router, activityState);
     }
 }

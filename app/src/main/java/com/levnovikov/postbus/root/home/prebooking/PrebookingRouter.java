@@ -6,6 +6,7 @@ import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorRouter;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
+import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
 
 import javax.inject.Inject;
@@ -67,5 +68,35 @@ public class PrebookingRouter extends Router {
         carTypeSelectorBuilder.destroy();
         bookingExtraBuilder.destroy();
         detachChildren();
+    }
+
+    @Override
+    public NodeState getNodeState() {
+        final NodeState nodeState = NodeState.create(this.getClass(), null);
+        if (poiWidgetBuilder.isActive())
+            nodeState.activeNodes.add(poiWidgetBuilder.getClass().getSimpleName());
+        if (poiSelectorBuilder.isActive())
+            nodeState.activeNodes.add(poiSelectorBuilder.getClass().getSimpleName());
+        if (carTypeSelectorBuilder.isActive())
+            nodeState.activeNodes.add(carTypeSelectorBuilder.getClass().getSimpleName());
+        if (bookingExtraBuilder.isActive())
+            nodeState.activeNodes.add(bookingExtraBuilder.getClass().getSimpleName());
+        return nodeState;
+    }
+
+    @Override
+    public void setState(NodeState state) {
+        if (state.activeNodes.contains(poiWidgetBuilder.getClass().getSimpleName())) {
+            attachRouter(poiWidgetBuilder.build());
+        }
+        if (state.activeNodes.contains(poiSelectorBuilder.getClass().getSimpleName())) {
+            attachRouter(poiSelectorBuilder.build());
+        }
+        if (state.activeNodes.contains(carTypeSelectorBuilder.getClass().getSimpleName())) {
+            attachRouter(carTypeSelectorBuilder.build());
+        }
+        if (state.activeNodes.contains(bookingExtraBuilder.getClass().getSimpleName())) {
+            attachRouter(bookingExtraBuilder.build());
+        }
     }
 }

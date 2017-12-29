@@ -10,6 +10,7 @@ import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInter
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
 import com.levnovikov.stream_state.PrebookingState;
 import com.levnovikov.system_base.Interactor;
+import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
 
@@ -19,26 +20,30 @@ import javax.inject.Inject;
  */
 
 @PrebookingScope
-public class PrebookingInteractor implements
-        Interactor,
+public class PrebookingInteractor extends
+        Interactor<PrebookingRouter> implements
         PoiSelectorInteractor.PoiSelectionListener,
         PoiWidgetInteractor.PoiClickListener,
         CarTypeSelectorInteractor.Listener {
 
-    private final PrebookingRouter router;
     private final RidePrebookingRepo prebookingRepo;
     private PrebookingState state = PrebookingState.INITIAL;
 
     @Inject
-    PrebookingInteractor(PrebookingRouter router, RidePrebookingRepo prebookingRepo) {
-        this.router = router;
+    PrebookingInteractor(PrebookingRouter router,
+                         RidePrebookingRepo prebookingRepo,
+                         ActivityState activityState) {
+        super(router, activityState);
         this.prebookingRepo = prebookingRepo;
     }
 
     @Override
     public void onGetActive() {
+        super.onGetActive();
         //TODO make init, start some views
-        router.showPoiWidget();
+        if (activityState.findNodeState(router.getClass()) == null) {
+            router.showPoiWidget();
+        }
     }
 
     @Override

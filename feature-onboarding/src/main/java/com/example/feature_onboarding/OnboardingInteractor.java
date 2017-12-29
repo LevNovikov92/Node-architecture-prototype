@@ -3,7 +3,6 @@ package com.example.feature_onboarding;
 import com.example.feature_onboarding.di.OnboardingScope;
 import com.example.feature_onboarding.login.LoginInteractor;
 import com.example.feature_onboarding.signup.SignUpInteractor;
-import com.levnovikov.system_base.Interactor;
 
 import javax.inject.Inject;
 
@@ -14,7 +13,6 @@ import javax.inject.Inject;
 
 @OnboardingScope
 public class OnboardingInteractor implements
-        Interactor,
         LoginInteractor.LogInListener,
         LoginInteractor.StartSignUpListener,
         SignUpInteractor.SignUpListener,
@@ -39,7 +37,6 @@ public class OnboardingInteractor implements
         this.logInListener = logInListener;
     }
 
-    @Override
     public void onGetActive() {
         showLoginScreen();
     }

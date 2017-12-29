@@ -3,6 +3,7 @@ package com.levnovikov.postbus.root.home.prebooking.poi_widget;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.PoiWidgetScope;
 import com.levnovikov.system_base.Interactor;
+import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
 
@@ -14,7 +15,7 @@ import io.reactivex.Observable;
  */
 
 @PoiWidgetScope
-public class PoiWidgetInteractor implements Interactor {
+public class PoiWidgetInteractor extends Interactor<PoiWidgetRouter> {
 
     public interface PoiClickListener {
         void onPickUpSelected();
@@ -28,7 +29,10 @@ public class PoiWidgetInteractor implements Interactor {
     public PoiWidgetInteractor(
             PoiClickListener poiClickListener,
             Presenter presenter,
+            PoiWidgetRouter router,
+            ActivityState activityState,
             RidePrebookingRepo prebookingRepo) {
+        super(router, activityState);
         this.poiSelectionListener = poiClickListener;
         this.presenter = presenter;
 
@@ -41,6 +45,7 @@ public class PoiWidgetInteractor implements Interactor {
 
     @Override
     public void onGetActive() {
+        super.onGetActive();
         presenter.onPickUpClick() //TODO unsubscribe
                 .subscribe((v) -> {
                     poiSelectionListener.onPickUpSelected();

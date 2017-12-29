@@ -3,6 +3,7 @@ package com.levnovikov.postbus.root.home.prebooking.car_type_selector;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorScope;
 import com.levnovikov.system_base.Interactor;
+import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
 
@@ -15,10 +16,9 @@ import io.reactivex.Observable;
  */
 
 @CarTypeSelectorScope
-public class CarTypeSelectorInteractor implements Interactor {
+public class CarTypeSelectorInteractor extends Interactor<CarTypeSelectorRouter> {
 
     private Presenter presenter;
-    private CarTypeSelectorRouter router;
     private Listener listener;
     private RidePrebookingRepo prebookingRepo;
 
@@ -33,17 +33,19 @@ public class CarTypeSelectorInteractor implements Interactor {
     @Inject
     CarTypeSelectorInteractor(
             Presenter presenter,
-            CarTypeSelectorRouter router,
             Listener listener,
-            RidePrebookingRepo prebookingRepo) {
+            RidePrebookingRepo prebookingRepo,
+            CarTypeSelectorRouter router,
+            ActivityState activityState) {
+        super(router, activityState);
         this.presenter = presenter;
-        this.router = router;
         this.listener = listener;
         this.prebookingRepo = prebookingRepo;
     }
 
     @Override
     public void onGetActive() {
+        super.onGetActive();
         presenter.clickStream() //TODO unsubscribe
                 .subscribe(o -> {
                     router.attachTypeList();

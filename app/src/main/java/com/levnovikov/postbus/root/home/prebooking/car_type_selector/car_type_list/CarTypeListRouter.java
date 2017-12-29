@@ -1,6 +1,7 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list;
 
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.di.CarTypeListScope;
+import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
 
 import javax.inject.Inject;
@@ -19,5 +20,15 @@ public class CarTypeListRouter extends Router {
     @Override
     protected void destroyNode() {
         //do nothing for leaf routers
+    }
+
+    @Override
+    public NodeState getNodeState() {
+        return NodeState.create(this.getClass(), null);
+    }
+
+    @Override
+    public void setState(NodeState state) {
+
     }
 }

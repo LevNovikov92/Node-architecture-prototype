@@ -17,6 +17,7 @@ import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuild
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
+import com.levnovikov.system_base.base_di.ActivityStateComponent;
 
 import dagger.Binds;
 import dagger.Component;
@@ -30,7 +31,7 @@ import dagger.Provides;
 
 @PrebookingScope
 @Component(dependencies = HomeComponent.class, modules = PrebookingComponent.PrebookingModule.class)
-public interface PrebookingComponent {
+public interface PrebookingComponent extends ActivityStateComponent {
 
     void inject(PrebookingBuilder prebookingBuilder);
 

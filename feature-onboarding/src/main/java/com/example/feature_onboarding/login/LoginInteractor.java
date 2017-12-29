@@ -3,7 +3,6 @@ package com.example.feature_onboarding.login;
 import com.example.core_auth.provider.AuthProvider;
 import com.example.core_auth.provider.di.AuthProviderModule;
 import com.example.feature_onboarding.login.di.LoginScope;
-import com.levnovikov.system_base.Interactor;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +13,7 @@ import javax.inject.Named;
  */
 
 @LoginScope
-public class LoginInteractor implements Interactor {
+public class LoginInteractor {
 
 
     public interface LogInListener {
@@ -50,7 +49,6 @@ public class LoginInteractor implements Interactor {
         onGetActive();
     }
 
-    @Override
     public void onGetActive() {
         presenter.getFacebookClickStream().subscribe(o -> loginWithFacebook(), this::onError);
         presenter.getGoogleClickStream().subscribe(o -> loginWithGoogle(), this::onError);

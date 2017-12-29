@@ -7,6 +7,8 @@ import javax.inject.Inject;
 /**
  * Author: lev.novikov
  * Date: 17/12/17.
+ *
+ * Builder
  */
 
 public abstract class Builder<R extends Router> {
@@ -23,5 +25,9 @@ public abstract class Builder<R extends Router> {
             router.destroyNode();
             router = null;
         }
+    }
+
+    public boolean isActive() {
+        return router != null;
     }
 }

@@ -12,6 +12,7 @@ import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.stream_state.AppStateStreamProvider;
+import com.levnovikov.system_base.state.ActivityState;
 
 import dagger.Module;
 import dagger.Provides;
@@ -25,10 +26,12 @@ import io.reactivex.Observable;
 @Module
 public class HomeModule {
 
-    private Activity activity;
+    private final Activity activity;
+    private final ActivityState activityState;
 
-    public HomeModule(Activity activity) {
+    public HomeModule(Activity activity, ActivityState activityState) {
         this.activity = activity;
+        this.activityState = activityState;
     }
 
     @HomeScope
@@ -71,5 +74,11 @@ public class HomeModule {
     @Provides
     BookingExtraInteractor.Listener provideBookingListener(HomeInteractor interactor) {
         return interactor;
+    }
+
+    @HomeScope
+    @Provides
+    ActivityState provideActivityState() {
+        return activityState;
     }
 }

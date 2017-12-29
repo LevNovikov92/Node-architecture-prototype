@@ -5,6 +5,7 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingE
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraRouter;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraView;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
+import com.levnovikov.system_base.base_di.ActivityStateComponent;
 
 import dagger.Component;
 import dagger.Module;
@@ -17,7 +18,7 @@ import dagger.Provides;
 
 @BookingExtraScope
 @Component(dependencies = PrebookingComponent.class, modules = BookingExtraComponent.BookingExtraModule.class)
-public interface BookingExtraComponent {
+public interface BookingExtraComponent extends ActivityStateComponent {
 
     void inject(BookingExtraView bookingExtraBuilder);
 
