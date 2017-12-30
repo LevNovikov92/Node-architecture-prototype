@@ -11,8 +11,8 @@ import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
 import com.levnovikov.stream_state.PrebookingState;
-import com.levnovikov.system_base.Interactor;
 import com.levnovikov.system_base.StateDataProvider;
+import com.levnovikov.system_base.StateInteractor;
 import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
@@ -24,7 +24,7 @@ import javax.inject.Inject;
 
 @PrebookingScope
 public class PrebookingInteractor extends
-        Interactor<PrebookingRouter> implements
+        StateInteractor<PrebookingRouter> implements
         PoiSelectorInteractor.PoiSelectionListener,
         PoiWidgetInteractor.PoiClickListener,
         CarTypeSelectorInteractor.Listener,
@@ -38,12 +38,6 @@ public class PrebookingInteractor extends
                          RidePrebookingRepo prebookingRepo,
                          ActivityState activityState) {
         super(router, activityState);
-        /*
-         * If interactor need to store data after Activity recreation, we can set data source to router.
-         * Router will get and save data when Activity will call onSaveInstanceState.
-         * P.S. possible to move getStateData() in base Interactor and override if need to store data.
-         */
-        router.setStateDataProvider(this);
         this.prebookingRepo = prebookingRepo;
     }
 

@@ -22,7 +22,7 @@ public abstract class Interactor<R extends Router> {
         }
     }
 
-    private NodeState getNodeState() {
+    protected NodeState getNodeState() {
         return activityState.findNodeState(router.getClass());
     }
 

@@ -19,7 +19,7 @@ public abstract class Router {
     private final Map<Class<? extends Router>, Router> children = new HashMap<>();
 
     @Nullable
-    protected StateDataProvider stateDataProvider;
+    protected StateDataProvider stateDataProvider; //TODO set to null on node destroy
 
     public void setStateDataProvider(StateDataProvider provider) {
         stateDataProvider = provider;
