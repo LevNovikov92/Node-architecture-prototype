@@ -19,41 +19,41 @@ public class RidePrebookingRepo extends PrebookingRepo<RidePrebookingData> {
     public BehaviorField<Point> pickupPoint = new BehaviorField<Point>() {
         @Override
         void save(Point entity) {
-            final RidePrebookingData modifiedData = data.copy();
-            modifiedData.pickUpPoint = entity;
-            data = modifiedData;
+            data = data.toBuilder().pickUpPoint(entity).build();
         }
     };
 
     public BehaviorField<Point> dropOffPoint = new BehaviorField<Point>() {
         @Override
         void save(Point entity) {
-            final RidePrebookingData modifiedData = data.copy();
-            modifiedData.dropOffPoint = entity;
-            data = modifiedData;
+            data = data.toBuilder().dropOffPoint(entity).build();
         }
     };
 
     public BehaviorField<Integer> carType = new BehaviorField<Integer>() {
         @Override
         void save(Integer entity) {
-            final RidePrebookingData modifiedData = data.copy();
-            modifiedData.carType = entity;
-            data = modifiedData;
+            data = data.toBuilder().carType(entity).build();
         }
     };
 
     public BehaviorField<String> promo = new BehaviorField<String>() {
         @Override
         void save(String entity) {
-            final RidePrebookingData modifiedData = data.copy();
-            modifiedData.promoCode = entity;
-            data = modifiedData;
+            data = data.toBuilder().promoCode(entity).build();
         }
     };
 
     @Override
-    protected RidePrebookingData getData() {
-        return data.copy();
+    public RidePrebookingData getData() {
+        return data.toBuilder().build();
+    }
+
+    public void setData(RidePrebookingData data) {
+        this.data = data;
+        pickupPoint.set(data.pickUpPoint());
+        dropOffPoint.set(data.dropOffPoint());
+        carType.set(data.carType());
+        promo.set(data.promoCode());
     }
 }

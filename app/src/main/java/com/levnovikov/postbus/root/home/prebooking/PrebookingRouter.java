@@ -6,8 +6,8 @@ import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorRouter;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
-import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
+import com.levnovikov.system_base.state.NodeState;
 
 import javax.inject.Inject;
 
@@ -72,7 +72,8 @@ public class PrebookingRouter extends Router {
 
     @Override
     public NodeState getNodeState() {
-        final NodeState nodeState = NodeState.create(this.getClass(), null);
+        final NodeState nodeState = NodeState.create(this.getClass(),
+               stateDataProvider != null ? stateDataProvider.getStateData() : null);
         if (poiWidgetBuilder.isActive())
             nodeState.activeNodes().add(poiWidgetBuilder.getClass().getSimpleName());
         if (poiSelectorBuilder.isActive())

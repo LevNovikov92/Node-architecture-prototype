@@ -5,7 +5,7 @@ package com.example.core_booking;
  * Date: 18/12/17.
  */
 
-public abstract class PrebookingRepo<Data extends PrebookingData> {
+public abstract class PrebookingRepo<Data> {
 
     protected abstract Data getData();
 }

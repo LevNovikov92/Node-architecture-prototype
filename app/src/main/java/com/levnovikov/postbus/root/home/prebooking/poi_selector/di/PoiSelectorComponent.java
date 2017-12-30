@@ -71,8 +71,8 @@ public interface PoiSelectorComponent extends ActivityStateComponent {
 
                 @Override
                 public void updatePlace(String placeName) {
-                    suggestion.add(new Point(
-                            new Coordinates(0, 0), String.format("Place %d", suggestion.size() + 1)));
+                    suggestion.add(Point.create(
+                            Coordinates.create(0, 0), String.format("Place %d", suggestion.size() + 1)));
                     subject.onNext(suggestion);
                 }
             };

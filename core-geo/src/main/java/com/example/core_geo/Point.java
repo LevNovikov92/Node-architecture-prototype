@@ -1,18 +1,22 @@
 package com.example.core_geo;
 
+import android.os.Parcelable;
+
+import com.google.auto.value.AutoValue;
+
 /**
  * Created by lev.novikov
  * Date: 18/12/17.
  */
 
-public class Point {
+@AutoValue
+public abstract class Point implements Parcelable {
 
-    public final Coordinates coordinates;
+    public abstract Coordinates coordinates();
 
-    public final String title;
+    public abstract String title();
 
-    public Point(Coordinates coordinates, String title) {
-        this.coordinates = coordinates;
-        this.title = title;
+    public static Point create(Coordinates coordinates, String title) {
+        return new AutoValue_Point(coordinates, title);
     }
 }

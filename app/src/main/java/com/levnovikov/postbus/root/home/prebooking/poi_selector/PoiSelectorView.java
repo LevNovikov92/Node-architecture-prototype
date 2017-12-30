@@ -104,7 +104,7 @@ public class PoiSelectorView extends LinearLayout implements PoiSelectorInteract
 
         public void bind(Point point) {
             textView.setOnClickListener(v -> selectedPoiStream.onNext(point));
-            textView.setText(point.title);
+            textView.setText(point.title());
         }
     }
 

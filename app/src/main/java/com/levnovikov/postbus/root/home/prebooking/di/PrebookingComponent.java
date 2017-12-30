@@ -43,7 +43,12 @@ public interface PrebookingComponent extends ActivityStateComponent {
         @PrebookingScope
         @Provides
         RidePrebookingData provideDefaultPrebookingData() {
-            return new RidePrebookingData();
+            return RidePrebookingData.builder()
+                    .carType(0)
+                    .dropOffPoint(null)
+                    .pickUpPoint(null)
+                    .promoCode("")
+                    .build();
         }
 
         @PrebookingScope

@@ -1,8 +1,10 @@
 package com.levnovikov.postbus.root.home.prebooking;
 
+import android.os.Parcelable;
 import android.util.Log;
 
 import com.example.core_geo.Point;
+import com.levnovikov.feature_ride.ride.RidePrebookingData;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
@@ -10,6 +12,7 @@ import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInter
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
 import com.levnovikov.stream_state.PrebookingState;
 import com.levnovikov.system_base.Interactor;
+import com.levnovikov.system_base.StateDataProvider;
 import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
@@ -24,7 +27,8 @@ public class PrebookingInteractor extends
         Interactor<PrebookingRouter> implements
         PoiSelectorInteractor.PoiSelectionListener,
         PoiWidgetInteractor.PoiClickListener,
-        CarTypeSelectorInteractor.Listener {
+        CarTypeSelectorInteractor.Listener,
+        StateDataProvider {
 
     private final RidePrebookingRepo prebookingRepo;
     private PrebookingState state = PrebookingState.INITIAL;
@@ -34,15 +38,30 @@ public class PrebookingInteractor extends
                          RidePrebookingRepo prebookingRepo,
                          ActivityState activityState) {
         super(router, activityState);
+        /*
+         * If interactor need to store data after Activity recreation, we can set data source to router.
+         * Router will get and save data when Activity will call onSaveInstanceState.
+         * P.S. possible to move getStateData() in base Interactor and override if need to store data.
+         */
+        router.setStateDataProvider(this);
         this.prebookingRepo = prebookingRepo;
     }
 
     @Override
     public void onGetActive() {
         super.onGetActive();
-        //TODO make init, start some views
-        if (activityState.findNodeState(router.getClass()) == null) {
+        if (!hasSavedState()) {
             router.showPoiWidget();
+        } else {
+            restoreStateIfPossible();
+        }
+    }
+
+    private void restoreStateIfPossible() {
+        final Parcelable stateDataParcelable = getNodeStateData();
+        if (stateDataParcelable != null) {
+            final RidePrebookingData stateData = (RidePrebookingData) stateDataParcelable;
+            prebookingRepo.setData(stateData);
         }
     }
 
@@ -74,5 +93,13 @@ public class PrebookingInteractor extends
     @Override
     public void onServiceSelected() {
         Log.i(">>>>", "Service selected. Update Bottom Nav.");
+    }
+
+    /**
+     * Router will save this data when activity will go to background
+     */
+    @Override
+    public Parcelable getStateData() {
+        return prebookingRepo.getData();
     }
 }

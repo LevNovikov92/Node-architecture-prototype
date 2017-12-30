@@ -7,6 +7,8 @@ import com.levnovikov.system_base.state.NodeState;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.reactivex.annotations.Nullable;
+
 /**
  * Author: lev.novikov
  * Date: 20/11/17.
@@ -15,6 +17,13 @@ import java.util.Map;
 public abstract class Router {
 
     private final Map<Class<? extends Router>, Router> children = new HashMap<>();
+
+    @Nullable
+    protected StateDataProvider stateDataProvider;
+
+    public void setStateDataProvider(StateDataProvider provider) {
+        stateDataProvider = provider;
+    }
 
     protected void attachRouter(Router router) {
         Log.i(">>>>", "attachRouter " + router.getClass().getSimpleName() + " from " +

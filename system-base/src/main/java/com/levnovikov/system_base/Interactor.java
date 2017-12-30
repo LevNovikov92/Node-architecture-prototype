@@ -1,5 +1,7 @@
 package com.levnovikov.system_base;
 
+import android.os.Parcelable;
+
 import com.levnovikov.system_base.state.ActivityState;
 import com.levnovikov.system_base.state.NodeState;
 
@@ -14,13 +16,22 @@ public abstract class Interactor<R extends Router> {
     }
 
     public void onGetActive() {
-        final NodeState state = activityState.findNodeState(router.getClass());
+        final NodeState state = getNodeState();
         if (state != null) {
             router.setState(state);
         }
     }
 
-    public boolean hasSavedState() {
+    private NodeState getNodeState() {
+        return activityState.findNodeState(router.getClass());
+    }
+
+    protected Parcelable getNodeStateData() {
+        final NodeState state = getNodeState();
+        return state != null ? state.data() : null;
+    }
+
+    protected boolean hasSavedState() {
         return activityState.findNodeState(router.getClass()) != null;
     }
 }

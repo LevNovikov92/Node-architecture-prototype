@@ -37,10 +37,10 @@ public class PoiWidgetInteractor extends Interactor<PoiWidgetRouter> {
         this.presenter = presenter;
 
         prebookingRepo.pickupPoint.getStream()
-                .subscribe(point -> presenter.setPickUp(point.title), e -> { /*handle*/ });
+                .subscribe(point -> presenter.setPickUp(point.title()), e -> { /*handle*/ });
 
         prebookingRepo.dropOffPoint.getStream()
-                .subscribe(point -> presenter.setDropOff(point.title), e -> { /*handle*/ });
+                .subscribe(point -> presenter.setDropOff(point.title()), e -> { /*handle*/ });
     }
 
     @Override
