@@ -1,7 +1,9 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list;
 
+import android.os.Parcelable;
+
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.di.CarTypeListScope;
-import com.levnovikov.system_base.Interactor;
+import com.levnovikov.system_base.StateInteractor;
 import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
@@ -12,10 +14,28 @@ import javax.inject.Inject;
  */
 
 @CarTypeListScope
-public class CarTypeListInteractor extends Interactor<CarTypeListRouter>  {
+public class CarTypeListInteractor extends StateInteractor<CarTypeListRouter> {
+
+    private TypeListListener listener;
+
+    public interface TypeListListener {
+        void onCancel();
+    }
 
     @Inject
-    public CarTypeListInteractor(CarTypeListRouter router, ActivityState activityState) {
+    public CarTypeListInteractor(CarTypeListRouter router, ActivityState activityState, TypeListListener listener) {
         super(router, activityState);
+        this.listener = listener;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        listener.onCancel();
+        return true;
+    }
+
+    @Override
+    public Parcelable getStateData() {
+        return null;
     }
 }

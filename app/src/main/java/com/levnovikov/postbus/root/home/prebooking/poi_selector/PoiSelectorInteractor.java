@@ -1,9 +1,11 @@
 package com.levnovikov.postbus.root.home.prebooking.poi_selector;
 
+import android.os.Parcelable;
+
 import com.example.core_geo.Point;
 import com.example.core_location.PoiSuggestionProvider;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.PoiSelectorScope;
-import com.levnovikov.system_base.Interactor;
+import com.levnovikov.system_base.StateInteractor;
 import com.levnovikov.system_base.state.ActivityState;
 
 import java.util.List;
@@ -18,10 +20,11 @@ import io.reactivex.Observable;
  */
 
 @PoiSelectorScope
-public class PoiSelectorInteractor extends Interactor<PoiSelectorRouter> {
+public class PoiSelectorInteractor extends StateInteractor<PoiSelectorRouter> {
 
     public interface PoiSelectionListener {
         void onPoiSelected(Point point);
+        void onPoiSelectionCanceled();
     }
 
     private PoiSuggestionProvider poiProvider;
@@ -54,6 +57,17 @@ public class PoiSelectorInteractor extends Interactor<PoiSelectorRouter> {
 
         presenter.getSelectedPoi()
                 .subscribe(point -> listener.onPoiSelected(point), error -> {});
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        listener.onPoiSelectionCanceled();
+        return true;
+    }
+
+    @Override
+    public Parcelable getStateData() {
+        return null;
     }
 
     public interface Presenter {

@@ -1,5 +1,7 @@
 package com.example.feature_onboarding;
 
+import android.os.Parcelable;
+
 import com.example.feature_onboarding.di.OnboardingScope;
 import com.example.feature_onboarding.login.LoginBuilder;
 import com.example.feature_onboarding.login.LoginRouter;
@@ -9,6 +11,8 @@ import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
 
 import javax.inject.Inject;
+
+import io.reactivex.annotations.Nullable;
 
 /**
  * Created by lev.novikov
@@ -49,7 +53,7 @@ public class OnboardingRouter extends Router {
     }
 
     @Override
-    public NodeState getNodeState() { //TODO remove stub
+    public NodeState getNodeState(@Nullable Parcelable stateData) { //TODO remove stub
         return NodeState.create(this.getClass(), null);
     }
 

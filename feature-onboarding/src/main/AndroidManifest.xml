@@ -3,7 +3,8 @@
     package="com.example.feature_onboarding">
 
     <application>
-        <activity android:name=".OnboardingActivity"></activity>
+        <activity android:name=".OnboardingActivity"
+            android:noHistory="true"></activity>
     </application>
 
 </manifest>

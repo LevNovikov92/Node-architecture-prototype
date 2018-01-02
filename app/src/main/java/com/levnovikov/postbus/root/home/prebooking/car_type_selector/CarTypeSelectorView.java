@@ -46,7 +46,7 @@ public class CarTypeSelectorView extends ConstraintLayout implements CarTypeSele
     }
 
 
-    private BehaviorSubject<Object> clickStream = BehaviorSubject.create();
+    private final BehaviorSubject<Object> clickStream = BehaviorSubject.create();
     @Override
     public Observable<Object> clickStream() {
         return clickStream;

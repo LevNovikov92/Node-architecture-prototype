@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:name=".Application"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +19,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".root.home.HomeActivity">
+        <activity android:name=".root.home.HomeActivity"
+            android:noHistory="true">
         </activity>
     </application>
 

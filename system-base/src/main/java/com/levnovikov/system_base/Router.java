@@ -1,7 +1,9 @@
 package com.levnovikov.system_base;
 
+import android.os.Parcelable;
 import android.util.Log;
 
+import com.levnovikov.system_base.back_handling.BackHandler;
 import com.levnovikov.system_base.state.NodeState;
 
 import java.util.HashMap;
@@ -19,13 +21,20 @@ public abstract class Router {
     private final Map<Class<? extends Router>, Router> children = new HashMap<>();
 
     @Nullable
-    protected StateDataProvider stateDataProvider; //TODO set to null on node destroy
+    private StateDataProvider stateDataProvider; //TODO set to null on node destroy
 
-    public void setStateDataProvider(StateDataProvider provider) {
+    @Nullable
+    private BackHandler backHandler;
+
+    final void setStateDataProvider(StateDataProvider provider) {
         stateDataProvider = provider;
     }
 
-    protected void attachRouter(Router router) {
+    final void setBackHandler(BackHandler handler) {
+        backHandler = handler;
+    }
+
+    protected final void attachRouter(Router router) {
         Log.i(">>>>", "attachRouter " + router.getClass().getSimpleName() + " from " +
                 this.getClass().getSimpleName());
         if (children.containsKey(router.getClass())) {
@@ -34,18 +43,18 @@ public abstract class Router {
         children.put(router.getClass(), router);
     }
 
-    protected void detachRouter(Class<? extends Router> router) {
+    protected final void detachRouter(Class<? extends Router> router) {
         Log.i(">>>>", "detachRouter " + router.getClass().getSimpleName() + " from " +
                 this.getClass().getSimpleName());
         children.remove(router);
     }
 
-    protected void detachChildren() {
+    protected final void detachChildren() {
         Log.i(">>>>", "detachChildren " + this.getClass().getSimpleName());
         children.clear();
     }
 
-    protected Map<String, NodeState> getChildrenState() {
+    private Map<String, NodeState> getChildrenState() {
         final Map<String, NodeState> stateMap = new HashMap<>();
         for (Router router : children.values()) {
             stateMap.putAll(router.getState());
@@ -55,14 +64,24 @@ public abstract class Router {
 
     protected abstract void destroyNode();
 
-    public abstract NodeState getNodeState();
+    public abstract NodeState getNodeState(@Nullable Parcelable stateData);
 
-    public Map<String, NodeState> getState() {
+    public final Map<String, NodeState> getState() {
         final Map<String, NodeState> state = getChildrenState();
-        final NodeState nodeState = getNodeState();
+        final NodeState nodeState = getNodeState(stateDataProvider != null ? stateDataProvider.getStateData() : null);
         state.put(nodeState.routerClass(), nodeState);
         return state;
     }
 
     public abstract void setState(NodeState state);
+
+    @SuppressWarnings("SimplifiableConditionalExpression")
+    public final boolean onBackPressed() {
+        for (Router router: children.values()) {
+            if (router.onBackPressed()) {
+                return true;
+            }
+        }
+        return backHandler != null ? backHandler.onBackPressed() : false;
+    }
 }

@@ -1,10 +1,14 @@
 package com.levnovikov.postbus.root.home.prebooking.poi_widget;
 
+import android.os.Parcelable;
+
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.PoiWidgetScope;
 import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
 
 import javax.inject.Inject;
+
+import io.reactivex.annotations.Nullable;
 
 /**
  * Author: lev.novikov
@@ -25,7 +29,7 @@ public class PoiWidgetRouter extends Router {
     }
 
     @Override
-    public NodeState getNodeState() {
+    public NodeState getNodeState(@Nullable Parcelable stateData) {
         return NodeState.create(this.getClass(), null);
     }
 

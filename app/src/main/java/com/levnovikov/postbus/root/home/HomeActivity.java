@@ -60,4 +60,11 @@ public class HomeActivity extends AppCompatActivity {
         final Map<String, NodeState> stateMap = interactor.getState();
         outState.putParcelable(HOME_ACTIVITY_STATE, ActivityState.create(stateMap));
     }
+
+    @Override
+    public void onBackPressed() {
+        if (!interactor.onBackPressed()) {
+            super.onBackPressed();
+        }
+    }
 }

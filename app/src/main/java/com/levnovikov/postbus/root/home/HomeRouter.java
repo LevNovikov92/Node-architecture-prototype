@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.root.home;
 
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
@@ -67,7 +68,7 @@ class HomeRouter extends Router {
     }
 
     @Override
-    public NodeState getNodeState() {
+    public NodeState getNodeState(@io.reactivex.annotations.Nullable Parcelable stateData) {
         final NodeState nodeState = NodeState.create(this.getClass(), null);
         if (prebookingBuilder.isActive())
             nodeState.activeNodes().add(prebookingBuilder.getClass().getSimpleName());

@@ -73,6 +73,11 @@ public class PrebookingInteractor extends
     }
 
     @Override
+    public void onPoiSelectionCanceled() {
+        router.hidePoiChoice();
+    }
+
+    @Override
     public void onPickUpSelected() {
         state = PrebookingState.PICK_UP_SELECTION;
         router.startPoiChoice();
@@ -95,5 +100,10 @@ public class PrebookingInteractor extends
     @Override
     public Parcelable getStateData() {
         return prebookingRepo.getData();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 }

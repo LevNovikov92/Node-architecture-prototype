@@ -52,4 +52,8 @@ public class HomeInteractor extends Interactor<HomeRouter> implements BookingExt
     public Map<String, NodeState> getState() {
         return router.getState();
     }
+
+    boolean onBackPressed() {
+        return router.onBackPressed();
+    }
 }

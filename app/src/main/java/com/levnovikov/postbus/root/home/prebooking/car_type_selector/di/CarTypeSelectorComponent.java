@@ -8,6 +8,7 @@ import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSele
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorRouter;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorView;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListBuilder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListInteractor;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
 import com.levnovikov.system_base.base_di.ActivityStateComponent;
 
@@ -27,6 +28,8 @@ public interface CarTypeSelectorComponent extends ActivityStateComponent {
     void inject(CarTypeSelectorView view);
 
     CarTypeSelectorRouter router();
+
+    CarTypeListInteractor.TypeListListener typeListListener();
 
     void inject(CarTypeSelectorBuilder carTypeSelectorBuilder);
 
@@ -53,6 +56,12 @@ public interface CarTypeSelectorComponent extends ActivityStateComponent {
 
         @CarTypeSelectorScope
         @Provides
+        CarTypeListInteractor.TypeListListener provideTypeListListener(CarTypeSelectorInteractor interactor) {
+            return interactor;
+        }
+
+        @CarTypeSelectorScope
+        @Provides
         CarTypeListBuilder provideListBuilder(
                 LayoutInflater inflater,
                 HomeView homeScreen,
@@ -60,6 +69,4 @@ public interface CarTypeSelectorComponent extends ActivityStateComponent {
             return new CarTypeListBuilder(inflater, homeScreen, parentComponent);
         }
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector;
 
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListInteractor;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorScope;
 import com.levnovikov.system_base.Interactor;
 import com.levnovikov.system_base.state.ActivityState;
@@ -16,11 +17,17 @@ import io.reactivex.Observable;
  */
 
 @CarTypeSelectorScope
-public class CarTypeSelectorInteractor extends Interactor<CarTypeSelectorRouter> {
+public class CarTypeSelectorInteractor extends Interactor<CarTypeSelectorRouter>
+        implements CarTypeListInteractor.TypeListListener {
 
     private Presenter presenter;
     private Listener listener;
     private RidePrebookingRepo prebookingRepo;
+
+    @Override
+    public void onCancel() {
+        router.detachTypeList();
+    }
 
     public interface Presenter {
         Observable<Object> clickStream();
