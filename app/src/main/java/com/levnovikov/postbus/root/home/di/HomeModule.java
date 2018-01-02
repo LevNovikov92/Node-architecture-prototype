@@ -1,13 +1,15 @@
 package com.levnovikov.postbus.root.home.di;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 
 import com.levnovikov.postbus.R;
+import com.levnovikov.postbus.root.home.HomeActivity;
 import com.levnovikov.postbus.root.home.HomeInteractor;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
+import com.levnovikov.postbus.root.home.map.MapBuilder;
+import com.levnovikov.postbus.root.home.map.lifecycle.MapLifecycleEvent;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
@@ -26,10 +28,10 @@ import io.reactivex.Observable;
 @Module
 public class HomeModule {
 
-    private final Activity activity;
+    private final HomeActivity activity;
     private final ActivityState activityState;
 
-    public HomeModule(Activity activity, ActivityState activityState) {
+    public HomeModule(HomeActivity activity, ActivityState activityState) {
         this.activity = activity;
         this.activityState = activityState;
     }
@@ -54,6 +56,12 @@ public class HomeModule {
 
     @HomeScope
     @Provides
+    MapBuilder provideMapBuilder(LayoutInflater inflater, HomeView parent, HomeComponent component) {
+        return new MapBuilder(inflater, parent, component);
+    }
+
+    @HomeScope
+    @Provides
     HomeView provideView(LayoutInflater inflater) {
         return (HomeView) inflater.inflate(R.layout.home_view, null, true);
     }
@@ -62,6 +70,12 @@ public class HomeModule {
     @Provides
     Observable<AppState> provideAppStateStream(AppStateStreamProvider provider) {
         return provider.provideAppStateStream();
+    }
+
+    @HomeScope
+    @Provides
+    Observable<MapLifecycleEvent> provideMapLifecycleStream() {
+        return activity.getMapLifecycleStream();
     }
 
     @HomeScope

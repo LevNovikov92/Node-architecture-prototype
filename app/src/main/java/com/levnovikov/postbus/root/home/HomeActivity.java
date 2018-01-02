@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.levnovikov.postbus.root.home.di.HomeComponent;
 import com.levnovikov.postbus.root.home.di.HomeModule;
+import com.levnovikov.postbus.root.home.map.lifecycle.MapLifecycleEvent;
 import com.levnovikov.system_base.base_di.SubComponentProvider;
 import com.levnovikov.system_base.state.ActivityState;
 import com.levnovikov.system_base.state.NodeState;
@@ -14,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import io.reactivex.subjects.BehaviorSubject;
 
 /**
  * Author: lev.novikov
@@ -30,6 +34,8 @@ public class HomeActivity extends AppCompatActivity {
     @Inject
     HomeInteractor interactor;
 
+    private BehaviorSubject<MapLifecycleEvent> lifecycleEmitter = BehaviorSubject.create();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         injectDependencies(activityState);
         setContentView(view);
         interactor.onGetActive();
+        lifecycleEmitter.onNext(MapLifecycleEvent.CREATE);
     }
 
     private void injectDependencies(@Nullable ActivityState activityState) { //TODO inject state in Activity scope
@@ -66,5 +73,27 @@ public class HomeActivity extends AppCompatActivity {
         if (!interactor.onBackPressed()) {
             super.onBackPressed();
         }
+    }
+
+    public Observable<MapLifecycleEvent> getMapLifecycleStream() {
+        return lifecycleEmitter;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lifecycleEmitter.onNext(MapLifecycleEvent.RESUME);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        lifecycleEmitter.onNext(MapLifecycleEvent.PAUSE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        lifecycleEmitter.onNext(MapLifecycleEvent.DESTROY);
     }
 }

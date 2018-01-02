@@ -20,7 +20,8 @@ import io.reactivex.disposables.Disposable;
  */
 
 @HomeScope
-public class HomeInteractor extends Interactor<HomeRouter> implements BookingExtraInteractor.Listener {
+public class HomeInteractor extends Interactor<HomeRouter>
+        implements BookingExtraInteractor.Listener {
 
     private final Observable<AppState> appStateStream;
 

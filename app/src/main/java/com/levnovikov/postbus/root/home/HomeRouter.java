@@ -5,10 +5,11 @@ import android.support.annotation.Nullable;
 
 import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
 import com.levnovikov.postbus.root.home.di.HomeScope;
+import com.levnovikov.postbus.root.home.map.MapBuilder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.stream_state.AppState;
-import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
+import com.levnovikov.system_base.state.NodeState;
 
 import javax.inject.Inject;
 
@@ -21,13 +22,15 @@ import javax.inject.Inject;
 class HomeRouter extends Router {
 
     private final PrebookingBuilder prebookingBuilder;
-    private AllocatingBuilder allocatingBuilder;
+    private final AllocatingBuilder allocatingBuilder;
+    private final MapBuilder mapBuilder;
     private @Nullable AppState currentState;
 
     @Inject
-    HomeRouter(PrebookingBuilder prebookingBuilder, AllocatingBuilder allocatingBuilder) {
+    HomeRouter(PrebookingBuilder prebookingBuilder, AllocatingBuilder allocatingBuilder, MapBuilder mapBuilder) {
         this.prebookingBuilder = prebookingBuilder;
         this.allocatingBuilder = allocatingBuilder;
+        this.mapBuilder = mapBuilder;
     }
 
     void startPrebooking() {
@@ -45,6 +48,9 @@ class HomeRouter extends Router {
     }
 
     void switchState(AppState state) {
+        if (!mapBuilder.isActive()) {
+            mapBuilder.build();
+        }
         if (state == currentState) {
             return;
         }
@@ -74,6 +80,8 @@ class HomeRouter extends Router {
             nodeState.activeNodes().add(prebookingBuilder.getClass().getSimpleName());
         if (allocatingBuilder.isActive())
             nodeState.activeNodes().add(allocatingBuilder.getClass().getSimpleName());
+        if (mapBuilder.isActive())
+            nodeState.activeNodes().add(mapBuilder.getClass().getSimpleName());
         return nodeState;
     }
 
@@ -85,6 +93,10 @@ class HomeRouter extends Router {
 
         if (state.activeNodes().contains(allocatingBuilder.getClass().getSimpleName())) {
             attachRouter(allocatingBuilder.build());
+        }
+
+        if (state.activeNodes().contains(mapBuilder.getClass().getSimpleName())) {
+            attachRouter(mapBuilder.build());
         }
     }
 }
