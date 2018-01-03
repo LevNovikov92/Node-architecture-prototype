@@ -17,7 +17,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.subjects.BehaviorSubject;
+import io.reactivex.subjects.ReplaySubject;
 
 /**
  * Author: lev.novikov
@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     @Inject
     HomeInteractor interactor;
 
-    private BehaviorSubject<MapLifecycleEvent> lifecycleEmitter = BehaviorSubject.create();
+    private ReplaySubject<MapLifecycleEvent> lifecycleEmitter = ReplaySubject.create();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         lifecycleEmitter.onNext(MapLifecycleEvent.CREATE);
     }
 
-    private void injectDependencies(@Nullable ActivityState activityState) { //TODO inject state in Activity scope
+    private void injectDependencies(@Nullable ActivityState activityState) {
         final android.app.Application app = getApplication();
         if (app instanceof SubComponentProvider) {
             ((HomeComponent.Builder) ((SubComponentProvider) app).provide(HomeComponent.Builder.class))
