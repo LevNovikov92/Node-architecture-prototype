@@ -43,14 +43,15 @@ class HomeRouter extends Router {
         attachRouter(allocatingBuilder.build());
     }
 
+    void loadMap() {
+        attachRouter(mapBuilder.build());
+    }
+
     void startTracking() {
 
     }
 
     void switchState(AppState state) {
-        if (!mapBuilder.isActive()) {
-            mapBuilder.build();
-        }
         if (state == currentState) {
             return;
         }

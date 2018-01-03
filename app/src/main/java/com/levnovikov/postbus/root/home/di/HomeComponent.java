@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 
 import com.levnovikov.postbus.root.home.HomeActivity;
 import com.levnovikov.postbus.root.home.HomeView;
+import com.levnovikov.postbus.root.home.map.MapInteractor;
 import com.levnovikov.postbus.root.home.map.lifecycle.MapLifecycleEvent;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.system_base.base_di.ActivityStateComponent;
@@ -33,5 +34,6 @@ public interface HomeComponent extends ActivityStateComponent {
     HomeView homeView();
     BookingExtraInteractor.Listener bookingListener();
     Observable<MapLifecycleEvent> mapLifecycle();
+    MapInteractor.OnMapInitialized onMapInitialized();
 
 }
