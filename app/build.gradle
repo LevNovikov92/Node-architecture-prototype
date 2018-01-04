@@ -19,17 +19,19 @@ dependencies {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile project(path: ':system-base')
     compile project(path: ':core-profile')
     compile project(path: ':feature-onboarding')
     compile project(path: ':stream-state')
     compile project(path: ':feature-ride')
     compile project(path: ':core-geo')
-
     compile project(path: ':core-location')
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
 }
