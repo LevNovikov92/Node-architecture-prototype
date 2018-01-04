@@ -6,6 +6,7 @@ import com.levnovikov.feature_ride.ride.RidePrebookingData;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
+import com.levnovikov.postbus.root.home.map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingInteractor;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
@@ -36,9 +37,22 @@ public interface PrebookingComponent extends ActivityStateComponent {
     void inject(PrebookingBuilder prebookingBuilder);
 
     PrebookingInteractor interactor();
+    MapInterface mapInterface();
 
     @Module(includes = PrebookingModule.Binders.class)
     class PrebookingModule {
+
+        private MapInterface mapInterface;
+
+        public PrebookingModule(MapInterface mapInterface) {
+            this.mapInterface = mapInterface;
+        }
+
+        @PrebookingScope
+        @Provides
+        MapInterface provideMapInterface() {
+            return mapInterface;
+        }
 
         @PrebookingScope
         @Provides

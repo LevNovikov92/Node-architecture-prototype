@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.core_geo.Point;
 import com.levnovikov.feature_ride.ride.RidePrebookingData;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
+import com.levnovikov.postbus.root.home.map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
@@ -31,14 +32,17 @@ public class PrebookingInteractor extends
         StateDataProvider {
 
     private final RidePrebookingRepo prebookingRepo;
+    private MapInterface mapInterface;
     private PrebookingState state = PrebookingState.INITIAL;
 
     @Inject
     PrebookingInteractor(PrebookingRouter router,
                          RidePrebookingRepo prebookingRepo,
+                         MapInterface mapInterface,
                          ActivityState activityState) {
         super(router, activityState);
         this.prebookingRepo = prebookingRepo;
+        this.mapInterface = mapInterface;
     }
 
     @Override
@@ -49,6 +53,14 @@ public class PrebookingInteractor extends
         } else {
             restoreStateIfPossible();
         }
+        bindMapAndPrebookingRepo();
+    }
+
+    private void bindMapAndPrebookingRepo() {
+        prebookingRepo.pickupPoint.getStream()
+                .subscribe(point -> mapInterface.setPickUp(point), e -> {}); //TODO unsubscribe
+        prebookingRepo.dropOffPoint.getStream()
+                .subscribe(point -> mapInterface.setDropOff(point), e -> {}); //TODO unsubscribe
     }
 
     private void restoreStateIfPossible() {

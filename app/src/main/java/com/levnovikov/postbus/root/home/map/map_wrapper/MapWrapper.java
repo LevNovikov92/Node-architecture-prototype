@@ -1,6 +1,7 @@
 package com.levnovikov.postbus.root.home.map.map_wrapper;
 
 import com.example.core_geo.Point;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -38,11 +39,13 @@ public class MapWrapper implements MapInterface { //TODO move to separate module
     }
 
     private Marker setMarker(Point point) {
+        final LatLng coordinates = new LatLng(
+                point.coordinates().x(),
+                point.coordinates().y());
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 6f));
         return map.addMarker(
                 new MarkerOptions()
-                        .position(new LatLng(
-                                point.coordinates().x(),
-                                point.coordinates().y()))
+                        .position(coordinates)
                 .title(point.title()));
     }
 

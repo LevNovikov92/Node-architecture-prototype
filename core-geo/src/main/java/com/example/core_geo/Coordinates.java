@@ -12,11 +12,11 @@ import com.google.auto.value.AutoValue;
 @AutoValue
 public abstract class Coordinates implements Parcelable {
 
-    public abstract float x();
+    public abstract double x();
 
-    public abstract float y();
+    public abstract double y();
 
-    public static Coordinates create(float x, float y) {
+    public static Coordinates create(double x, double y) {
         return new AutoValue_Coordinates(x, y);
     }
 }

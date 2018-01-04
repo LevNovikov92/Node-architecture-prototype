@@ -59,7 +59,7 @@ public class HomeInteractor extends Interactor<HomeRouter>
     public void onMapInitialized(MapInterface mapInterface) {
         if (!hasSavedState()) {
             Disposable disposable = appStateStream  //TODO remove checking
-                    .subscribe(router::switchState, error -> {
+                    .subscribe(state -> router.switchState(state, mapInterface), error -> {
                         //TODO handle error
                     });
         }
