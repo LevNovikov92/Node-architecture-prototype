@@ -40,12 +40,19 @@ public class BookingExtraView extends LinearLayout implements BookingExtraIntera
     }
 
     private void initView() {
-        findViewById(R.id.book_button).setOnClickListener(v -> clickStream.onNext(new Object()));
+        findViewById(R.id.book_button).setOnClickListener(v -> bookingClickStream.onNext(new Object()));
+        findViewById(R.id.promo).setOnClickListener(v -> promoClickStream.onNext(new Object()));
     }
 
-    private BehaviorSubject<Object> clickStream = BehaviorSubject.create();
+    private BehaviorSubject<Object> bookingClickStream = BehaviorSubject.create();
     @Override
-    public Observable<Object> getClickStream() {
-        return clickStream;
+    public Observable<Object> getBookingClickStream() {
+        return bookingClickStream;
+    }
+
+    private BehaviorSubject<Object> promoClickStream = BehaviorSubject.create();
+    @Override
+    public Observable<Object> getPromoClickStream() {
+        return promoClickStream;
     }
 }

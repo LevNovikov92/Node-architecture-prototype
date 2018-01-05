@@ -71,12 +71,12 @@ public class PromoListView extends LinearLayout implements PromoListPresenter {
 
         ViewHolder(View itemView) {
             super(itemView);
-            title = findViewById(R.id.title);
+            title = itemView.findViewById(R.id.promo_title);
         }
 
         @SuppressLint("DefaultLocale")
         void bind(Promo promo) {
-            title.setText(String.format("%s - %d", promo.getTitle(), promo.getPriceOff()));
+            title.setText(String.format("%s - %d", promo.title(), promo.priceOff()));
         }
     }
 

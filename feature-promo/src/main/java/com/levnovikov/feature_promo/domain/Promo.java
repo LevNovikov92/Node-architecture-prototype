@@ -9,10 +9,10 @@ import com.google.auto.value.AutoValue;
 
 @AutoValue
 public abstract class Promo {
-    public abstract String getTitle();
-    public abstract int getPriceOff();
+    public abstract String title();
+    public abstract int priceOff();
 
     public static Promo create(String title, int priceOff) {
-        return AutoValue_Promo.create(title, priceOff);
+        return new AutoValue_Promo(title, priceOff);
     }
 }

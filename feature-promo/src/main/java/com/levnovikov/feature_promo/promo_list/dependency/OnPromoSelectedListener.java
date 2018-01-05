@@ -10,4 +10,6 @@ import com.levnovikov.feature_promo.domain.Promo;
 public interface OnPromoSelectedListener {
 
     void onPromoSelected(Promo promo);
+
+    void onCancel();
 }

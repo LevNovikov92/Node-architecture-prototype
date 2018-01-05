@@ -1,11 +1,13 @@
 package com.levnovikov.feature_promo.promo_list.di;
 
+import com.levnovikov.feature_promo.promo_list.PromoListPresenter;
 import com.levnovikov.feature_promo.promo_list.PromoListRouter;
 import com.levnovikov.feature_promo.promo_list.PromoListView;
-import com.levnovikov.feature_promo.promo_list.dependency.OnPromoSelectedListener;
+import com.levnovikov.feature_promo.promo_list.dependency.PromoListDependency;
 
 import dagger.Component;
 import dagger.Module;
+import dagger.Provides;
 
 /**
  * Author: lev.novikov
@@ -13,7 +15,7 @@ import dagger.Module;
  */
 
 @PromoListScope
-@Component(dependencies = OnPromoSelectedListener.class, modules = PromoListComponent.PromoListModule.class)
+@Component(dependencies = PromoListDependency.class, modules = PromoListComponent.PromoListModule.class)
 public interface PromoListComponent {
 
     void inject(PromoListView view);
@@ -29,8 +31,15 @@ public interface PromoListComponent {
             this.view = view;
         }
 
+        @Provides
         @PromoListScope
         PromoListView provideView() {
+            return view;
+        }
+
+        @Provides
+        @PromoListScope
+        PromoListPresenter providePresenter() {
             return view;
         }
     }

@@ -28,4 +28,8 @@ public abstract class NodeState implements Parcelable {
         return new AutoValue_NodeState(routerClass.getSimpleName(), data, new HashSet<>());
     }
 
+    public boolean contains(Class _class) {
+        return activeNodes().contains(_class.getSimpleName());
+    }
+
 }

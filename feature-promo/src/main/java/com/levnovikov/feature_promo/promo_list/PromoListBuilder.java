@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.levnovikov.feature_promo.R;
-import com.levnovikov.feature_promo.promo_list.dependency.OnPromoSelectedListener;
+import com.levnovikov.feature_promo.promo_list.dependency.PromoListDependency;
 import com.levnovikov.feature_promo.promo_list.di.DaggerPromoListComponent;
 import com.levnovikov.feature_promo.promo_list.di.PromoListComponent;
 import com.levnovikov.system_base.ViewBuilder;
@@ -16,22 +16,22 @@ import com.levnovikov.system_base.ViewBuilder;
 
 public class PromoListBuilder extends ViewBuilder<PromoListView, PromoListRouter> {
 
-    private final OnPromoSelectedListener listener;
+    private final PromoListDependency parentComponent;
 
-    public PromoListBuilder(LayoutInflater inflater, ViewGroup parent, OnPromoSelectedListener listener) {
+    public PromoListBuilder(LayoutInflater inflater, ViewGroup parent, PromoListDependency parentComponent) {
         super(inflater, parent);
-        this.listener = listener;
+        this.parentComponent = parentComponent;
     }
 
     @Override
     public PromoListRouter build() {
         final PromoListView view = buildView();
         final PromoListComponent component = DaggerPromoListComponent.builder()
-                .onPromoSelectedListener(listener)
+                .promoListDependency(parentComponent)
                 .promoListModule(new PromoListComponent.PromoListModule(view))
                 .build();
         component.inject(view);
-        view.onAttachedToWindow();
+        attachView();
         return component.router();
     }
 

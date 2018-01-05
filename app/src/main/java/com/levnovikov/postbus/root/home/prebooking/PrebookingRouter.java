@@ -77,7 +77,7 @@ public class PrebookingRouter extends Router {
     public NodeState getNodeState(@Nullable Parcelable stateData) {
         final NodeState nodeState = NodeState.create(this.getClass(), stateData);
         if (poiWidgetBuilder.isActive())
-            nodeState.activeNodes().add(poiWidgetBuilder.getClass().getSimpleName());
+            nodeState.activeNodes().add(poiWidgetBuilder.getClass().getSimpleName()); //TODO refactor it, make internal
         if (poiSelectorBuilder.isActive())
             nodeState.activeNodes().add(poiSelectorBuilder.getClass().getSimpleName());
         if (carTypeSelectorBuilder.isActive())
@@ -89,16 +89,16 @@ public class PrebookingRouter extends Router {
 
     @Override
     public void setState(NodeState state) {
-        if (state.activeNodes().contains(poiWidgetBuilder.getClass().getSimpleName())) {
+        if (state.contains(poiWidgetBuilder.getClass())) {
             attachRouter(poiWidgetBuilder.build());
         }
-        if (state.activeNodes().contains(poiSelectorBuilder.getClass().getSimpleName())) {
+        if (state.contains(poiSelectorBuilder.getClass())) {
             attachRouter(poiSelectorBuilder.build());
         }
-        if (state.activeNodes().contains(carTypeSelectorBuilder.getClass().getSimpleName())) {
+        if (state.contains(carTypeSelectorBuilder.getClass())) {
             attachRouter(carTypeSelectorBuilder.build());
         }
-        if (state.activeNodes().contains(bookingExtraBuilder.getClass().getSimpleName())) {
+        if (state.contains(bookingExtraBuilder.getClass())) {
             attachRouter(bookingExtraBuilder.build());
         }
     }

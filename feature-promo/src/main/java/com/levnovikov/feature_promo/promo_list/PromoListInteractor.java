@@ -1,27 +1,38 @@
 package com.levnovikov.feature_promo.promo_list;
 
+import android.os.Parcelable;
+
 import com.levnovikov.feature_promo.domain.Promo;
-import com.levnovikov.system_base.Interactor;
+import com.levnovikov.feature_promo.promo_list.dependency.OnPromoSelectedListener;
+import com.levnovikov.feature_promo.promo_list.di.PromoListScope;
+import com.levnovikov.system_base.StateInteractor;
 import com.levnovikov.system_base.state.ActivityState;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * Author: lev.novikov
  * Date: 4/1/18.
  */
 
-public class PromoListInteractor extends Interactor<PromoListRouter> {
+@PromoListScope
+public class PromoListInteractor extends StateInteractor<PromoListRouter> {
 
     private final PromoListPresenter presenter;
+    private OnPromoSelectedListener listener;
 
+    @Inject
     public PromoListInteractor(
             PromoListRouter router,
             ActivityState activityState,
-            PromoListPresenter presenter) {
+            PromoListPresenter presenter,
+            OnPromoSelectedListener listener) {
         super(router, activityState);
         this.presenter = presenter;
+        this.listener = listener;
     }
 
     @Override
@@ -36,5 +47,16 @@ public class PromoListInteractor extends Interactor<PromoListRouter> {
             promoList.add(Promo.create("Promo", i + 1));
         }
         return promoList;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        listener.onCancel();
+        return true;
+    }
+
+    @Override
+    public Parcelable getStateData() {
+        return null;
     }
 }
