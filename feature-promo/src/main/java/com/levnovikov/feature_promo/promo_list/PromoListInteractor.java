@@ -25,7 +25,7 @@ public class PromoListInteractor extends StateInteractor<PromoListRouter> {
     private OnPromoSelectedListener listener;
 
     @Inject
-    public PromoListInteractor(
+    PromoListInteractor(
             PromoListRouter router,
             ActivityState activityState,
             PromoListPresenter presenter,

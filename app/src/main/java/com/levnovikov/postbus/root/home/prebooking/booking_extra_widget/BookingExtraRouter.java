@@ -36,7 +36,7 @@ public class BookingExtraRouter extends Router {
     public NodeState getNodeState(@Nullable Parcelable stateData) {
         final NodeState state = NodeState.create(this.getClass(), stateData);
         if (promoListBuilder.isActive()) {
-            state.activeNodes().add(promoListBuilder.getClass().getSimpleName()); //TODO refactor it
+            state.addNodeBuilder(promoListBuilder.getClass()); //TODO refactor it
         }
         return state;
     }

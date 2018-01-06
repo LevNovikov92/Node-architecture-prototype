@@ -3,6 +3,7 @@ package com.levnovikov.system_base.state;
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
+import com.levnovikov.system_base.Builder;
 import com.levnovikov.system_base.Router;
 
 import java.util.HashSet;
@@ -22,14 +23,18 @@ public abstract class NodeState implements Parcelable {
     @Nullable
     public abstract Parcelable data();
 
-    public abstract HashSet<String> activeNodes();
+    abstract HashSet<String> activeNodes();
 
     public static NodeState create(Class<? extends Router> routerClass, @Nullable Parcelable data) {
         return new AutoValue_NodeState(routerClass.getSimpleName(), data, new HashSet<>());
     }
 
     public boolean contains(Class _class) {
-        return activeNodes().contains(_class.getSimpleName());
+        return activeNodes().contains(_class.getSimpleName()); //TODO change to canonical after testing
+    }
+
+    public <T extends Builder<?>> void addNodeBuilder(Class<T> _class) {
+        activeNodes().add(_class.getSimpleName()); //TODO change to canonical after testing
     }
 
 }

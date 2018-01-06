@@ -77,13 +77,13 @@ public class PrebookingRouter extends Router {
     public NodeState getNodeState(@Nullable Parcelable stateData) {
         final NodeState nodeState = NodeState.create(this.getClass(), stateData);
         if (poiWidgetBuilder.isActive())
-            nodeState.activeNodes().add(poiWidgetBuilder.getClass().getSimpleName()); //TODO refactor it, make internal
+            nodeState.addNodeBuilder(poiWidgetBuilder.getClass());
         if (poiSelectorBuilder.isActive())
-            nodeState.activeNodes().add(poiSelectorBuilder.getClass().getSimpleName());
+            nodeState.addNodeBuilder(poiSelectorBuilder.getClass());
         if (carTypeSelectorBuilder.isActive())
-            nodeState.activeNodes().add(carTypeSelectorBuilder.getClass().getSimpleName());
+            nodeState.addNodeBuilder(carTypeSelectorBuilder.getClass());
         if (bookingExtraBuilder.isActive())
-            nodeState.activeNodes().add(bookingExtraBuilder.getClass().getSimpleName());
+            nodeState.addNodeBuilder(bookingExtraBuilder.getClass());
         return nodeState;
     }
 

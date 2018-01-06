@@ -80,25 +80,25 @@ class HomeRouter extends Router {
     public NodeState getNodeState(@io.reactivex.annotations.Nullable Parcelable stateData) {
         final NodeState nodeState = NodeState.create(this.getClass(), null);
         if (prebookingBuilder.isActive())
-            nodeState.activeNodes().add(prebookingBuilder.getClass().getSimpleName());
+            nodeState.addNodeBuilder(prebookingBuilder.getClass());
         if (allocatingBuilder.isActive())
-            nodeState.activeNodes().add(allocatingBuilder.getClass().getSimpleName());
+            nodeState.addNodeBuilder(allocatingBuilder.getClass());
         if (mapBuilder.isActive())
-            nodeState.activeNodes().add(mapBuilder.getClass().getSimpleName());
+            nodeState.addNodeBuilder(mapBuilder.getClass());
         return nodeState;
     }
 
     @Override
     public void setState(NodeState state) {
-        if (state.activeNodes().contains(prebookingBuilder.getClass().getSimpleName())) {
+        if (state.contains(prebookingBuilder.getClass())) {
             attachRouter(prebookingBuilder.build());
         }
 
-        if (state.activeNodes().contains(allocatingBuilder.getClass().getSimpleName())) {
+        if (state.contains(allocatingBuilder.getClass())) {
             attachRouter(allocatingBuilder.build());
         }
 
-        if (state.activeNodes().contains(mapBuilder.getClass().getSimpleName())) {
+        if (state.contains(mapBuilder.getClass())) {
             attachRouter(mapBuilder.build());
         }
     }

@@ -37,20 +37,21 @@ public class CarTypeSelectorRouter extends Router {
     }
 
     void detachTypeList() {
-        carTypeListBuilder.destroy();
+        carTypeListBuilder.destroy(); //TODO make detach automatic. Root of mistakes.
+        detachChildren();
     }
 
     @Override
     public NodeState getNodeState(@Nullable Parcelable stateData) {
         final NodeState nodeState = NodeState.create(this.getClass(), null);
         if (carTypeListBuilder.isActive())
-            nodeState.activeNodes().add(carTypeListBuilder.getClass().getSimpleName());
+            nodeState.addNodeBuilder(carTypeListBuilder.getClass());
         return nodeState;
     }
 
     @Override
     public void setState(NodeState state) {
-        if (state.activeNodes().contains(carTypeListBuilder.getClass().getSimpleName())) {
+        if (state.contains(carTypeListBuilder.getClass())) {
             attachRouter(carTypeListBuilder.build());
         }
     }
