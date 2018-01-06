@@ -114,8 +114,4 @@ public class PrebookingInteractor extends
         return prebookingRepo.getData();
     }
 
-    @Override
-    public boolean onBackPressed() {
-        return false;
-    }
 }

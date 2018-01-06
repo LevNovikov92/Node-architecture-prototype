@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import com.levnovikov.feature_promo.domain.Promo;
 import com.levnovikov.feature_promo.promo_list.dependency.OnPromoSelectedListener;
 import com.levnovikov.feature_promo.promo_list.di.PromoListScope;
-import com.levnovikov.system_base.StateInteractor;
+import com.levnovikov.system_base.BackStateInteractor;
 import com.levnovikov.system_base.state.ActivityState;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import javax.inject.Inject;
  */
 
 @PromoListScope
-public class PromoListInteractor extends StateInteractor<PromoListRouter> {
+public class PromoListInteractor extends BackStateInteractor<PromoListRouter> {
 
     private final PromoListPresenter presenter;
     private OnPromoSelectedListener listener;

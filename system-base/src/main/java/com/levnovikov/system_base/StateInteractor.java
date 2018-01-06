@@ -1,11 +1,10 @@
 package com.levnovikov.system_base;
 
-import com.levnovikov.system_base.back_handling.BackHandler;
 import com.levnovikov.system_base.state.ActivityState;
 import com.levnovikov.system_base.state.NodeState;
 
 public abstract class StateInteractor<R extends Router> extends Interactor<R>
-        implements StateDataProvider, BackHandler {
+        implements StateDataProvider {
 
     public StateInteractor(R router, ActivityState activityState) {
         super(router, activityState);
@@ -15,7 +14,6 @@ public abstract class StateInteractor<R extends Router> extends Interactor<R>
          * P.S. possible to move getStateData() in base Interactor and override if need to store data.
          */
         router.setStateDataProvider(this);
-        router.setBackHandler(this);
     }
 
     public void onGetActive() {

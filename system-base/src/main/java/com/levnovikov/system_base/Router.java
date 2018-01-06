@@ -82,6 +82,17 @@ public abstract class Router {
                 return true;
             }
         }
-        return backHandler != null ? backHandler.onBackPressed() : false;
+        if (backHandler != null && backHandler.isLastInStack(this.getClass())) {
+            backHandler.popLastInStack();
+            return backHandler != null ? backHandler.onBackPressed() : false;
+        } else {
+            return false;
+        }
+    }
+
+    final void removeFromBackStack() {
+        if (backHandler != null) {
+            backHandler.removeFromBackStack(this.getClass());
+        }
     }
 }

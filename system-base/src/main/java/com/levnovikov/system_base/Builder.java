@@ -20,9 +20,9 @@ public abstract class Builder<R extends Router> {
 
     public void destroy() {
         Log.i(">>>>", "destroy " + this.getClass().getSimpleName());
-//        interactor.onDestroy(); TODO
         if (router != null) {
             router.destroyNode();
+            router.removeFromBackStack();
             router = null;
         }
     }
