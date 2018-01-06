@@ -1,8 +1,8 @@
-package com.levnovikov.postbus.root.home.map;
+package com.levnovikov.feature_map;
 
 import android.os.Parcelable;
 
-import com.levnovikov.postbus.root.home.map.di.MapScope;
+import com.levnovikov.feature_map.di.MapScope;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
 

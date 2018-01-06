@@ -1,7 +1,7 @@
 package com.levnovikov.postbus.root.home.prebooking;
 
+import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
-import com.levnovikov.postbus.root.home.map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.prebooking.di.DaggerPrebookingComponent;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
 import com.levnovikov.system_base.Builder;

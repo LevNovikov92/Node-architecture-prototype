@@ -1,8 +1,8 @@
 package com.levnovikov.postbus.root.home;
 
+import com.levnovikov.feature_map.MapInteractor;
+import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.di.HomeScope;
-import com.levnovikov.postbus.root.home.map.MapInteractor;
-import com.levnovikov.postbus.root.home.map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.system_base.Interactor;

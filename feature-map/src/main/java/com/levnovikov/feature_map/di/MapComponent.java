@@ -1,8 +1,8 @@
-package com.levnovikov.postbus.root.home.map.di;
+package com.levnovikov.feature_map.di;
 
-import com.levnovikov.postbus.root.home.di.HomeComponent;
-import com.levnovikov.postbus.root.home.map.MapRouter;
-import com.levnovikov.postbus.root.home.map.MapView;
+import com.levnovikov.feature_map.MapRouter;
+import com.levnovikov.feature_map.MapView;
+import com.levnovikov.feature_map.dependency.MapDependency;
 
 import dagger.Component;
 import dagger.Module;
@@ -14,7 +14,7 @@ import dagger.Provides;
  */
 
 @MapScope
-@Component(dependencies = HomeComponent.class, modules = MapComponent.MapModule.class)
+@Component(dependencies = MapDependency.class, modules = MapComponent.MapModule.class)
 public interface MapComponent {
 
     MapRouter router();

@@ -3,10 +3,10 @@ package com.levnovikov.postbus.root.home;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
+import com.levnovikov.feature_map.MapBuilder;
+import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
 import com.levnovikov.postbus.root.home.di.HomeScope;
-import com.levnovikov.postbus.root.home.map.MapBuilder;
-import com.levnovikov.postbus.root.home.map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.system_base.Router;

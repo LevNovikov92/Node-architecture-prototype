@@ -3,14 +3,14 @@ package com.levnovikov.postbus.root.home.di;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import com.levnovikov.feature_map.MapBuilder;
+import com.levnovikov.feature_map.MapInteractor;
+import com.levnovikov.feature_map.lifecycle.MapLifecycleEvent;
 import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.HomeActivity;
 import com.levnovikov.postbus.root.home.HomeInteractor;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
-import com.levnovikov.postbus.root.home.map.MapBuilder;
-import com.levnovikov.postbus.root.home.map.MapInteractor;
-import com.levnovikov.postbus.root.home.map.lifecycle.MapLifecycleEvent;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;

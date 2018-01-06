@@ -1,10 +1,10 @@
-package com.levnovikov.postbus.root.home.map;
+package com.levnovikov.feature_map;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.levnovikov.postbus.root.home.map.di.MapScope;
-import com.levnovikov.postbus.root.home.map.map_wrapper.MapInterface;
-import com.levnovikov.postbus.root.home.map.map_wrapper.MapWrapper;
+import com.levnovikov.feature_map.di.MapScope;
+import com.levnovikov.feature_map.map_wrapper.MapInterface;
+import com.levnovikov.feature_map.map_wrapper.MapWrapper;
 import com.levnovikov.system_base.Interactor;
 import com.levnovikov.system_base.state.ActivityState;
 

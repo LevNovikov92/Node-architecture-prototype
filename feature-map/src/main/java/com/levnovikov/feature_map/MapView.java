@@ -1,12 +1,12 @@
-package com.levnovikov.postbus.root.home.map;
+package com.levnovikov.feature_map;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.levnovikov.postbus.root.home.map.lifecycle.MapLifecycleEvent;
-import com.levnovikov.postbus.root.home.map.lifecycle.MapLifecycleListener;
+import com.levnovikov.feature_map.lifecycle.MapLifecycleEvent;
+import com.levnovikov.feature_map.lifecycle.MapLifecycleListener;
 
 import javax.inject.Inject;
 

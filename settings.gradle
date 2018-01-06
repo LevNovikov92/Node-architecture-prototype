@@ -1,1 +1,1 @@
-include ':app', ':system-base', ':core-profile', ':feature-onboarding', ':core-auth', ':stream-state', ':core-booking', ':feature-ride', ':core-location', ':core-geo', ':feature-promo'
+include ':app', ':system-base', ':core-profile', ':feature-onboarding', ':core-auth', ':stream-state', ':core-booking', ':feature-ride', ':core-location', ':core-geo', ':feature-promo', ':feature-map'

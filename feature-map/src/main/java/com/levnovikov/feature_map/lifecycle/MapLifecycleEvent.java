@@ -1,4 +1,4 @@
-package com.levnovikov.postbus.root.home.map.lifecycle;
+package com.levnovikov.feature_map.lifecycle;
 
 import android.os.Bundle;
 

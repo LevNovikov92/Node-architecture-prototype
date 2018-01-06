@@ -1,4 +1,4 @@
-package com.levnovikov.postbus.root.home.map.di;
+package com.levnovikov.feature_map.di;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

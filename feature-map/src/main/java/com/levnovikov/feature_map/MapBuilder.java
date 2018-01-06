@@ -1,12 +1,11 @@
-package com.levnovikov.postbus.root.home.map;
+package com.levnovikov.feature_map;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.levnovikov.postbus.R;
-import com.levnovikov.postbus.root.home.di.HomeComponent;
-import com.levnovikov.postbus.root.home.map.di.DaggerMapComponent;
-import com.levnovikov.postbus.root.home.map.di.MapComponent;
+import com.levnovikov.feature_map.dependency.MapDependency;
+import com.levnovikov.feature_map.di.DaggerMapComponent;
+import com.levnovikov.feature_map.di.MapComponent;
 import com.levnovikov.system_base.ViewBuilder;
 
 /**
@@ -16,9 +15,9 @@ import com.levnovikov.system_base.ViewBuilder;
 
 public class MapBuilder extends ViewBuilder<MapView, MapRouter> {
 
-    private final HomeComponent parentComponent;
+    private final MapDependency parentComponent;
 
-    public MapBuilder(LayoutInflater inflater, ViewGroup parent, HomeComponent parentComponent) {
+    public MapBuilder(LayoutInflater inflater, ViewGroup parent, MapDependency parentComponent) {
         super(inflater, parent);
         this.parentComponent = parentComponent;
     }
@@ -28,7 +27,7 @@ public class MapBuilder extends ViewBuilder<MapView, MapRouter> {
         final MapView view = buildView();
         final MapComponent component = DaggerMapComponent
                 .builder()
-                .homeComponent(parentComponent)
+                .mapDependency(parentComponent)
                 .mapModule(new MapComponent.MapModule(view))
                 .build();
         component.inject(view);

@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+android androidConfiguration
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+dependencies {
+    compile "io.reactivex.rxjava2:rxjava:2.1.4"
+    compile 'com.google.dagger:dagger:2.12'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
+    compileOnly "com.google.auto.value:auto-value:1.5"
+    annotationProcessor "com.google.auto.value:auto-value:1.5"
+    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.6'
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
+
+dependencies {
+    compile project(path: ':system-base')
+    compile project(path: ':core-geo')
+}

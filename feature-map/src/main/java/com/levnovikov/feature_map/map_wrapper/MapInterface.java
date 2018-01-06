@@ -1,4 +1,4 @@
-package com.levnovikov.postbus.root.home.map.map_wrapper;
+package com.levnovikov.feature_map.map_wrapper;
 
 import com.example.core_geo.Point;
 

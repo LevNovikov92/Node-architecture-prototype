@@ -4,9 +4,9 @@ import android.os.Parcelable;
 import android.util.Log;
 
 import com.example.core_geo.Point;
+import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.feature_ride.ride.RidePrebookingData;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
-import com.levnovikov.postbus.root.home.map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
