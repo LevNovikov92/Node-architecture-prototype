@@ -13,5 +13,5 @@ import io.reactivex.Observable;
 
 public interface MapDependency extends ActivityStateComponent {
     Observable<MapLifecycleEvent> mapLifecycle();
-    MapInteractor.OnMapInitialized onMapInitialized();
+    MapInteractor.MapDataStream mapDataStream();
 }

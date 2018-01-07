@@ -1,14 +1,16 @@
 package com.levnovikov.feature_map;
 
+import com.example.core_geo.Point;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.levnovikov.feature_map.di.MapScope;
-import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.feature_map.map_wrapper.MapWrapper;
 import com.levnovikov.system_base.Interactor;
 import com.levnovikov.system_base.state.ActivityState;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
 
 /**
  * Author: lev.novikov
@@ -18,29 +20,26 @@ import javax.inject.Inject;
 @MapScope
 public class MapInteractor extends Interactor<MapRouter> implements OnMapReadyCallback {
 
-    private final OnMapInitialized onMapInitialized;
-    private MapWrapper mapWrapper; //TODO remove reference on destroy
+    private final MapDataStream mapDataStream;
 
-    public interface OnMapInitialized {
-        void onMapInitialized(MapInterface mapInterface);
+    public interface MapDataStream {
+        Observable<Point> pickUpPointStream();
+        Observable<Point> dropOffPointStream();
     }
 
     @Inject
-    MapInteractor(MapRouter router, ActivityState activityState, OnMapInitialized onMapInitialized) {
+    MapInteractor(MapRouter router, ActivityState activityState, MapDataStream mapDataStream) {
         super(router, activityState);
-        this.onMapInitialized = onMapInitialized;
+        this.mapDataStream = mapDataStream;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mapWrapper = new MapWrapper(googleMap);
-        onMapInitialized.onMapInitialized(mapWrapper);
-        // Add a marker in Sydney, Australia,
-        // and move the mapWrapper's camera to the same location.
-//        LatLng sydney = new LatLng(-33.852, 151.211);
-//        googleMap.addMarker(new MarkerOptions().position(sydney)
-//                .title("Marker in Sydney"));
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        final MapWrapper mapWrapper = new MapWrapper(googleMap);
+        mapDataStream.dropOffPointStream()
+                .subscribe(mapWrapper::setPickUp, e -> {}); //TODO unsubscribe
+        mapDataStream.pickUpPointStream()
+                .subscribe(mapWrapper::setDropOff, e -> {}); //TODO unsubscribe
     }
 
 }

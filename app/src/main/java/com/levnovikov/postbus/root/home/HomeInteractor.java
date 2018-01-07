@@ -1,5 +1,8 @@
 package com.levnovikov.postbus.root.home;
 
+import android.util.Log;
+
+import com.example.core_geo.Point;
 import com.levnovikov.feature_map.MapInteractor;
 import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.di.HomeScope;
@@ -14,7 +17,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.BehaviorSubject;
 
 /**
  * Author: lev.novikov
@@ -23,7 +26,7 @@ import io.reactivex.disposables.Disposable;
 
 @HomeScope
 public class HomeInteractor extends Interactor<HomeRouter>
-        implements BookingExtraInteractor.Listener, MapInteractor.OnMapInitialized {
+        implements BookingExtraInteractor.Listener, MapInterface, MapInteractor.MapDataStream {
 
     private final Observable<AppState> appStateStream;
 
@@ -40,6 +43,10 @@ public class HomeInteractor extends Interactor<HomeRouter>
     public void onGetActive() {
         super.onGetActive();
         router.loadMap();
+        appStateStream  //TODO remove checking
+                .subscribe(state -> router.switchState(state), error -> {
+                    //TODO handle error
+                });
     }
 
     @Override
@@ -55,13 +62,32 @@ public class HomeInteractor extends Interactor<HomeRouter>
         return router.onBackPressed();
     }
 
+    private final BehaviorSubject<Point> pickUpPointStream = BehaviorSubject.create();
     @Override
-    public void onMapInitialized(MapInterface mapInterface) {
-        if (!hasSavedState()) {
-            Disposable disposable = appStateStream  //TODO remove checking
-                    .subscribe(state -> router.switchState(state, mapInterface), error -> {
-                        //TODO handle error
-                    });
-        }
+    public void setPickUp(Point point) {
+        Log.i(">>>MAP INTERFACE", "setPickUp");
+        pickUpPointStream.onNext(point);
+    }
+
+    private final BehaviorSubject<Point> dropOffPointStream = BehaviorSubject.create();
+    @Override
+    public void setDropOff(Point point) {
+        Log.i(">>>MAP INTERFACE", "setDropOff");
+        dropOffPointStream.onNext(point);
+    }
+
+    @Override
+    public void clear() {
+        Log.i(">>>MAP INTERFACE", "clear");
+    }
+
+    @Override
+    public Observable<Point> pickUpPointStream() {
+        return pickUpPointStream;
+    }
+
+    @Override
+    public Observable<Point> dropOffPointStream() {
+        return dropOffPointStream;
     }
 }

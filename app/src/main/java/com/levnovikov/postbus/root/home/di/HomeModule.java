@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import com.levnovikov.feature_map.MapBuilder;
 import com.levnovikov.feature_map.MapInteractor;
 import com.levnovikov.feature_map.lifecycle.MapLifecycleEvent;
+import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.HomeActivity;
 import com.levnovikov.postbus.root.home.HomeInteractor;
@@ -93,7 +94,13 @@ public class HomeModule {
 
     @HomeScope
     @Provides
-    MapInteractor.OnMapInitialized provideOnMapInitialized(HomeInteractor interactor) {
+    MapInterface provideMapInterface(HomeInteractor interactor) {
+        return interactor;
+    }
+
+    @HomeScope
+    @Provides
+    MapInteractor.MapDataStream provideMapDataStream(HomeInteractor interactor) {
         return interactor;
     }
 

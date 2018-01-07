@@ -3,7 +3,6 @@ package com.levnovikov.postbus.root.home;
 import android.support.annotation.Nullable;
 
 import com.levnovikov.feature_map.MapBuilder;
-import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
 import com.levnovikov.postbus.root.home.di.HomeScope;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
@@ -33,9 +32,8 @@ class HomeRouter extends Router {
         this.mapBuilder = mapBuilder;
     }
 
-    void startPrebooking(MapInterface mapInterface) {
+    void startPrebooking() {
         detachNode(allocatingBuilder);
-        prebookingBuilder.setMapInterface(mapInterface);
         attachNode(prebookingBuilder);
     }
 
@@ -52,13 +50,13 @@ class HomeRouter extends Router {
 
     }
 
-    void switchState(AppState state, MapInterface mapInterface) {
+    void switchState(AppState state) {
         if (state == currentState) {
             return;
         }
         switch (state) {
             case PREBOOKING:
-                startPrebooking(mapInterface);
+                startPrebooking();
                 break;
             case ALLOCATING:
                 startAllocating();

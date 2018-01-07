@@ -2,7 +2,9 @@ package com.levnovikov.postbus.root.home.di;
 
 import android.view.LayoutInflater;
 
+import com.levnovikov.feature_map.MapInteractor;
 import com.levnovikov.feature_map.dependency.MapDependency;
+import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.root.home.HomeActivity;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
@@ -31,4 +33,6 @@ public interface HomeComponent extends ActivityStateComponent, MapDependency {
     LayoutInflater inflater();
     HomeView homeView();
     BookingExtraInteractor.Listener bookingListener();
+    MapInterface mapInterface();
+    MapInteractor.MapDataStream mapDataStream();
 }

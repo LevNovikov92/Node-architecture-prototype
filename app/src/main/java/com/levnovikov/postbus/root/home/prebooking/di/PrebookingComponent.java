@@ -42,18 +42,6 @@ public interface PrebookingComponent extends ActivityStateComponent {
     @Module(includes = PrebookingModule.Binders.class)
     class PrebookingModule {
 
-        private MapInterface mapInterface;
-
-        public PrebookingModule(MapInterface mapInterface) {
-            this.mapInterface = mapInterface;
-        }
-
-        @PrebookingScope
-        @Provides
-        MapInterface provideMapInterface() {
-            return mapInterface;
-        }
-
         @PrebookingScope
         @Provides
         RidePrebookingData provideDefaultPrebookingData() {
