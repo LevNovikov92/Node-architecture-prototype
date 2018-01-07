@@ -1,4 +1,4 @@
-package com.levnovikov.system_base.state;
+package com.levnovikov.system_base.node_state;
 
 import android.os.Parcelable;
 

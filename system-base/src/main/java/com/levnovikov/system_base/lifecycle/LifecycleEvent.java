@@ -7,9 +7,9 @@ package com.levnovikov.system_base.lifecycle;
 
 public enum LifecycleEvent {
     CREATE,
+    START,
     RESUME,
     PAUSE,
-    DESTROY,
-    ON_SAVE_INSTANCE,
-    ON_LOW_MEMORY
+    STOP,
+    DESTROY
 }

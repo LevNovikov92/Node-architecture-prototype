@@ -4,7 +4,7 @@ import android.os.Parcelable;
 
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.di.CarTypeListScope;
 import com.levnovikov.system_base.BackStateInteractor;
-import com.levnovikov.system_base.state.ActivityState;
+import com.levnovikov.system_base.node_state.ActivityState;
 
 import javax.inject.Inject;
 

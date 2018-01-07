@@ -16,7 +16,8 @@ import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.stream_state.AppStateStreamProvider;
-import com.levnovikov.system_base.state.ActivityState;
+import com.levnovikov.system_base.lifecycle.Lifecycle;
+import com.levnovikov.system_base.node_state.ActivityState;
 
 import dagger.Module;
 import dagger.Provides;
@@ -41,6 +42,12 @@ public class HomeModule {
     @HomeScope
     @Provides
     Context provideContext() {
+        return activity;
+    }
+
+    @HomeScope
+    @Provides
+    Lifecycle provideLifecycle() {
         return activity;
     }
 

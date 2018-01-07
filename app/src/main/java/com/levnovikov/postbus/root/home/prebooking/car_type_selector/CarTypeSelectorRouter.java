@@ -3,7 +3,7 @@ package com.levnovikov.postbus.root.home.prebooking.car_type_selector;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorScope;
 import com.levnovikov.system_base.Router;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import javax.inject.Inject;
 

@@ -5,7 +5,7 @@ import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetNodeHolde
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetRouter;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetView;
-import com.levnovikov.system_base.base_di.ActivityStateComponent;
+import com.levnovikov.system_base.base_di.ActivityComponent;
 
 import dagger.Component;
 import dagger.Module;
@@ -18,7 +18,7 @@ import dagger.Provides;
 
 @PoiWidgetScope
 @Component(dependencies = PrebookingComponent.class, modules = PoiWidgetComponent.PoiWidgetModule.class)
-public interface PoiWidgetComponent extends ActivityStateComponent {
+public interface PoiWidgetComponent extends ActivityComponent {
 
     void inject(PoiWidgetNodeHolder poiWidgetBuilder);
 

@@ -9,8 +9,9 @@ import com.levnovikov.postbus.root.home.di.HomeScope;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.system_base.Interactor;
-import com.levnovikov.system_base.state.ActivityState;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.lifecycle.Lifecycle;
+import com.levnovikov.system_base.node_state.ActivityState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import java.util.Map;
 
@@ -29,24 +30,27 @@ public class HomeInteractor extends Interactor<HomeRouter>
         implements BookingExtraInteractor.Listener, MapInterface, MapInteractor.MapDataStream {
 
     private final Observable<AppState> appStateStream;
+    private final Lifecycle lifecycle;
 
     @Inject
     HomeInteractor(
             Observable<AppState> appStateStream,
             HomeRouter router,
-            ActivityState activityState) {
+            ActivityState activityState,
+            Lifecycle lifecycle) {
         super(router, activityState);
         this.appStateStream = appStateStream;
+        this.lifecycle = lifecycle;
     }
 
     @Override
     public void onGetActive() {
         super.onGetActive();
         router.loadMap();
-        appStateStream  //TODO remove checking
+        lifecycle.subscribeUntilDestroy(appStateStream  //TODO remove checking
                 .subscribe(state -> router.switchState(state), error -> {
                     //TODO handle error
-                });
+                }));
     }
 
     @Override

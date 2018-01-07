@@ -4,7 +4,7 @@ import android.os.Parcelable;
 import android.util.Log;
 
 import com.levnovikov.system_base.back_handling.BackHandler;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import java.util.HashMap;
 import java.util.Map;

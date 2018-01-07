@@ -6,7 +6,7 @@ package com.levnovikov.system_base;
  */
 
 import com.levnovikov.system_base.back_handling.BackHandler;
-import com.levnovikov.system_base.state.ActivityState;
+import com.levnovikov.system_base.node_state.ActivityState;
 
 public abstract class BackStateInteractor<R extends Router> extends StateInteractor<R>
         implements BackHandler {

@@ -2,7 +2,7 @@ package com.levnovikov.feature_promo.promo_list;
 
 import com.levnovikov.feature_promo.promo_list.di.PromoListScope;
 import com.levnovikov.system_base.Router;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import javax.inject.Inject;
 

@@ -1,7 +1,7 @@
 package com.levnovikov.system_base;
 
-import com.levnovikov.system_base.state.ActivityState;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.ActivityState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 public abstract class StateInteractor<R extends Router> extends Interactor<R>
         implements StateDataProvider {

@@ -6,7 +6,8 @@ import com.example.core_geo.Point;
 import com.example.core_location.PoiSuggestionProvider;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.PoiSelectorScope;
 import com.levnovikov.system_base.BackStateInteractor;
-import com.levnovikov.system_base.state.ActivityState;
+import com.levnovikov.system_base.lifecycle.Lifecycle;
+import com.levnovikov.system_base.node_state.ActivityState;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class PoiSelectorInteractor extends BackStateInteractor<PoiSelectorRouter
     private PoiSuggestionProvider poiProvider;
     private Presenter presenter;
     private PoiSelectionListener listener;
+    private final Lifecycle lifecycle;
 
     @Inject
     public PoiSelectorInteractor(
@@ -37,26 +39,28 @@ public class PoiSelectorInteractor extends BackStateInteractor<PoiSelectorRouter
             Presenter presenter,
             PoiSelectorRouter router,
             ActivityState activityState,
-            PoiSelectionListener listener) {
+            PoiSelectionListener listener,
+            Lifecycle lifecycle) {
         super(router, activityState);
         this.poiProvider = poiProvider;
         this.presenter = presenter;
         this.listener = listener;
+        this.lifecycle = lifecycle;
     }
 
     @Override
     public void onGetActive() {
         super.onGetActive();
-        presenter.getPlaceTitleStream() //TODO unsubscribe
+        lifecycle.subscribeUntilDestroy(presenter.getPlaceTitleStream()
                 .subscribe((title) -> poiProvider.updatePlace(title),
-                        (error) -> { /*handle error*/ });
+                        (error) -> { /*handle error*/ }));
 
-        poiProvider.getPoiStream() //TODO unsubscribe
+        lifecycle.subscribeUntilDestroy(poiProvider.getPoiStream()
                 .subscribe((poiList) -> presenter.updateSuggestions(poiList),
-                        (error) -> { /*handle error*/ });
+                        (error) -> { /*handle error*/ }));
 
-        presenter.getSelectedPoi()
-                .subscribe(point -> listener.onPoiSelected(point), error -> {});
+        lifecycle.subscribeUntilDestroy(presenter.getSelectedPoi()
+                .subscribe(point -> listener.onPoiSelected(point), error -> {}));
     }
 
     @Override

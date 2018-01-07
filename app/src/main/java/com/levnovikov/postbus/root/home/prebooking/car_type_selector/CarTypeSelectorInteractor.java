@@ -4,7 +4,8 @@ import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListInteractor;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorScope;
 import com.levnovikov.system_base.Interactor;
-import com.levnovikov.system_base.state.ActivityState;
+import com.levnovikov.system_base.lifecycle.Lifecycle;
+import com.levnovikov.system_base.node_state.ActivityState;
 
 import javax.inject.Inject;
 
@@ -23,6 +24,7 @@ public class CarTypeSelectorInteractor extends Interactor<CarTypeSelectorRouter>
     private Presenter presenter;
     private Listener listener;
     private RidePrebookingRepo prebookingRepo;
+    private final Lifecycle lifecycle;
 
     @Override
     public void onCancel() {
@@ -43,20 +45,22 @@ public class CarTypeSelectorInteractor extends Interactor<CarTypeSelectorRouter>
             Listener listener,
             RidePrebookingRepo prebookingRepo,
             CarTypeSelectorRouter router,
-            ActivityState activityState) {
+            ActivityState activityState,
+            Lifecycle lifecycle) {
         super(router, activityState);
         this.presenter = presenter;
         this.listener = listener;
         this.prebookingRepo = prebookingRepo;
+        this.lifecycle = lifecycle;
     }
 
     @Override
     public void onGetActive() {
         super.onGetActive();
-        presenter.clickStream() //TODO unsubscribe
+        lifecycle.subscribeUntilDestroy(presenter.clickStream()
                 .subscribe(o -> {
                     router.attachTypeList();
                     listener.onServiceSelected();
-                }, e -> { /*handle error*/ });
+                }, e -> { /*handle error*/ }));
     }
 }

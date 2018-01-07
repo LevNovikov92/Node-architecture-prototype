@@ -3,7 +3,7 @@ package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget;
 import com.levnovikov.feature_promo.promo_list.PromoListNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope;
 import com.levnovikov.system_base.Router;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import javax.inject.Inject;
 

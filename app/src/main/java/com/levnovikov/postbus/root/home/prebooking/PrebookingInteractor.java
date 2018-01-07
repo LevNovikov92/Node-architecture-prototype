@@ -14,7 +14,8 @@ import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteracto
 import com.levnovikov.stream_state.PrebookingState;
 import com.levnovikov.system_base.StateDataProvider;
 import com.levnovikov.system_base.StateInteractor;
-import com.levnovikov.system_base.state.ActivityState;
+import com.levnovikov.system_base.lifecycle.Lifecycle;
+import com.levnovikov.system_base.node_state.ActivityState;
 
 import javax.inject.Inject;
 
@@ -33,16 +34,19 @@ public class PrebookingInteractor extends
 
     private final RidePrebookingRepo prebookingRepo;
     private MapInterface mapInterface;
+    private final Lifecycle lifecycle;
     private PrebookingState state = PrebookingState.INITIAL;
 
     @Inject
     PrebookingInteractor(PrebookingRouter router,
                          RidePrebookingRepo prebookingRepo,
                          MapInterface mapInterface,
-                         ActivityState activityState) {
+                         ActivityState activityState,
+                         Lifecycle lifecycle) {
         super(router, activityState);
         this.prebookingRepo = prebookingRepo;
         this.mapInterface = mapInterface;
+        this.lifecycle = lifecycle;
     }
 
     @Override
@@ -57,10 +61,10 @@ public class PrebookingInteractor extends
     }
 
     private void bindMapAndPrebookingRepo() {
-        prebookingRepo.pickupPoint.getStream()
-                .subscribe(point -> mapInterface.setPickUp(point), e -> {}); //TODO unsubscribe
-        prebookingRepo.dropOffPoint.getStream()
-                .subscribe(point -> mapInterface.setDropOff(point), e -> {}); //TODO unsubscribe
+        lifecycle.subscribeUntilDestroy(prebookingRepo.pickupPoint.getStream()
+                .subscribe(point -> mapInterface.setPickUp(point), e -> {}));
+        lifecycle.subscribeUntilDestroy(prebookingRepo.dropOffPoint.getStream()
+                .subscribe(point -> mapInterface.setDropOff(point), e -> {}));
     }
 
     private void restoreStateIfPossible() {

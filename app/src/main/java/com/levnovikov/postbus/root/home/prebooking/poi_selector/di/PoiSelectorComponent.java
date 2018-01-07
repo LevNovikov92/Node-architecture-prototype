@@ -8,7 +8,7 @@ import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorNodeH
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorRouter;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorView;
-import com.levnovikov.system_base.base_di.ActivityStateComponent;
+import com.levnovikov.system_base.base_di.ActivityComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import io.reactivex.subjects.BehaviorSubject;
 
 @PoiSelectorScope
 @Component(dependencies = PrebookingComponent.class, modules = PoiSelectorComponent.PoiSelectorModule.class)
-public interface PoiSelectorComponent extends ActivityStateComponent {
+public interface PoiSelectorComponent extends ActivityComponent {
 
     void inject(PoiSelectorView view);
 

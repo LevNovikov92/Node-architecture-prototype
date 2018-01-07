@@ -2,7 +2,7 @@ package com.levnovikov.postbus.root.home.prebooking.poi_widget;
 
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.PoiWidgetScope;
 import com.levnovikov.system_base.Router;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import javax.inject.Inject;
 

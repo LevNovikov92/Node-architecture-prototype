@@ -8,7 +8,7 @@ import com.levnovikov.postbus.root.home.di.HomeScope;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.system_base.Router;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import javax.inject.Inject;
 

@@ -2,8 +2,8 @@ package com.levnovikov.system_base;
 
 import android.os.Parcelable;
 
-import com.levnovikov.system_base.state.ActivityState;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.ActivityState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 public abstract class Interactor<R extends Router> {
 

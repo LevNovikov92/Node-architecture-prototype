@@ -10,7 +10,7 @@ import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSele
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListInteractor;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
-import com.levnovikov.system_base.base_di.ActivityStateComponent;
+import com.levnovikov.system_base.base_di.ActivityComponent;
 
 import dagger.Component;
 import dagger.Module;
@@ -23,7 +23,7 @@ import dagger.Provides;
 
 @CarTypeSelectorScope
 @Component(dependencies = PrebookingComponent.class, modules = CarTypeSelectorComponent.CarTypeModule.class)
-public interface CarTypeSelectorComponent extends ActivityStateComponent {
+public interface CarTypeSelectorComponent extends ActivityComponent {
 
     void inject(CarTypeSelectorView view);
 

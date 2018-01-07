@@ -2,14 +2,14 @@ package com.levnovikov.postbus.root.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.levnovikov.feature_map.lifecycle.MapLifecycleEvent;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
 import com.levnovikov.postbus.root.home.di.HomeModule;
 import com.levnovikov.system_base.base_di.SubComponentProvider;
-import com.levnovikov.system_base.state.ActivityState;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.lifecycle.LifecycleActivity;
+import com.levnovikov.system_base.node_state.ActivityState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ import io.reactivex.subjects.ReplaySubject;
  * Date: 14/12/17.
  */
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends LifecycleActivity {
 
     private static String HOME_ACTIVITY_STATE = "HOME_ACTIVITY_STATE";
 
@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     @Inject
     HomeInteractor interactor;
 
-    private ReplaySubject<MapLifecycleEvent> lifecycleEmitter = ReplaySubject.create();
+    private ReplaySubject<MapLifecycleEvent> mapLifecycleEmitter = ReplaySubject.create();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         injectDependencies(activityState);
         setContentView(view);
         interactor.onGetActive();
-        lifecycleEmitter.onNext(MapLifecycleEvent.CREATE);
+        mapLifecycleEmitter.onNext(MapLifecycleEvent.CREATE);
     }
 
     private void injectDependencies(@Nullable ActivityState activityState) {
@@ -76,24 +76,24 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public Observable<MapLifecycleEvent> getMapLifecycleStream() {
-        return lifecycleEmitter;
+        return mapLifecycleEmitter;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        lifecycleEmitter.onNext(MapLifecycleEvent.RESUME);
+        mapLifecycleEmitter.onNext(MapLifecycleEvent.RESUME);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        lifecycleEmitter.onNext(MapLifecycleEvent.PAUSE);
+        mapLifecycleEmitter.onNext(MapLifecycleEvent.PAUSE);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        lifecycleEmitter.onNext(MapLifecycleEvent.DESTROY);
+        mapLifecycleEmitter.onNext(MapLifecycleEvent.DESTROY);
     }
 }

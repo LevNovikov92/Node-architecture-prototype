@@ -4,7 +4,7 @@ import com.levnovikov.feature_promo.domain.Promo;
 import com.levnovikov.feature_promo.promo_list.dependency.OnPromoSelectedListener;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope;
 import com.levnovikov.system_base.Interactor;
-import com.levnovikov.system_base.state.ActivityState;
+import com.levnovikov.system_base.node_state.ActivityState;
 
 import javax.inject.Inject;
 

@@ -2,7 +2,7 @@ package com.example.feature_onboarding.signup;
 
 import com.example.feature_onboarding.signup.di.SignUpScope;
 import com.levnovikov.system_base.Router;
-import com.levnovikov.system_base.state.NodeState;
+import com.levnovikov.system_base.node_state.NodeState;
 
 import javax.inject.Inject;
 
