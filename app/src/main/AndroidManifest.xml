@@ -42,8 +42,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".root.home.HomeActivity"
-            android:noHistory="true">
+        <activity android:name=".root.home.HomeActivity">
         </activity>
     </application>
 

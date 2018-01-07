@@ -1,7 +1,5 @@
 package com.levnovikov.feature_map;
 
-import android.os.Parcelable;
-
 import com.levnovikov.feature_map.di.MapScope;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
@@ -26,8 +24,8 @@ public class MapRouter extends Router {
     }
 
     @Override
-    public NodeState getNodeState(Parcelable stateData) {
-        return null;
+    public NodeState getNodeState(NodeState nodeState) {
+        return nodeState;
     }
 
     @Override

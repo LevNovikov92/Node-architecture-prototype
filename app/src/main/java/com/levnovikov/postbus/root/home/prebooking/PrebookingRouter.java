@@ -1,7 +1,5 @@
 package com.levnovikov.postbus.root.home.prebooking;
 
-import android.os.Parcelable;
-
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraBuilder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
@@ -11,8 +9,6 @@ import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
 
 import javax.inject.Inject;
-
-import io.reactivex.annotations.Nullable;
 
 /**
  * Author: lev.novikov
@@ -71,8 +67,7 @@ public class PrebookingRouter extends Router {
         detachChildren();
     }
 
-    public NodeState getNodeState(@Nullable Parcelable stateData) {
-        final NodeState nodeState = NodeState.create(this.getClass(), stateData);
+    public NodeState getNodeState(NodeState nodeState) {
         if (poiWidgetBuilder.isActive())
             nodeState.addNodeBuilder(poiWidgetBuilder.getClass());
         if (poiSelectorBuilder.isActive())

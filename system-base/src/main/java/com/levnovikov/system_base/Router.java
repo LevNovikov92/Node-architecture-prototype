@@ -76,11 +76,12 @@ public abstract class Router {
 
     protected abstract void destroyNode();
 
-    public abstract NodeState getNodeState(@Nullable Parcelable stateData);
+    public abstract NodeState getNodeState(NodeState nodeState);
 
     public final Map<String, NodeState> getState() {
         final Map<String, NodeState> state = getChildrenState();
-        final NodeState nodeState = getNodeState(stateDataProvider != null ? stateDataProvider.getStateData() : null);
+        final Parcelable stateData = stateDataProvider != null ? stateDataProvider.getStateData() : null;
+        final NodeState nodeState = getNodeState(NodeState.create(this.getClass(), stateData));
         state.put(nodeState.routerClass(), nodeState);
         return state;
     }

@@ -1,7 +1,5 @@
 package com.levnovikov.feature_promo.promo_list;
 
-import android.os.Parcelable;
-
 import com.levnovikov.feature_promo.promo_list.di.PromoListScope;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
@@ -26,8 +24,8 @@ public class PromoListRouter extends Router {
     }
 
     @Override
-    public NodeState getNodeState(Parcelable stateData) {
-        return NodeState.create(this.getClass(), null); //TODO move default state to base entity
+    public NodeState getNodeState(NodeState nodeState) {
+        return nodeState;
     }
 
     @Override

@@ -1,15 +1,11 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget;
 
-import android.os.Parcelable;
-
 import com.levnovikov.feature_promo.promo_list.PromoListBuilder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope;
-import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
+import com.levnovikov.system_base.state.NodeState;
 
 import javax.inject.Inject;
-
-import io.reactivex.annotations.Nullable;
 
 /**
  * Created by lev.novikov
@@ -32,12 +28,11 @@ public class BookingExtraRouter extends Router {
     }
 
     @Override
-    public NodeState getNodeState(@Nullable Parcelable stateData) {
-        final NodeState state = NodeState.create(this.getClass(), stateData);
+    public NodeState getNodeState(NodeState nodeState) {
         if (promoListBuilder.isActive()) {
-            state.addNodeBuilder(promoListBuilder.getClass()); //TODO refactor it
+            nodeState.addNodeBuilder(promoListBuilder.getClass()); //TODO refactor it
         }
-        return state;
+        return nodeState;
     }
 
     @Override

@@ -1,15 +1,11 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector;
 
-import android.os.Parcelable;
-
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListBuilder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorScope;
-import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
+import com.levnovikov.system_base.state.NodeState;
 
 import javax.inject.Inject;
-
-import io.reactivex.annotations.Nullable;
 
 /**
  * Created by lev.novikov
@@ -40,8 +36,7 @@ public class CarTypeSelectorRouter extends Router {
     }
 
     @Override
-    public NodeState getNodeState(@Nullable Parcelable stateData) {
-        final NodeState nodeState = NodeState.create(this.getClass(), null);
+    public NodeState getNodeState(NodeState nodeState) {
         if (carTypeListBuilder.isActive())
             nodeState.addNodeBuilder(carTypeListBuilder.getClass());
         return nodeState;
