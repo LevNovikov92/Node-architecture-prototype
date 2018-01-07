@@ -3,11 +3,11 @@ package com.levnovikov.postbus.root.home.prebooking.car_type_selector.di;
 import android.view.LayoutInflater;
 
 import com.levnovikov.postbus.root.home.HomeView;
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorRouter;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorView;
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListBuilder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListInteractor;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
 import com.levnovikov.system_base.base_di.ActivityStateComponent;
@@ -31,7 +31,7 @@ public interface CarTypeSelectorComponent extends ActivityStateComponent {
 
     CarTypeListInteractor.TypeListListener typeListListener();
 
-    void inject(CarTypeSelectorBuilder carTypeSelectorBuilder);
+    void inject(CarTypeSelectorNodeHolder carTypeSelectorBuilder);
 
     @Module
     class CarTypeModule {
@@ -62,11 +62,11 @@ public interface CarTypeSelectorComponent extends ActivityStateComponent {
 
         @CarTypeSelectorScope
         @Provides
-        CarTypeListBuilder provideListBuilder(
+        CarTypeListNodeHolder provideListBuilder(
                 LayoutInflater inflater,
                 HomeView homeScreen,
                 CarTypeSelectorComponent parentComponent) {
-            return new CarTypeListBuilder(inflater, homeScreen, parentComponent);
+            return new CarTypeListNodeHolder(inflater, homeScreen, parentComponent);
         }
     }
 }

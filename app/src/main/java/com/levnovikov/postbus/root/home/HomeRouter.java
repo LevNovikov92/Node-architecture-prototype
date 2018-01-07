@@ -2,10 +2,10 @@ package com.levnovikov.postbus.root.home;
 
 import android.support.annotation.Nullable;
 
-import com.levnovikov.feature_map.MapBuilder;
-import com.levnovikov.postbus.root.home.allocating.AllocatingBuilder;
+import com.levnovikov.feature_map.MapNodeHolder;
+import com.levnovikov.postbus.root.home.allocating.AllocatingNodeHolder;
 import com.levnovikov.postbus.root.home.di.HomeScope;
-import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
+import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
@@ -20,13 +20,13 @@ import javax.inject.Inject;
 @HomeScope
 class HomeRouter extends Router {
 
-    private final PrebookingBuilder prebookingBuilder;
-    private final AllocatingBuilder allocatingBuilder;
-    private final MapBuilder mapBuilder;
+    private final PrebookingNodeHolder prebookingBuilder;
+    private final AllocatingNodeHolder allocatingBuilder;
+    private final MapNodeHolder mapBuilder;
     private @Nullable AppState currentState;
 
     @Inject
-    HomeRouter(PrebookingBuilder prebookingBuilder, AllocatingBuilder allocatingBuilder, MapBuilder mapBuilder) {
+    HomeRouter(PrebookingNodeHolder prebookingBuilder, AllocatingNodeHolder allocatingBuilder, MapNodeHolder mapBuilder) {
         this.prebookingBuilder = prebookingBuilder;
         this.allocatingBuilder = allocatingBuilder;
         this.mapBuilder = mapBuilder;

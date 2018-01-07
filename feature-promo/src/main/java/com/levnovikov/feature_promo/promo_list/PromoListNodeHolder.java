@@ -7,18 +7,18 @@ import com.levnovikov.feature_promo.R;
 import com.levnovikov.feature_promo.promo_list.dependency.PromoListDependency;
 import com.levnovikov.feature_promo.promo_list.di.DaggerPromoListComponent;
 import com.levnovikov.feature_promo.promo_list.di.PromoListComponent;
-import com.levnovikov.system_base.ViewBuilder;
+import com.levnovikov.system_base.ViewNodeHolder;
 
 /**
  * Author: lev.novikov
  * Date: 4/1/18.
  */
 
-public class PromoListBuilder extends ViewBuilder<PromoListView, PromoListRouter> {
+public class PromoListNodeHolder extends ViewNodeHolder<PromoListView, PromoListRouter> {
 
     private final PromoListDependency parentComponent;
 
-    public PromoListBuilder(LayoutInflater inflater, ViewGroup parent, PromoListDependency parentComponent) {
+    public PromoListNodeHolder(LayoutInflater inflater, ViewGroup parent, PromoListDependency parentComponent) {
         super(inflater, parent);
         this.parentComponent = parentComponent;
     }

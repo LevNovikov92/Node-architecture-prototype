@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import com.example.feature_onboarding.OnboardingInteractor;
 import com.example.feature_onboarding.OnboardingView;
 import com.example.feature_onboarding.login.LoginInteractor;
-import com.example.feature_onboarding.login.LoginBuilder;
-import com.example.feature_onboarding.signup.SignUpBuilder;
+import com.example.feature_onboarding.login.LoginNodeHolder;
+import com.example.feature_onboarding.signup.SignUpNodeHolder;
 import com.example.feature_onboarding.signup.SignUpInteractor;
 
 import dagger.Binds;
@@ -30,16 +30,16 @@ public class OnboardingModule {
 
     @OnboardingScope
     @Provides
-    LoginBuilder provideLoginBuilder(OnboardingView view, OnboardingComponent component,
-                                     LayoutInflater inflater) {
-        return new LoginBuilder(view, component, inflater);
+    LoginNodeHolder provideLoginBuilder(OnboardingView view, OnboardingComponent component,
+                                        LayoutInflater inflater) {
+        return new LoginNodeHolder(view, component, inflater);
     }
 
     @OnboardingScope
     @Provides
-    SignUpBuilder provideSignUpBuilder(OnboardingView view, OnboardingComponent component,
-                                      LayoutInflater inflater) {
-        return new SignUpBuilder(view, component, inflater);
+    SignUpNodeHolder provideSignUpBuilder(OnboardingView view, OnboardingComponent component,
+                                          LayoutInflater inflater) {
+        return new SignUpNodeHolder(view, component, inflater);
     }
 
     @Module

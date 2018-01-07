@@ -1,6 +1,6 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget;
 
-import com.levnovikov.feature_promo.promo_list.PromoListBuilder;
+import com.levnovikov.feature_promo.promo_list.PromoListNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
@@ -15,10 +15,10 @@ import javax.inject.Inject;
 @BookingExtraScope
 public class BookingExtraRouter extends Router {
 
-    private PromoListBuilder promoListBuilder;
+    private PromoListNodeHolder promoListBuilder;
 
     @Inject
-    public BookingExtraRouter(PromoListBuilder promoListBuilder) {
+    public BookingExtraRouter(PromoListNodeHolder promoListBuilder) {
         this.promoListBuilder = promoListBuilder;
     }
 
@@ -37,7 +37,7 @@ public class BookingExtraRouter extends Router {
 
     @Override
     public void setState(NodeState state) {
-        if (state.contains(PromoListBuilder.class)) {
+        if (state.contains(PromoListNodeHolder.class)) {
             attachNode(promoListBuilder);
         }
     }

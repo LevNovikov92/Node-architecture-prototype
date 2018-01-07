@@ -1,6 +1,6 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.di;
 
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListBuilder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListView;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorComponent;
 import com.levnovikov.system_base.base_di.ActivityStateComponent;
@@ -20,7 +20,7 @@ public interface CarTypeListComponent extends ActivityStateComponent {
 
     void inject(CarTypeListView view);
 
-    void inject(CarTypeListBuilder carTypeListBuilder);
+    void inject(CarTypeListNodeHolder carTypeListBuilder);
 
     @Module
     class CarTypeListModule {

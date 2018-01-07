@@ -9,18 +9,18 @@ import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.di.CarTypeListComponent;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.di.DaggerCarTypeListComponent;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorComponent;
-import com.levnovikov.system_base.ViewBuilder;
+import com.levnovikov.system_base.ViewNodeHolder;
 
 /**
  * Created by lev.novikov
  * Date: 25/12/17.
  */
 
-public class CarTypeListBuilder extends ViewBuilder<CarTypeListView, CarTypeListRouter> {
+public class CarTypeListNodeHolder extends ViewNodeHolder<CarTypeListView, CarTypeListRouter> {
 
     private CarTypeSelectorComponent parentComponent;
 
-    public CarTypeListBuilder(LayoutInflater inflater, ViewGroup parent, CarTypeSelectorComponent parentComponent) {
+    public CarTypeListNodeHolder(LayoutInflater inflater, ViewGroup parent, CarTypeSelectorComponent parentComponent) {
         super(inflater, parent);
         this.parentComponent = parentComponent;
     }

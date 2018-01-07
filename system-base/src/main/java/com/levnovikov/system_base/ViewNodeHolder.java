@@ -10,13 +10,13 @@ import android.view.ViewGroup;
  * Date: 30/11/17.
  */
 
-public abstract class ViewBuilder<V extends View, R extends Router> extends Builder<R> {
+public abstract class ViewNodeHolder<V extends View, R extends Router> extends NodeHolder<R> {
 
     private V view;
     private final LayoutInflater inflater;
     protected final ViewGroup parent;
 
-    public ViewBuilder(LayoutInflater inflater, ViewGroup parent) {
+    public ViewNodeHolder(LayoutInflater inflater, ViewGroup parent) {
         this.inflater = inflater;
         this.parent = parent;
     }

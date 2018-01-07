@@ -7,18 +7,18 @@ import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.DaggerPoiSelectorComponent;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.di.PoiSelectorComponent;
-import com.levnovikov.system_base.ViewBuilder;
+import com.levnovikov.system_base.ViewNodeHolder;
 
 /**
  * Created by lev.novikov
  * Date: 20/12/17.
  */
 
-public class PoiSelectorBuilder extends ViewBuilder<PoiSelectorView, PoiSelectorRouter> {
+public class PoiSelectorNodeHolder extends ViewNodeHolder<PoiSelectorView, PoiSelectorRouter> {
 
     private final PrebookingComponent parentComponent;
 
-    public PoiSelectorBuilder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
+    public PoiSelectorNodeHolder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
         super(inflater, parent);
         this.parentComponent = parentComponent;
     }

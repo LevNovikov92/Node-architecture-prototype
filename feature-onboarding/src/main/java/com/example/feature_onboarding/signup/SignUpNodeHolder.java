@@ -8,7 +8,7 @@ import com.example.feature_onboarding.di.OnboardingComponent;
 import com.example.feature_onboarding.signup.di.DaggerSignUpComponent;
 import com.example.feature_onboarding.signup.di.SignUpComponent;
 import com.example.feature_onboarding.signup.di.SignUpModule;
-import com.levnovikov.system_base.ViewBuilder;
+import com.levnovikov.system_base.ViewNodeHolder;
 
 import javax.inject.Inject;
 
@@ -17,7 +17,7 @@ import javax.inject.Inject;
  * Date: 30/11/17.
  */
 
-public class SignUpBuilder extends ViewBuilder<SignUpView, SignUpRouter> {
+public class SignUpNodeHolder extends ViewNodeHolder<SignUpView, SignUpRouter> {
 
     @Inject
     SignUpInteractor interactor;
@@ -27,7 +27,7 @@ public class SignUpBuilder extends ViewBuilder<SignUpView, SignUpRouter> {
 
     private final OnboardingComponent parentComponent;
 
-    public SignUpBuilder(ViewGroup parent, OnboardingComponent component, LayoutInflater inflater) {
+    public SignUpNodeHolder(ViewGroup parent, OnboardingComponent component, LayoutInflater inflater) {
         super(inflater, parent);
         this.parentComponent = component;
     }

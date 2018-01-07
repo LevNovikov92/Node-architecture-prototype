@@ -2,7 +2,7 @@ package com.example.feature_onboarding.signup.di;
 
 import com.example.core_auth.provider.di.AuthProviderModule;
 import com.example.feature_onboarding.di.OnboardingComponent;
-import com.example.feature_onboarding.signup.SignUpBuilder;
+import com.example.feature_onboarding.signup.SignUpNodeHolder;
 import com.example.feature_onboarding.signup.SignUpRouter;
 import com.example.feature_onboarding.signup.SignUpView;
 
@@ -19,7 +19,7 @@ public interface SignUpComponent {
     SignUpRouter router();
     SignUpView view();
 
-    void inject(SignUpBuilder signUpBuilder);
+    void inject(SignUpNodeHolder signUpBuilder);
 
     void inject(SignUpView view);
 }

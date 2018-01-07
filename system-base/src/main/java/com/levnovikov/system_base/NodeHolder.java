@@ -8,10 +8,10 @@ import javax.inject.Inject;
  * Author: lev.novikov
  * Date: 17/12/17.
  *
- * Builder
+ * NodeHolder
  */
 
-public abstract class Builder<R extends Router> {
+public abstract class NodeHolder<R extends Router> {
 
     @Inject
     public R router;

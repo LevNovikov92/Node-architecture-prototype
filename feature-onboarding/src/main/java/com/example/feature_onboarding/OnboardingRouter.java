@@ -1,8 +1,8 @@
 package com.example.feature_onboarding;
 
 import com.example.feature_onboarding.di.OnboardingScope;
-import com.example.feature_onboarding.login.LoginBuilder;
-import com.example.feature_onboarding.signup.SignUpBuilder;
+import com.example.feature_onboarding.login.LoginNodeHolder;
+import com.example.feature_onboarding.signup.SignUpNodeHolder;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
 
@@ -16,11 +16,11 @@ import javax.inject.Inject;
 @OnboardingScope
 public class OnboardingRouter extends Router {
 
-    private final LoginBuilder loginBuilder;
-    private final SignUpBuilder signUpBuilder;
+    private final LoginNodeHolder loginBuilder;
+    private final SignUpNodeHolder signUpBuilder;
 
     @Inject
-    OnboardingRouter(LoginBuilder loginBuilder, SignUpBuilder signUpBuilder) {
+    OnboardingRouter(LoginNodeHolder loginBuilder, SignUpNodeHolder signUpBuilder) {
         this.loginBuilder = loginBuilder;
         this.signUpBuilder = signUpBuilder;
     }

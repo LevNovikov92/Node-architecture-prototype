@@ -1,6 +1,6 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector;
 
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListBuilder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorScope;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
@@ -15,10 +15,10 @@ import javax.inject.Inject;
 @CarTypeSelectorScope
 public class CarTypeSelectorRouter extends Router {
 
-    private CarTypeListBuilder carTypeListBuilder;
+    private CarTypeListNodeHolder carTypeListBuilder;
 
     @Inject
-    CarTypeSelectorRouter(CarTypeListBuilder carTypeListBuilder) {
+    CarTypeSelectorRouter(CarTypeListNodeHolder carTypeListBuilder) {
         this.carTypeListBuilder = carTypeListBuilder;
     }
 

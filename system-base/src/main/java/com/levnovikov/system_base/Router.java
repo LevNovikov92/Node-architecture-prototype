@@ -34,16 +34,16 @@ public abstract class Router {
         backHandler = handler;
     }
 
-    protected final void attachNode(Builder<?> builder) {
-        attachRouter(builder.build());
+    protected final void attachNode(NodeHolder<?> nodeHolder) {
+        attachRouter(nodeHolder.build());
     }
 
-    protected final void detachNode(Builder<? extends Router> builder) {
-        if (builder.router == null) {
+    protected final void detachNode(NodeHolder<? extends Router> nodeHolder) {
+        if (nodeHolder.router == null) {
             return;
         }
-        detachRouter(builder.router.getClass());
-        builder.destroy();
+        detachRouter(nodeHolder.router.getClass());
+        nodeHolder.destroy();
     }
 
     private void attachRouter(Router router) {

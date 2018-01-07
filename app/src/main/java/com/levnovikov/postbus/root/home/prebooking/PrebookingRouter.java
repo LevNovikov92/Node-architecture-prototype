@@ -1,10 +1,10 @@
 package com.levnovikov.postbus.root.home.prebooking;
 
-import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraBuilder;
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraNodeHolder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
-import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
-import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
+import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorNodeHolder;
+import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetNodeHolder;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
 
@@ -18,17 +18,17 @@ import javax.inject.Inject;
 @PrebookingScope
 public class PrebookingRouter extends Router {
 
-    private final PoiWidgetBuilder poiWidgetBuilder;
-    private final PoiSelectorBuilder poiSelectorBuilder;
-    private final CarTypeSelectorBuilder carTypeSelectorBuilder;
-    private BookingExtraBuilder bookingExtraBuilder;
+    private final PoiWidgetNodeHolder poiWidgetBuilder;
+    private final PoiSelectorNodeHolder poiSelectorBuilder;
+    private final CarTypeSelectorNodeHolder carTypeSelectorBuilder;
+    private BookingExtraNodeHolder bookingExtraBuilder;
 
     @Inject
     PrebookingRouter(
-            PoiWidgetBuilder poiWidgetBuilder,
-            PoiSelectorBuilder poiSelectorBuilder,
-            CarTypeSelectorBuilder carTypeSelectorBuilder,
-            BookingExtraBuilder bookingExtraBuilder) {
+            PoiWidgetNodeHolder poiWidgetBuilder,
+            PoiSelectorNodeHolder poiSelectorBuilder,
+            CarTypeSelectorNodeHolder carTypeSelectorBuilder,
+            BookingExtraNodeHolder bookingExtraBuilder) {
         this.poiWidgetBuilder = poiWidgetBuilder;
         this.poiSelectorBuilder = poiSelectorBuilder;
         this.carTypeSelectorBuilder = carTypeSelectorBuilder;

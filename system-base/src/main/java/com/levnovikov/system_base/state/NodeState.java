@@ -3,7 +3,7 @@ package com.levnovikov.system_base.state;
 import android.os.Parcelable;
 
 import com.google.auto.value.AutoValue;
-import com.levnovikov.system_base.Builder;
+import com.levnovikov.system_base.NodeHolder;
 import com.levnovikov.system_base.Router;
 
 import java.util.HashSet;
@@ -33,7 +33,7 @@ public abstract class NodeState implements Parcelable {
         return activeNodes().contains(_class.getSimpleName()); //TODO change to canonical after testing
     }
 
-    public <T extends Builder<?>> void addNodeBuilder(Class<T> _class) {
+    public <T extends NodeHolder<?>> void addNodeBuilder(Class<T> _class) {
         activeNodes().add(_class.getSimpleName()); //TODO change to canonical after testing
     }
 

@@ -9,18 +9,18 @@ import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.DaggerPoiWidgetComponent;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.di.PoiWidgetComponent;
-import com.levnovikov.system_base.ViewBuilder;
+import com.levnovikov.system_base.ViewNodeHolder;
 
 /**
  * Author: lev.novikov
  * Date: 19/12/17.
  */
 
-public class PoiWidgetBuilder extends ViewBuilder<PoiWidgetView, PoiWidgetRouter> {
+public class PoiWidgetNodeHolder extends ViewNodeHolder<PoiWidgetView, PoiWidgetRouter> {
 
     private final PrebookingComponent parentComponent;
 
-    public PoiWidgetBuilder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
+    public PoiWidgetNodeHolder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
         super(inflater, parent);
         this.parentComponent = parentComponent;
     }

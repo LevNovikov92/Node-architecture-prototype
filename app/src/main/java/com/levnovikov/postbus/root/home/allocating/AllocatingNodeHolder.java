@@ -7,18 +7,18 @@ import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.allocating.di.AllocatingComponent;
 import com.levnovikov.postbus.root.home.allocating.di.DaggerAllocatingComponent;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
-import com.levnovikov.system_base.ViewBuilder;
+import com.levnovikov.system_base.ViewNodeHolder;
 
 /**
  * Created by lev.novikov
  * Date: 23/12/17.
  */
 
-public class AllocatingBuilder extends ViewBuilder<AllocatingView, AllocatingRouter> {
+public class AllocatingNodeHolder extends ViewNodeHolder<AllocatingView, AllocatingRouter> {
 
     private HomeComponent parentComponent;
 
-    public AllocatingBuilder(LayoutInflater inflater, ViewGroup parent, HomeComponent parentComponent) {
+    public AllocatingNodeHolder(LayoutInflater inflater, ViewGroup parent, HomeComponent parentComponent) {
         super(inflater, parent);
         this.parentComponent = parentComponent;
     }

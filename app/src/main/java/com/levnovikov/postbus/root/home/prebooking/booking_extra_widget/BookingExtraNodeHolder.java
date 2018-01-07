@@ -9,18 +9,18 @@ import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraComponent;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.DaggerBookingExtraComponent;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
-import com.levnovikov.system_base.ViewBuilder;
+import com.levnovikov.system_base.ViewNodeHolder;
 
 /**
  * Created by lev.novikov
  * Date: 23/12/17.
  */
 
-public class BookingExtraBuilder extends ViewBuilder<BookingExtraView, BookingExtraRouter> {
+public class BookingExtraNodeHolder extends ViewNodeHolder<BookingExtraView, BookingExtraRouter> {
 
     private PrebookingComponent parentComponent;
 
-    public BookingExtraBuilder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
+    public BookingExtraNodeHolder(LayoutInflater inflater, ViewGroup parent, PrebookingComponent parentComponent) {
         super(inflater, parent);
         this.parentComponent = parentComponent;
     }

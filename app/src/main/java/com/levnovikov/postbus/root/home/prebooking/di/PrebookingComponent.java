@@ -7,16 +7,16 @@ import com.levnovikov.feature_ride.ride.RidePrebookingData;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
-import com.levnovikov.postbus.root.home.prebooking.PrebookingBuilder;
+import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingInteractor;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
-import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraBuilder;
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
-import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
+import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
-import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
+import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
 import com.levnovikov.system_base.base_di.ActivityStateComponent;
 
@@ -34,7 +34,7 @@ import dagger.Provides;
 @Component(dependencies = HomeComponent.class, modules = PrebookingComponent.PrebookingModule.class)
 public interface PrebookingComponent extends ActivityStateComponent {
 
-    void inject(PrebookingBuilder prebookingBuilder);
+    void inject(PrebookingNodeHolder prebookingBuilder);
 
     PrebookingInteractor interactor();
     MapInterface mapInterface();
@@ -61,26 +61,26 @@ public interface PrebookingComponent extends ActivityStateComponent {
 
         @PrebookingScope
         @Provides
-        PoiWidgetBuilder providePoiWidgetBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
-            return new PoiWidgetBuilder(inflater, parent, component);
+        PoiWidgetNodeHolder providePoiWidgetBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
+            return new PoiWidgetNodeHolder(inflater, parent, component);
         }
 
         @PrebookingScope
         @Provides
-        PoiSelectorBuilder providePoiSelectorBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
-            return new PoiSelectorBuilder(inflater, parent, component);
+        PoiSelectorNodeHolder providePoiSelectorBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
+            return new PoiSelectorNodeHolder(inflater, parent, component);
         }
 
         @PrebookingScope
         @Provides
-        BookingExtraBuilder provideBookingExtraBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
-            return new BookingExtraBuilder(inflater, parent, component);
+        BookingExtraNodeHolder provideBookingExtraBuilder(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
+            return new BookingExtraNodeHolder(inflater, parent, component);
         }
 
         @PrebookingScope
         @Provides
-        CarTypeSelectorBuilder provideCarType(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
-            return new CarTypeSelectorBuilder(inflater, parent, component);
+        CarTypeSelectorNodeHolder provideCarType(LayoutInflater inflater, HomeView parent, PrebookingComponent component) {
+            return new CarTypeSelectorNodeHolder(inflater, parent, component);
         }
 
         @Module

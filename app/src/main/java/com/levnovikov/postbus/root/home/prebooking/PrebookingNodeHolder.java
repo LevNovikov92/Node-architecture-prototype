@@ -3,18 +3,18 @@ package com.levnovikov.postbus.root.home.prebooking;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
 import com.levnovikov.postbus.root.home.prebooking.di.DaggerPrebookingComponent;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
-import com.levnovikov.system_base.Builder;
+import com.levnovikov.system_base.NodeHolder;
 
 /**
  * Author: lev.novikov
  * Date: 17/12/17.
  */
 
-public class PrebookingBuilder extends Builder<PrebookingRouter> {
+public class PrebookingNodeHolder extends NodeHolder<PrebookingRouter> {
 
     private final HomeComponent component;
 
-    public PrebookingBuilder(HomeComponent component) {
+    public PrebookingNodeHolder(HomeComponent component) {
         this.component = component;
     }
 
