@@ -28,8 +28,7 @@ public class BookingExtraRouter extends Router {
 
     @Override
     protected void destroyNode() {
-        promoListBuilder.destroy();
-        detachChildren();
+        detachNode(promoListBuilder);
     }
 
     @Override
@@ -44,16 +43,15 @@ public class BookingExtraRouter extends Router {
     @Override
     public void setState(NodeState state) {
         if (state.contains(PromoListBuilder.class)) {
-            attachRouter(promoListBuilder.build());
+            attachNode(promoListBuilder);
         }
     }
 
     void detachPromoList() {
-        promoListBuilder.destroy();
-        detachChildren();
+        detachNode(promoListBuilder);
     }
 
     void attachPromoList() {
-        attachRouter(promoListBuilder.build());
+        attachNode(promoListBuilder);
     }
 }

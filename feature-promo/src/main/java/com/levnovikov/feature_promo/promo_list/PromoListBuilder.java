@@ -30,6 +30,7 @@ public class PromoListBuilder extends ViewBuilder<PromoListView, PromoListRouter
                 .promoListDependency(parentComponent)
                 .promoListModule(new PromoListComponent.PromoListModule(view))
                 .build();
+        component.inject(this); //TODO check that called in every node
         component.inject(view);
         attachView();
         return component.router();

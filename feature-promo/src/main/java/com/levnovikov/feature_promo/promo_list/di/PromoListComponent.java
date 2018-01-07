@@ -1,5 +1,6 @@
 package com.levnovikov.feature_promo.promo_list.di;
 
+import com.levnovikov.feature_promo.promo_list.PromoListBuilder;
 import com.levnovikov.feature_promo.promo_list.PromoListPresenter;
 import com.levnovikov.feature_promo.promo_list.PromoListRouter;
 import com.levnovikov.feature_promo.promo_list.PromoListView;
@@ -21,6 +22,8 @@ public interface PromoListComponent {
     void inject(PromoListView view);
 
     PromoListRouter router();
+
+    void inject(PromoListBuilder promoListBuilder);
 
     @Module
     class PromoListModule{

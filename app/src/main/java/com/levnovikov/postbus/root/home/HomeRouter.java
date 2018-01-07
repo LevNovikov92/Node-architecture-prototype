@@ -35,18 +35,18 @@ class HomeRouter extends Router {
     }
 
     void startPrebooking(MapInterface mapInterface) {
-        allocatingBuilder.destroy();
+        detachNode(allocatingBuilder);
         prebookingBuilder.setMapInterface(mapInterface);
-        attachRouter(prebookingBuilder.build());
+        attachNode(prebookingBuilder);
     }
 
     void startAllocating() {
-        prebookingBuilder.destroy();
-        attachRouter(allocatingBuilder.build());
+        detachNode(prebookingBuilder);
+        attachNode(allocatingBuilder);
     }
 
     void loadMap() {
-        attachRouter(mapBuilder.build());
+        attachNode(mapBuilder);
     }
 
     void startTracking() {
@@ -91,15 +91,15 @@ class HomeRouter extends Router {
     @Override
     public void setState(NodeState state) {
         if (state.contains(prebookingBuilder.getClass())) {
-            attachRouter(prebookingBuilder.build());
+            attachNode(prebookingBuilder);
         }
 
         if (state.contains(allocatingBuilder.getClass())) {
-            attachRouter(allocatingBuilder.build());
+            attachNode(allocatingBuilder);
         }
 
         if (state.contains(mapBuilder.getClass())) {
-            attachRouter(mapBuilder.build());
+            attachNode(mapBuilder);
         }
     }
 }

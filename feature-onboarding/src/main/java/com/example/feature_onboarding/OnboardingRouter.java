@@ -4,11 +4,9 @@ import android.os.Parcelable;
 
 import com.example.feature_onboarding.di.OnboardingScope;
 import com.example.feature_onboarding.login.LoginBuilder;
-import com.example.feature_onboarding.login.LoginRouter;
 import com.example.feature_onboarding.signup.SignUpBuilder;
-import com.example.feature_onboarding.signup.SignUpRouter;
-import com.levnovikov.system_base.state.NodeState;
 import com.levnovikov.system_base.Router;
+import com.levnovikov.system_base.state.NodeState;
 
 import javax.inject.Inject;
 
@@ -32,19 +30,16 @@ public class OnboardingRouter extends Router {
     }
 
     void attachLogInScreen() {
-        final LoginRouter router = loginBuilder.build();
-        attachRouter(router);
+        attachNode(loginBuilder);
     }
 
     void removeAll() {
-        loginBuilder.destroy();
-        signUpBuilder.destroy();
-        detachChildren();
+        detachNode(loginBuilder);
+        detachNode(signUpBuilder);
     }
 
     void attachSignUpScreen() {
-        final SignUpRouter router = signUpBuilder.build();
-        attachRouter(router);
+        attachNode(signUpBuilder);
     }
 
     @Override

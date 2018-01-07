@@ -28,17 +28,15 @@ public class CarTypeSelectorRouter extends Router {
 
     @Override
     protected void destroyNode() {
-        carTypeListBuilder.destroy();
-        detachChildren();
+        detachNode(carTypeListBuilder);
     }
 
     void attachTypeList() {
-        attachRouter(carTypeListBuilder.build());
+        attachNode(carTypeListBuilder);
     }
 
     void detachTypeList() {
-        carTypeListBuilder.destroy(); //TODO make detach automatic. Root of mistakes.
-        detachChildren();
+        detachNode(carTypeListBuilder);
     }
 
     @Override
@@ -52,7 +50,7 @@ public class CarTypeSelectorRouter extends Router {
     @Override
     public void setState(NodeState state) {
         if (state.contains(carTypeListBuilder.getClass())) {
-            attachRouter(carTypeListBuilder.build());
+            attachNode(carTypeListBuilder);
         }
     }
 }

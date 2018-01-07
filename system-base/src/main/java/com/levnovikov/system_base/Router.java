@@ -34,7 +34,19 @@ public abstract class Router {
         backHandler = handler;
     }
 
-    protected final void attachRouter(Router router) {
+    protected final void attachNode(Builder<?> builder) {
+        attachRouter(builder.build());
+    }
+
+    protected final void detachNode(Builder<? extends Router> builder) {
+        if (builder.router == null) {
+            return;
+        }
+        detachRouter(builder.router.getClass());
+        builder.destroy();
+    }
+
+    private void attachRouter(Router router) {
         Log.i(">>>>", "attachRouter " + router.getClass().getSimpleName() + " from " +
                 this.getClass().getSimpleName());
         if (children.containsKey(router.getClass())) {
@@ -43,7 +55,7 @@ public abstract class Router {
         children.put(router.getClass(), router);
     }
 
-    protected final void detachRouter(Class<? extends Router> router) {
+    private void detachRouter(Class<? extends Router> router) {
         Log.i(">>>>", "detachRouter " + router.getClass().getSimpleName() + " from " +
                 this.getClass().getSimpleName());
         children.remove(router);

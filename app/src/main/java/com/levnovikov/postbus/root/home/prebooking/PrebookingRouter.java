@@ -6,7 +6,6 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingE
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorBuilder;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorBuilder;
-import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorRouter;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetBuilder;
 import com.levnovikov.system_base.Router;
 import com.levnovikov.system_base.state.NodeState;
@@ -41,36 +40,34 @@ public class PrebookingRouter extends Router {
     }
 
     void showPoiWidget() {
-        attachRouter(poiWidgetBuilder.build());
+        attachNode(poiWidgetBuilder);
     }
 
     void startServiceType() {
-        poiSelectorBuilder.destroy();
-        poiWidgetBuilder.destroy();
-        detachChildren();
+        detachNode(poiSelectorBuilder);
+        detachNode(poiWidgetBuilder);
 
-        attachRouter(carTypeSelectorBuilder.build());
+        attachNode(carTypeSelectorBuilder);
     }
 
     void startBookingExtra() {
-        attachRouter(bookingExtraBuilder.build());
+        attachNode(bookingExtraBuilder);
     }
 
     void startPoiChoice() {
-        attachRouter(poiSelectorBuilder.build());
+        attachNode(poiSelectorBuilder);
     }
 
     void hidePoiChoice() {
-        poiSelectorBuilder.destroy();
-        detachRouter(PoiSelectorRouter.class);
+        detachNode(poiSelectorBuilder);
     }
 
     @Override
     protected void destroyNode() {
-        poiWidgetBuilder.destroy();
-        poiSelectorBuilder.destroy();
-        carTypeSelectorBuilder.destroy();
-        bookingExtraBuilder.destroy();
+        detachNode(poiWidgetBuilder);
+        detachNode(poiSelectorBuilder);
+        detachNode(carTypeSelectorBuilder);
+        detachNode(bookingExtraBuilder);
         detachChildren();
     }
 
@@ -90,16 +87,16 @@ public class PrebookingRouter extends Router {
     @Override
     public void setState(NodeState state) {
         if (state.contains(poiWidgetBuilder.getClass())) {
-            attachRouter(poiWidgetBuilder.build());
+            attachNode(poiWidgetBuilder);
         }
         if (state.contains(poiSelectorBuilder.getClass())) {
-            attachRouter(poiSelectorBuilder.build());
+            attachNode(poiSelectorBuilder);
         }
         if (state.contains(carTypeSelectorBuilder.getClass())) {
-            attachRouter(carTypeSelectorBuilder.build());
+            attachNode(carTypeSelectorBuilder);
         }
         if (state.contains(bookingExtraBuilder.getClass())) {
-            attachRouter(bookingExtraBuilder.build());
+            attachNode(bookingExtraBuilder);
         }
     }
 }
