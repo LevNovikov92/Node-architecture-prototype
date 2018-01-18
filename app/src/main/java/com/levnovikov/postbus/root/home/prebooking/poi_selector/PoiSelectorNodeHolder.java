@@ -33,7 +33,7 @@ public class PoiSelectorNodeHolder extends ViewNodeHolder<PoiSelectorView, PoiSe
         component.inject(view);
         component.inject(this);
         attachView();
-        return router;
+        return getRouter();
     }
 
     @Override

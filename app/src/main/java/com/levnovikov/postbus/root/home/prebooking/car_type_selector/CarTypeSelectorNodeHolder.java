@@ -44,7 +44,7 @@ public class CarTypeSelectorNodeHolder extends ViewNodeHolder<CarTypeSelectorVie
         component.inject(view);
         component.inject(this);
         attachView();
-        return router;
+        return getRouter();
     }
 
     //TODO move to utils

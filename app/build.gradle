@@ -1,5 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 android androidConfiguration
+
+androidExtensions {
+    experimental = true
+}
 
 dependencies {
     implementation libs.appcompatV7
@@ -8,6 +16,7 @@ dependencies {
     implementation libs.appcompatV7
     implementation libs.rxJava
     implementation libs.rxAndroid
+    implementation libs.kotlin
 
     implementation libs.dagger
 

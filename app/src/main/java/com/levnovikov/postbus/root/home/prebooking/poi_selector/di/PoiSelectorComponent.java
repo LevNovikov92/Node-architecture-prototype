@@ -74,7 +74,7 @@ public interface PoiSelectorComponent extends ActivityComponent {
                     final Coordinates coordinates = suggestion.size() % 2 == 0 ?
                             Coordinates.create(-33.852, 151.211) :
                             Coordinates.create(-32.852, 151.211);
-                    suggestion.add(Point.create(
+                    suggestion.add(Point.Companion.create(
                             coordinates, String.format("Place %d", suggestion.size() + 1)));
                     subject.onNext(suggestion);
                 }

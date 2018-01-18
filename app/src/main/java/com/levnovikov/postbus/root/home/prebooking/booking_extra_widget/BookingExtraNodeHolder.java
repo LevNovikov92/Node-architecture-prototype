@@ -40,7 +40,7 @@ public class BookingExtraNodeHolder extends ViewNodeHolder<BookingExtraView, Boo
         component.inject(view);
         component.inject(this);
         attachView();
-        return router;
+        return getRouter();
     }
 
     @Override

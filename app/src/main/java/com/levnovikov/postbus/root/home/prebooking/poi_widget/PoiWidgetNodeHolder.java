@@ -39,7 +39,7 @@ public class PoiWidgetNodeHolder extends ViewNodeHolder<PoiWidgetView, PoiWidget
         component.inject(this);
         component.inject(view);
         attachView();
-        return router;
+        return getRouter();
     }
 
     @Override

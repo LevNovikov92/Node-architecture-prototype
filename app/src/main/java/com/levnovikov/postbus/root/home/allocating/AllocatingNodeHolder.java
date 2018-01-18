@@ -33,7 +33,7 @@ public class AllocatingNodeHolder extends ViewNodeHolder<AllocatingView, Allocat
         component.inject(view);
         component.inject(this);
         attachView();
-        return router;
+        return getRouter();
     }
 
     @Override
