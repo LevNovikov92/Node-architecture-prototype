@@ -1,0 +1,84 @@
+ext {
+    //Build
+    kotlinVersion = '1.2.10'
+    gradlePluginVersion = "3.0.1"
+    //Android
+    androidBuildToolsVersion = "26.0.2"
+    androidMinSdkVersion = 15
+    androidTargetSdkVersion = 26
+    androidCompileSdkVersion = 26
+}
+
+ext {
+    //Google libs
+    androidSupportVersion = '26.0.2'
+    androidConstraintLayout = '1.0.2'
+    playServicesVersion = '11.0.4'
+    googleMapsUtilVersion = '0.5'
+    gmsGoogleServicesPluginVersion = '3.0.0'
+    recyclerViewVersion = '26.0.2'
+    mapVersion = '11.8.0'
+}
+
+ext {
+    //Libraries
+    daggerVersion = '2.11'
+    rxJavaVersion = '2.1.1'
+    rxAndroidVersion = '2.0.1'
+    gsonVersion = '2.8.2'
+    okHttpVersion = '3.8.1'
+    retrofitVersion = '2.3.0'
+    supportMultidexVersion = '1.0.1'
+    timberVersion = '4.5.1'
+
+
+}
+
+ext {
+    //Testing
+    jUnitVersion = '4.12'
+    mockitoVersion = '2.8.47'
+    mokitoKotlinVersion = '1.5.0'
+    //Profiling
+    leakCanaryVersion = '1.5.4'
+}
+
+ext {
+    libs = [
+            supportMultidex           : "com.android.support:multidex:${supportMultidexVersion}",
+            daggerCompiler            : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger                    : "com.google.dagger:dagger:${daggerVersion}",
+            appcompatV7               : "com.android.support:appcompat-v7:$androidSupportVersion",
+            supportAndroidAnnotations : "com.android.support:support-annotations:${androidSupportVersion}",
+            androidSupportV4          : "com.android.support:support-v4:${androidSupportVersion}",
+            androidSupportCardViewV7  : "com.android.support:cardview-v7:${androidSupportVersion}",
+            androidSupportDesign      : "com.android.support:design:${androidSupportVersion}",
+            constraintLayout          : "com.android.support.constraint:constraint-layout:${androidConstraintLayout}",
+            gson                      : "com.google.code.gson:gson:${gsonVersion}",
+            retrofit                  : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitRxjavaAdapter     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            retrofitConverterGson     : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            okHttp                    : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okhttpUrlconnection       : "com.squareup.okhttp3:okhttp-urlconnection:${okHttpVersion}",
+            okhttpLoggingInterceptor  : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            rxJava                    : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid                 : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            kotlin                    : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion",
+            timber                    : "com.jakewharton.timber:timber:$timberVersion",
+            leakCanary                : "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion",
+            leakCanaryNoOp            : "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion",
+            recyclerView              : "com.android.support:recyclerview-v7:$recyclerViewVersion",
+            map                       : "com.google.android.gms:play-services-maps:$mapVersion"
+    ]
+
+    aptLibs = [
+            databinding               : "com.android.databinding:compiler:$gradlePluginVersion"
+    ]
+
+    testLibs = [
+            jUnit                    : "junit:junit:${jUnitVersion}",
+            mockito                  : "org.mockito:mockito-core:${mockitoVersion}",
+            mockito_inline           : "org.mockito:mockito-inline:${mockitoVersion}",
+            mockitoKotlin            : "com.nhaarman:mockito-kotlin:${mokitoKotlinVersion}",
+    ]
+}

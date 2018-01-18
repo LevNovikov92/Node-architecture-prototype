@@ -2,27 +2,30 @@ apply plugin: 'com.android.library'
 android androidConfiguration
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-}
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+    implementation libs.dagger
+    implementation libs.constraintLayout
+    implementation libs.recyclerView
+    implementation libs.appcompatV7
 
-dependencies {
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile "io.reactivex.rxjava2:rxjava:2.1.4"
-    compile 'com.google.dagger:dagger:2.12'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
     compileOnly "com.google.auto.value:auto-value:1.5"
     annotationProcessor "com.google.auto.value:auto-value:1.5"
     annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.6'
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
+    annotationProcessor libs.daggerCompiler
 }
+
 dependencies {
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation testLibs.jUnit
+    testImplementation testLibs.mockito
+    testImplementation testLibs.mockito_inline
+    testImplementation testLibs.mockitoKotlin
+}
+
+dependencies {
     compile project(path: ':system-base')
     compile project(path: ':core-auth')
-    compile 'com.android.support:recyclerview-v7:26.1.0'
 }
