@@ -1,6 +1,5 @@
 package com.levnovikov.postbus.root;
 
-import com.example.feature_onboarding.OnboardingInteractor;
 import com.levnovikov.core_profile.UserRepository;
 import com.levnovikov.postbus.root.di.RootScope;
 
@@ -12,7 +11,7 @@ import javax.inject.Inject;
  */
 
 @RootScope
-public class RootInteractor implements OnboardingInteractor.LogInListener {
+public class RootInteractor {
 
     private final UserRepository userRepository;
     private final RootRouter router;
@@ -35,8 +34,6 @@ public class RootInteractor implements OnboardingInteractor.LogInListener {
                 .subscribe(isLoggedIn -> {
                     if (isLoggedIn) {
                         loadProfile();
-                    } else {
-                        router.onboarding();
                     }
                 }, this::handleInitError);
     }
@@ -49,10 +46,5 @@ public class RootInteractor implements OnboardingInteractor.LogInListener {
 
     private void handleInitError(Throwable error) {
         // TODO handle error
-    }
-
-    @Override
-    public void onLogIn() {
-        router.home();
     }
 }

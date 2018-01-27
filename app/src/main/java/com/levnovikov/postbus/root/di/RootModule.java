@@ -1,9 +1,5 @@
 package com.levnovikov.postbus.root.di;
 
-import com.example.feature_onboarding.OnboardingInteractor;
-import com.levnovikov.postbus.root.RootInteractor;
-
-import dagger.Binds;
 import dagger.Module;
 
 /**
@@ -14,6 +10,4 @@ import dagger.Module;
 @Module
 interface RootModule {
 
-    @Binds
-    OnboardingInteractor.LogInListener bindLogInListener(RootInteractor interactor);
 }

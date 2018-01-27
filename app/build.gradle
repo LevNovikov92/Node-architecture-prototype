@@ -29,7 +29,6 @@ dependencies {
 dependencies {
     implementation project(path: ':system-base')
     implementation project(path: ':core-profile')
-    implementation project(path: ':feature-onboarding')
     implementation project(path: ':stream-state')
     implementation project(path: ':feature-ride')
     implementation project(path: ':core-geo')
