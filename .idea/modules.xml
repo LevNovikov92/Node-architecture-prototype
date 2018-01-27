@@ -10,7 +10,6 @@
       <module fileurl="file://$PROJECT_DIR$/core-location/core-location.iml" filepath="$PROJECT_DIR$/core-location/core-location.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-profile/core-profile.iml" filepath="$PROJECT_DIR$/core-profile/core-profile.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-car-animation/feature-car-animation.iml" filepath="$PROJECT_DIR$/feature-car-animation/feature-car-animation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/feature-car-animation/feature-car-animation.iml" filepath="$PROJECT_DIR$/feature-car-animation/feature-car-animation.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-map/feature-map.iml" filepath="$PROJECT_DIR$/feature-map/feature-map.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-onboarding/feature-onboarding.iml" filepath="$PROJECT_DIR$/feature-onboarding/feature-onboarding.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-promo/feature-promo.iml" filepath="$PROJECT_DIR$/feature-promo/feature-promo.iml" />
