@@ -26,6 +26,6 @@ dependencies {
 }
 
 dependencies {
-    compile project(path: ':system-base')
-    compile project(path: ':core-auth')
+    implementation project(path: ':system-base')
+    implementation project(path: ':core-auth')
 }

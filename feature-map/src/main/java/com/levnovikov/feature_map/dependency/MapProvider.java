@@ -1,4 +1,4 @@
-package com.levnovikov.postbus.root.home.interfaces;
+package com.levnovikov.feature_map.dependency;
 
 import com.google.android.gms.maps.GoogleMap;
 

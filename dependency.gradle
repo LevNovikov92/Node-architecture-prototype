@@ -4,7 +4,7 @@ ext {
     gradlePluginVersion = "3.0.1"
     //Android
     androidBuildToolsVersion = "26.0.2"
-    androidMinSdkVersion = 15
+    androidMinSdkVersion = 21
     androidTargetSdkVersion = 26
     androidCompileSdkVersion = 26
 }

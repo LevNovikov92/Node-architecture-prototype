@@ -3,6 +3,7 @@ package com.levnovikov.postbus.root.home.di;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import com.levnovikov.feature_car_animation.CarAnimNodeHolder;
 import com.levnovikov.feature_map.MapNodeHolder;
 import com.levnovikov.feature_map.dependency.MapSetter;
 import com.levnovikov.feature_map.lifecycle.MapLifecycleEvent;
@@ -11,7 +12,7 @@ import com.levnovikov.postbus.root.home.HomeActivity;
 import com.levnovikov.postbus.root.home.HomeInteractor;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.allocating.AllocatingNodeHolder;
-import com.levnovikov.postbus.root.home.interfaces.MapProvider;
+import com.levnovikov.feature_map.dependency.MapProvider;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
@@ -67,6 +68,12 @@ public class HomeModule {
     @Provides
     MapNodeHolder provideMapBuilder(LayoutInflater inflater, HomeView parent, HomeComponent component) {
         return new MapNodeHolder(inflater, parent, component);
+    }
+
+    @HomeScope
+    @Provides
+    CarAnimNodeHolder provideAnimNodeHolder(HomeComponent component) {
+        return new CarAnimNodeHolder(component);
     }
 
     @HomeScope

@@ -23,7 +23,6 @@ public class PrebookingNodeHolder extends NodeHolder<PrebookingRouter> {
         final PrebookingComponent cmp = DaggerPrebookingComponent.builder()
                 .homeComponent(component)
                 .build();
-        cmp.inject(this);
         cmp.interactor().onGetActive();
         return router;
     }
