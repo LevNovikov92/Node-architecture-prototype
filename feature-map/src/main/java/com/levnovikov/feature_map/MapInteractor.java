@@ -1,17 +1,14 @@
 package com.levnovikov.feature_map;
 
-import com.example.core_geo.Point;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.levnovikov.feature_map.dependency.MapSetter;
 import com.levnovikov.feature_map.di.MapScope;
-import com.levnovikov.feature_map.map_wrapper.MapWrapper;
 import com.levnovikov.system_base.Interactor;
 import com.levnovikov.system_base.lifecycle.Lifecycle;
 import com.levnovikov.system_base.node_state.ActivityState;
 
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
 
 /**
  * Author: lev.novikov
@@ -19,35 +16,25 @@ import io.reactivex.Observable;
  */
 
 @MapScope
-public class MapInteractor extends Interactor<MapRouter> implements OnMapReadyCallback {
+public class MapInteractor extends Interactor<MapRouter> implements OnMapReadyCallback  {
 
-    private final MapDataStream mapDataStream;
     private final Lifecycle lifecycle;
-
-    public interface MapDataStream {
-        Observable<Point> pickUpPointStream();
-        Observable<Point> dropOffPointStream();
-    }
+    private final MapSetter mapSetter;
 
     @Inject
     MapInteractor(
             MapRouter router,
             ActivityState activityState,
-            MapDataStream mapDataStream,
-            Lifecycle lifecycle) {
+            Lifecycle lifecycle,
+            MapSetter mapSetter) {
         super(router, activityState);
-        this.mapDataStream = mapDataStream;
         this.lifecycle = lifecycle;
+        this.mapSetter = mapSetter;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        final MapWrapper mapWrapper = new MapWrapper(googleMap);
-        lifecycle.subscribeUntilDestroy(mapDataStream.dropOffPointStream()
-                .subscribe(mapWrapper::setPickUp, e -> {}));
-
-        lifecycle.subscribeUntilDestroy(mapDataStream.pickUpPointStream()
-                .subscribe(mapWrapper::setDropOff, e -> {}));
+        mapSetter.setMap(googleMap);
     }
 
 }

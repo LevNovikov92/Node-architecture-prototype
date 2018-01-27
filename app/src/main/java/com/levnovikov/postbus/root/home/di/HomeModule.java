@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 
 import com.levnovikov.feature_map.MapNodeHolder;
-import com.levnovikov.feature_map.MapInteractor;
+import com.levnovikov.feature_map.dependency.MapSetter;
 import com.levnovikov.feature_map.lifecycle.MapLifecycleEvent;
-import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.postbus.R;
 import com.levnovikov.postbus.root.home.HomeActivity;
 import com.levnovikov.postbus.root.home.HomeInteractor;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.allocating.AllocatingNodeHolder;
+import com.levnovikov.postbus.root.home.interfaces.MapProvider;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
@@ -101,13 +101,13 @@ public class HomeModule {
 
     @HomeScope
     @Provides
-    MapInterface provideMapInterface(HomeInteractor interactor) {
+    MapSetter provideMapSetter(HomeInteractor interactor) {
         return interactor;
     }
 
     @HomeScope
     @Provides
-    MapInteractor.MapDataStream provideMapDataStream(HomeInteractor interactor) {
+    MapProvider provideMapProvider(HomeInteractor interactor) {
         return interactor;
     }
 
