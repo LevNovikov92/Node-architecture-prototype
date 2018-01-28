@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/core-geo" />
             <option value="$PROJECT_DIR$/core-location" />
             <option value="$PROJECT_DIR$/core-profile" />
+            <option value="$PROJECT_DIR$/feature-auth" />
             <option value="$PROJECT_DIR$/feature-car-animation" />
             <option value="$PROJECT_DIR$/feature-map" />
             <option value="$PROJECT_DIR$/feature-promo" />
