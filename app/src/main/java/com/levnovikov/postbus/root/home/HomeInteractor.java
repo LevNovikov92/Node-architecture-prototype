@@ -3,9 +3,9 @@ package com.levnovikov.postbus.root.home;
 import android.support.annotation.Nullable;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.levnovikov.feature_map.dependency.MapProvider;
 import com.levnovikov.feature_map.dependency.MapSetter;
 import com.levnovikov.postbus.root.home.di.HomeScope;
-import com.levnovikov.feature_map.dependency.MapProvider;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
 import com.levnovikov.system_base.Interactor;

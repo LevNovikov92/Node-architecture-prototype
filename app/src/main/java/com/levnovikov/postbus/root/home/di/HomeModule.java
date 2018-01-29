@@ -3,6 +3,7 @@ package com.levnovikov.postbus.root.home.di;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import com.levnovikov.feature_auth.AuthNodeHolder;
 import com.levnovikov.feature_car_animation.CarAnimNodeHolder;
 import com.levnovikov.feature_map.MapNodeHolder;
 import com.levnovikov.feature_map.dependency.MapSetter;
@@ -74,6 +75,12 @@ public class HomeModule {
     @Provides
     CarAnimNodeHolder provideAnimNodeHolder(HomeComponent component) {
         return new CarAnimNodeHolder(component);
+    }
+
+    @HomeScope
+    @Provides
+    AuthNodeHolder provideAuthNodeHolder(LayoutInflater inflater, HomeView parent, HomeComponent component) {
+        return new AuthNodeHolder(inflater, parent, component);
     }
 
     @HomeScope

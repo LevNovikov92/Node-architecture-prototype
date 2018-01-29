@@ -37,6 +37,7 @@ dependencies {
     implementation project(path: ':feature-promo')
     implementation project(path: ':feature-map')
     implementation project(path: ':feature-car-animation')
+    implementation project(path: ':feature-auth')
 }
 
 dependencies {

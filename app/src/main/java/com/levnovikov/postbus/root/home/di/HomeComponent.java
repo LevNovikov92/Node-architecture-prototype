@@ -2,6 +2,7 @@ package com.levnovikov.postbus.root.home.di;
 
 import android.view.LayoutInflater;
 
+import com.levnovikov.feature_auth.dependency.AuthDependency;
 import com.levnovikov.feature_car_animation.dependency.CarAnimDependency;
 import com.levnovikov.feature_map.dependency.MapDependency;
 import com.levnovikov.feature_map.dependency.MapSetter;
@@ -21,7 +22,7 @@ import dagger.Subcomponent;
 
 @HomeScope
 @Subcomponent(modules = { HomeModule.class })
-public interface HomeComponent extends ActivityComponent, MapDependency, CarAnimDependency {
+public interface HomeComponent extends ActivityComponent, MapDependency, CarAnimDependency, AuthDependency {
 
     void inject(HomeActivity homeActivity);
 
