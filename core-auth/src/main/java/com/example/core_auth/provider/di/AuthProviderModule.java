@@ -1,8 +1,8 @@
 package com.example.core_auth.provider.di;
 
-import com.example.core_auth.provider.AuthProvider;
-import com.example.core_auth.provider.FacebookAuthProvider;
-import com.example.core_auth.provider.GoogleAuthProvider;
+import com.example.core_auth.provider.provider.AuthProvider;
+import com.example.core_auth.provider.provider.FacebookAuthProvider;
+import com.example.core_auth.provider.provider.GoogleAuthProvider;
 
 import javax.inject.Named;
 

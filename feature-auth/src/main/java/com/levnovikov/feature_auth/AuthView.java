@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 
+import com.levnovikov.feature_auth.view_model.AuthActions;
 import com.levnovikov.feature_auth.view_model.AuthViewModel;
 
 import javax.inject.Inject;
@@ -27,11 +28,14 @@ public class AuthView extends ConstraintLayout {
     }
 
     @Inject
-    AuthViewModel viewModel;
+    AuthActions vmActions;
+
+    @Inject
+    AuthViewModel vm;
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        viewModel.onGetActive();
+        vmActions.onGetActive();
     }
 }

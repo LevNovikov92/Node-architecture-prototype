@@ -5,5 +5,6 @@ package com.levnovikov.feature_auth.view_model;
  * Date: 29/1/18.
  */
 
-public interface AuthViewModel {
+public interface AuthActions {
+    void onGetActive();
 }
