@@ -2,8 +2,12 @@ package com.levnovikov.feature_auth.di;
 
 import com.levnovikov.feature_auth.AuthView;
 import com.levnovikov.feature_auth.dependency.AuthDependency;
+import com.levnovikov.feature_auth.view_model.AuthActions;
+import com.levnovikov.feature_auth.view_model.AuthViewModel;
+import com.levnovikov.feature_auth.view_model.AuthViewModelImpl;
 import com.levnovikov.system_base.base_di.ActivityComponent;
 
+import dagger.Binds;
 import dagger.Component;
 import dagger.Module;
 
@@ -19,12 +23,21 @@ public interface AuthComponent extends ActivityComponent {
     void inject(AuthView view);
 
     @Module
-    public class AuthModule {
+    class AuthModule {
 
         private AuthView view;
 
         public AuthModule(AuthView view) {
             this.view = view;
+        }
+
+        @Module
+        interface AuthBinders {
+            @Binds
+            AuthViewModel bindViewModel(AuthViewModelImpl impl);
+
+            @Binds
+            AuthActions bindViewModelActions(AuthViewModelImpl impl);
         }
     }
 }

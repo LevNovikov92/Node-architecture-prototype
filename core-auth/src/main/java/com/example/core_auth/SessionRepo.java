@@ -1,4 +1,4 @@
-package com.example.core_auth.provider;
+package com.example.core_auth;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;

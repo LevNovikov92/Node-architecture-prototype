@@ -1,4 +1,4 @@
-package com.example.core_auth.provider.provider;
+package com.example.core_auth.provider;
 
 import io.reactivex.Single;
 

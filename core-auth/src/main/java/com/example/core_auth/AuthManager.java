@@ -1,7 +1,7 @@
-package com.example.core_auth.provider;
+package com.example.core_auth;
 
-import com.example.core_auth.provider.api.AuthApi;
-import com.example.core_auth.provider.provider.AuthProvider;
+import com.example.core_auth.api.AuthApi;
+import com.example.core_auth.provider.AuthProvider;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

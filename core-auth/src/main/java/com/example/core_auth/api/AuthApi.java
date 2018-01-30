@@ -1,4 +1,4 @@
-package com.example.core_auth.provider.api;
+package com.example.core_auth.api;
 
 import io.reactivex.Completable;
 

@@ -1,6 +1,4 @@
-package com.example.core_auth.provider.provider;
-
-import com.example.core_auth.provider.provider.AuthProvider;
+package com.example.core_auth.provider;
 
 import io.reactivex.Single;
 
