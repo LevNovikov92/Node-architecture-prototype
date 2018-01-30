@@ -17,23 +17,27 @@ import io.reactivex.Completable;
 public class AuthManager {
 
     private final AuthApi api;
-    private final SessionRepo sessionRepo;
+    private final AuthRepo authRepo;
 
     @Inject
-    public AuthManager(AuthApi api, SessionRepo sessionRepo) {
+    public AuthManager(AuthApi api, AuthRepo authRepo) {
         this.api = api;
-        this.sessionRepo = sessionRepo;
+        this.authRepo = authRepo;
     }
 
     public boolean isUserAuthorized() {
-        return sessionRepo.getSessionToken() != null;
+        return authRepo.getSessionToken() != null;
     }
 
     public Completable login(AuthProvider.Info authInfo) {
-        return api.loginToBackend(authInfo.token, authInfo.providerId);
+        return api.loginToBackend(authInfo.token, authInfo.providerId)
+                .flatMapCompletable(token -> {
+                    authRepo.setSessionToken(token);
+                    return Completable.complete();
+                });
     }
 
     public Completable logout() {
-        return Completable.fromAction(sessionRepo::clearToken);
+        return Completable.fromAction(authRepo::clearData);
     }
 }

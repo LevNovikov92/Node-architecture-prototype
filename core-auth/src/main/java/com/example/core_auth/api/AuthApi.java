@@ -1,6 +1,6 @@
 package com.example.core_auth.api;
 
-import io.reactivex.Completable;
+import io.reactivex.Single;
 
 /**
  * Author: lev.novikov
@@ -10,5 +10,7 @@ import io.reactivex.Completable;
 public interface AuthApi {
 
     //URL
-    Completable loginToBackend(String token, String type);
+    Single<String> loginToBackend(String token, String type);
+
+
 }

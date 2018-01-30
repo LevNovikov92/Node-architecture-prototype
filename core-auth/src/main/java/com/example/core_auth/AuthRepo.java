@@ -3,6 +3,8 @@ package com.example.core_auth;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
+import com.example.core_auth.provider.AuthProvider;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -14,13 +16,14 @@ import io.reactivex.annotations.Nullable;
  */
 
 @Singleton
-public class SessionRepo {
+public class AuthRepo {
 
     private final static String SESSION_TOKEN = "SESSION_TOKEN";
     private final SharedPreferences preferences;
+    private AuthProvider.Info authInfo;
 
     @Inject
-    public SessionRepo(SharedPreferences preferences) {
+    public AuthRepo(SharedPreferences preferences) {
         this.preferences = preferences;
     }
 
@@ -35,7 +38,20 @@ public class SessionRepo {
     }
 
     @SuppressLint("ApplySharedPref")
-    public void clearToken() {
+    public void clearSessionToken() {
         preferences.edit().remove(SESSION_TOKEN).commit();
+    }
+
+    public void setAuthInfo(AuthProvider.Info authInfo) {
+        this.authInfo = authInfo;
+    }
+
+    public AuthProvider.Info getAuthInfo() {
+        return authInfo;
+    }
+
+    void clearData() {
+        clearSessionToken();
+        authInfo = null;
     }
 }
