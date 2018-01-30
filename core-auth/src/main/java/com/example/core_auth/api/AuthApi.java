@@ -11,6 +11,4 @@ public interface AuthApi {
 
     //URL
     Single<String> loginToBackend(String token, String type);
-
-
 }

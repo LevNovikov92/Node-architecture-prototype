@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/core-geo/core-geo.iml" filepath="$PROJECT_DIR$/core-geo/core-geo.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-location/core-location.iml" filepath="$PROJECT_DIR$/core-location/core-location.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-network/core-network.iml" filepath="$PROJECT_DIR$/core-network/core-network.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core-network/core-network.iml" filepath="$PROJECT_DIR$/core-network/core-network.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-profile/core-profile.iml" filepath="$PROJECT_DIR$/core-profile/core-profile.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-auth/feature-auth.iml" filepath="$PROJECT_DIR$/feature-auth/feature-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-car-animation/feature-car-animation.iml" filepath="$PROJECT_DIR$/feature-car-animation/feature-car-animation.iml" />
