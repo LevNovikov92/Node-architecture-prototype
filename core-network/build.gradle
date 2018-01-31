@@ -36,4 +36,5 @@ dependencies {
     testImplementation testLibs.mockito
     testImplementation testLibs.mockito_inline
     testImplementation testLibs.mockitoKotlin
+    testImplementation testLibs.mockWebServer
 }

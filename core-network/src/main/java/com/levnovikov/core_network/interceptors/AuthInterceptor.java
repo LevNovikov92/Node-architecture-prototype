@@ -45,10 +45,12 @@ public class AuthInterceptor implements Interceptor {
         return response;
     }
 
-    private Response handleResponse(Chain chain, Request request) throws IOException {
+    Response handleResponse(Chain chain, Request request) throws IOException {
         if (TOKEN_REFRESH_IN_PROGRESS) waitForRefreshOrTimeout();
 
         final Response response = chain.proceed(request);
+        response.body();
+        System.out.println(Thread.currentThread().getName() + ": " + String.valueOf(System.currentTimeMillis()));
         switch (response.code()) {
             case ResponseCodes.NOT_AUTHORISED: {
                 synchronized (this) {
@@ -69,7 +71,7 @@ public class AuthInterceptor implements Interceptor {
                                     TOKEN_REFRESH_IN_PROGRESS = false;
                                     error = e;
                                 });
-                        if (error != null) {
+                        if (error == null) {
                             return handleResponse(chain, request);
                         }
                     }
