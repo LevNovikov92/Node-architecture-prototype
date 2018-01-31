@@ -86,15 +86,16 @@ public class AuthInterceptorTest {
 //        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 1").setBodyDelay(1, TimeUnit.SECONDS));
 //        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 2").setBodyDelay(2, TimeUnit.SECONDS));
 //        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 3").setBodyDelay(3, TimeUnit.SECONDS));
-        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 1").setBodyDelay(7, TimeUnit.SECONDS));
-        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 2").setBodyDelay(5, TimeUnit.SECONDS));
+        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 1").setBodyDelay(5, TimeUnit.SECONDS));
+        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 2").setBodyDelay(3, TimeUnit.SECONDS));
         server.enqueue(new MockResponse().setResponseCode(401).setBody("body 3").setBodyDelay(1, TimeUnit.SECONDS));
         server.enqueue(new MockResponse().setResponseCode(200));
         server.enqueue(new MockResponse().setResponseCode(200));
         server.enqueue(new MockResponse().setResponseCode(200));
 
         Mockito.when(authManager.refreshToken(Mockito.any(Interceptor.Chain.class))).thenReturn(
-                Completable.fromAction(() -> Thread.sleep(1000)));
+                Completable.fromAction(() ->
+                        Thread.sleep(1000)));
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new AuthInterceptor(authManager))

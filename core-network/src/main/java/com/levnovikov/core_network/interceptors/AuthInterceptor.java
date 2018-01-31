@@ -26,6 +26,7 @@ public class AuthInterceptor implements Interceptor {
     private final AuthManager authManager;
 
     volatile boolean TOKEN_REFRESH_IN_PROGRESS = false;
+    volatile long LAST_TOKEN_UPDATE_TIME = 0;
 
     @Nullable
     private Throwable error = null;
@@ -48,24 +49,19 @@ public class AuthInterceptor implements Interceptor {
     Response handleResponse(Chain chain, Request request) throws IOException {
         if (TOKEN_REFRESH_IN_PROGRESS) waitForRefreshOrTimeout();
 
+        final long requestStartTime = System.currentTimeMillis();
         final Response response = chain.proceed(request);
         response.body();
         System.out.println(Thread.currentThread().getName() + ": " + String.valueOf(System.currentTimeMillis()));
         switch (response.code()) {
             case ResponseCodes.NOT_AUTHORISED: {
                 synchronized (this) {
-                    if (TOKEN_REFRESH_IN_PROGRESS) {
-                        if (retryCounter > RETRY_LIMIT) {
-                            return response;
-                        }
-                        retryCounter++;
-                        waitForRefreshOrTimeout();
-                        return handleResponse(chain, request);
-                    } else {
+                    if (requestStartTime > LAST_TOKEN_UPDATE_TIME) {
                         TOKEN_REFRESH_IN_PROGRESS = true;
                         authManager.refreshToken(chain)
                                 .subscribe(() -> {
                                     TOKEN_REFRESH_IN_PROGRESS = false;
+                                    LAST_TOKEN_UPDATE_TIME = System.currentTimeMillis();
                                     error = null;
                                 }, e -> {
                                     TOKEN_REFRESH_IN_PROGRESS = false;
@@ -74,6 +70,8 @@ public class AuthInterceptor implements Interceptor {
                         if (error == null) {
                             return handleResponse(chain, request);
                         }
+                    } else {
+                        return handleResponse(chain, request);
                     }
                 }
             }
