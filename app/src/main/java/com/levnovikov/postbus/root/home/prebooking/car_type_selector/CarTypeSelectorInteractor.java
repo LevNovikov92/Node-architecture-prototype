@@ -28,7 +28,7 @@ public class CarTypeSelectorInteractor extends Interactor<CarTypeSelectorRouter>
 
     @Override
     public void onCancel() {
-        router.detachTypeList();
+        getRouter().detachTypeList();
     }
 
     public interface Presenter {
@@ -59,7 +59,7 @@ public class CarTypeSelectorInteractor extends Interactor<CarTypeSelectorRouter>
         super.onGetActive();
         lifecycle.subscribeUntilDestroy(presenter.clickStream()
                 .subscribe(o -> {
-                    router.attachTypeList();
+                    getRouter().attachTypeList();
                     listener.onServiceSelected();
                 }, e -> { /*handle error*/ }));
     }

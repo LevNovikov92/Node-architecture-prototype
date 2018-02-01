@@ -1,11 +1,11 @@
-package com.levnovikov.system_base.lifecycle;
+package com.levnovikov.system_base.lifecycle
 
 /**
  * Author: lev.novikov
  * Date: 2/1/18.
  */
 
-public enum LifecycleEvent {
+enum class LifecycleEvent {
     CREATE,
     START,
     RESUME,

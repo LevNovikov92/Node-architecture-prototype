@@ -1,5 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 android androidConfiguration
+
+androidExtensions {
+    experimental = true
+}
 
 dependencies {
     implementation libs.rxJava
@@ -7,10 +15,6 @@ dependencies {
     implementation libs.dagger
     implementation libs.map
     implementation libs.appcompatV7
-
-    compileOnly "com.google.auto.value:auto-value:1.5"
-    annotationProcessor "com.google.auto.value:auto-value:1.5"
-    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.6'
 }
 
 dependencies {

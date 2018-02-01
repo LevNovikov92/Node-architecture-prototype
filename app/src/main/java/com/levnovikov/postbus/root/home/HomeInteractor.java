@@ -54,24 +54,24 @@ public class HomeInteractor extends Interactor<HomeRouter>
     @Override
     public void onGetActive() {
         super.onGetActive();
-        router.loadMap();
+        getRouter().loadMap();
         lifecycle.subscribeUntilDestroy(appStateStream  //TODO remove checking
-                .subscribe(state -> router.switchState(state), error -> {
+                .subscribe(state -> getRouter().switchState(state), error -> {
                     //TODO handle error
                 }));
     }
 
     @Override
     public void onBookClick() {
-        router.startAllocating();
+        getRouter().startAllocating();
     }
 
     public Map<String, NodeState> getState() {
-        return router.getState();
+        return getRouter().getState();
     }
 
     boolean onBackPressed() {
-        return router.onBackPressed();
+        return getRouter().onBackPressed();
     }
 
     @Override

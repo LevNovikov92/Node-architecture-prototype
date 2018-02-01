@@ -55,7 +55,7 @@ public class HomeActivity extends LifecycleActivity {
             ((HomeComponent.Builder) ((SubComponentProvider) app).provide(HomeComponent.Builder.class))
                     .homeModule(new HomeModule(
                             this,
-                            activityState != null ? activityState : ActivityState.create(new HashMap<>())))
+                            activityState != null ? activityState : ActivityState.Companion.create(new HashMap<>())))
                     .build()
                     .inject(this);
         }
@@ -65,7 +65,7 @@ public class HomeActivity extends LifecycleActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         final Map<String, NodeState> stateMap = interactor.getState();
-        outState.putParcelable(HOME_ACTIVITY_STATE, ActivityState.create(stateMap));
+        outState.putParcelable(HOME_ACTIVITY_STATE, ActivityState.Companion.create(stateMap));
     }
 
     @Override

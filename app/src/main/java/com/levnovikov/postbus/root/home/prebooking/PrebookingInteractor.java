@@ -54,7 +54,7 @@ public class PrebookingInteractor extends
     public void onGetActive() {
         super.onGetActive();
         if (!hasSavedState()) {
-            router.showPoiWidget();
+            getRouter().showPoiWidget();
         } else {
             restoreStateIfPossible();
         }
@@ -85,30 +85,30 @@ public class PrebookingInteractor extends
     public void onPoiSelected(Point point) {
         if (state == PrebookingState.PICK_UP_SELECTION) {
             prebookingRepo.pickupPoint.set(point);
-            router.hidePoiChoice();
+            getRouter().hidePoiChoice();
         } else if (state == PrebookingState.DROP_OFF_SELECTION) {
             prebookingRepo.dropOffPoint.set(point);
             state = PrebookingState.SET_SERVICE_TYPE;
-            router.startServiceType();
-            router.startBookingExtra();
+            getRouter().startServiceType();
+            getRouter().startBookingExtra();
         }
     }
 
     @Override
     public void onPoiSelectionCanceled() {
-        router.hidePoiChoice();
+        getRouter().hidePoiChoice();
     }
 
     @Override
     public void onPickUpSelected() {
         state = PrebookingState.PICK_UP_SELECTION;
-        router.startPoiChoice();
+        getRouter().startPoiChoice();
     }
 
     @Override
     public void onDropOffSelected() {
         state = PrebookingState.DROP_OFF_SELECTION;
-        router.startPoiChoice();
+        getRouter().startPoiChoice();
     }
 
     @Override

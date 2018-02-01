@@ -82,7 +82,7 @@ class HomeRouter extends Router {
     }
 
     @Override
-    protected void destroyNode() {
+    public void destroyNode() {
         //root node will be destroyed with activity
     }
 

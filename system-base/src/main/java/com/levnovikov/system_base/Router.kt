@@ -28,9 +28,9 @@ abstract class Router {
 
     fun getState(): Map<String, NodeState> {
         val state = getChildrenState()
-        val stateData = if (stateDataProvider != null) stateDataProvider!!.stateData else null
-        val nodeState = getNodeState(NodeState.create(this.javaClass, stateData))
-        state.put(nodeState.routerClass(), nodeState)
+        val stateData = stateDataProvider?.run { this.stateData() }
+        val nodeState = getNodeState(NodeState(this.javaClass.simpleName, stateData)) //TODO refactor to Kotlin class
+        state[nodeState.routerClass] = nodeState
         return state
     }
 
@@ -47,11 +47,10 @@ abstract class Router {
     }
 
     protected fun detachNode(nodeHolder: NodeHolder<out Router>) {
-        if (nodeHolder.router == null) {
-            return
+        nodeHolder.router?.let {
+            detachRouter(it.javaClass)
+            nodeHolder.destroy()
         }
-        detachRouter(nodeHolder.router.javaClass)
-        nodeHolder.destroy()
     }
 
     private fun attachRouter(router: Router) {
@@ -60,7 +59,7 @@ abstract class Router {
         if (children.containsKey(router.javaClass)) {
             throw UnsupportedOperationException(String.format("%s already attached", router.javaClass))
         }
-        children.put(router.javaClass, router)
+        children[router.javaClass] = router
     }
 
     private fun detachRouter(router: Class<out Router>) {

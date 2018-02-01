@@ -38,12 +38,12 @@ public class BookingExtraInteractor extends Interactor<BookingExtraRouter> imple
 
     @Override
     public void onPromoSelected(Promo promo) {
-        router.detachPromoList();
+        getRouter().detachPromoList();
     }
 
     @Override
     public void onCancel() {
-        router.detachPromoList();
+        getRouter().detachPromoList();
     }
 
     public interface Listener {
