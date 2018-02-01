@@ -15,7 +15,7 @@ public class AppStateStreamProvider {
     @Inject
     public AppStateStreamProvider() { }
 
-    private BehaviorSubject<AppState> appStateSubject = BehaviorSubject.createDefault(AppState.TRACKING);
+    private BehaviorSubject<AppState> appStateSubject = BehaviorSubject.createDefault(AppState.PREBOOKING);
     public Observable<AppState> provideAppStateStream() {
         return appStateSubject.distinctUntilChanged(); //TODO stub
     }

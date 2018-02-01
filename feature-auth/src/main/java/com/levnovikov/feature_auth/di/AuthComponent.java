@@ -22,7 +22,7 @@ public interface AuthComponent extends ActivityComponent {
 
     void inject(AuthView view);
 
-    @Module
+    @Module(includes = {AuthModule.AuthBinders.class })
     class AuthModule {
 
         private AuthView view;
@@ -32,7 +32,7 @@ public interface AuthComponent extends ActivityComponent {
         }
 
         @Module
-        interface AuthBinders {
+        public interface AuthBinders {
             @Binds
             AuthViewModel bindViewModel(AuthViewModelImpl impl);
 
