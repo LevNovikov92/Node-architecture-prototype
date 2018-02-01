@@ -2,22 +2,22 @@ package com.levnovikov.postbus.root.home.prebooking.di;
 
 import android.view.LayoutInflater;
 
-import com.levnovikov.feature_map.map_wrapper.MapInterface;
 import com.levnovikov.feature_ride.ride.RidePrebookingData;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
 import com.levnovikov.postbus.root.home.HomeView;
 import com.levnovikov.postbus.root.home.di.HomeComponent;
-import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder;
+import com.levnovikov.feature_map.dependency.MapProvider;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingInteractor;
+import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter;
-import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorNodeHolder;
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
-import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorNodeHolder;
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
-import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetNodeHolder;
+import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorNodeHolder;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
+import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetNodeHolder;
 import com.levnovikov.system_base.base_di.ActivityComponent;
 
 import dagger.Binds;
@@ -37,7 +37,7 @@ public interface PrebookingComponent extends ActivityComponent {
     void inject(PrebookingNodeHolder prebookingBuilder);
 
     PrebookingInteractor interactor();
-    MapInterface mapInterface();
+    MapProvider mapProvider();
 
     @Module(includes = PrebookingModule.Binders.class)
     class PrebookingModule {

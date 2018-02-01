@@ -1,5 +1,7 @@
 package com.levnovikov.system_base.base_di;
 
+import android.content.Context;
+
 import com.levnovikov.system_base.lifecycle.Lifecycle;
 import com.levnovikov.system_base.node_state.ActivityState;
 
@@ -11,4 +13,5 @@ import com.levnovikov.system_base.node_state.ActivityState;
 public interface ActivityComponent {
     ActivityState activityState();
     Lifecycle lifecycle();
+    Context activity();
 }

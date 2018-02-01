@@ -4,9 +4,10 @@ import android.os.Parcelable;
 import android.util.Log;
 
 import com.example.core_geo.Point;
-import com.levnovikov.feature_map.map_wrapper.MapInterface;
+import com.levnovikov.feature_map.map_wrapper.MapWrapper;
 import com.levnovikov.feature_ride.ride.RidePrebookingData;
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo;
+import com.levnovikov.feature_map.dependency.MapProvider;
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor;
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope;
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor;
@@ -33,20 +34,20 @@ public class PrebookingInteractor extends
         StateDataProvider {
 
     private final RidePrebookingRepo prebookingRepo;
-    private MapInterface mapInterface;
     private final Lifecycle lifecycle;
+    private final MapProvider mapProvider;
     private PrebookingState state = PrebookingState.INITIAL;
 
     @Inject
     PrebookingInteractor(PrebookingRouter router,
                          RidePrebookingRepo prebookingRepo,
-                         MapInterface mapInterface,
                          ActivityState activityState,
-                         Lifecycle lifecycle) {
+                         Lifecycle lifecycle,
+                         MapProvider mapProvider) {
         super(router, activityState);
         this.prebookingRepo = prebookingRepo;
-        this.mapInterface = mapInterface;
         this.lifecycle = lifecycle;
+        this.mapProvider = mapProvider;
     }
 
     @Override
@@ -61,10 +62,15 @@ public class PrebookingInteractor extends
     }
 
     private void bindMapAndPrebookingRepo() {
-        lifecycle.subscribeUntilDestroy(prebookingRepo.pickupPoint.getStream()
-                .subscribe(point -> mapInterface.setPickUp(point), e -> {}));
+        lifecycle.subscribeUntilDestroy(
+                prebookingRepo.pickupPoint.getStream()
+                .subscribe(point -> mapProvider.getMap()
+                        .map(MapWrapper::new)
+                        .subscribe(map -> map.setPickUp(point), e -> {}), e -> {}));
         lifecycle.subscribeUntilDestroy(prebookingRepo.dropOffPoint.getStream()
-                .subscribe(point -> mapInterface.setDropOff(point), e -> {}));
+                .subscribe(point -> mapProvider.getMap()
+                        .map(MapWrapper::new)
+                        .subscribe(map -> map.setDropOff(point), e -> {}), e -> {}));
     }
 
     private void restoreStateIfPossible() {

@@ -1,6 +1,6 @@
 package com.example.core_auth.provider;
 
-import io.reactivex.Completable;
+import io.reactivex.Single;
 
 /**
  * Created by lev.novikov
@@ -9,13 +9,10 @@ import io.reactivex.Completable;
 
 public class FacebookAuthProvider implements AuthProvider {
 
-    @Override
-    public Completable login() {
-        return Completable.error(new Exception());
-    }
+    private final static String FB_PROVIDER_ID = "FB_PROVIDER_ID";
 
     @Override
-    public Completable signUp(String phoneNumber) {
-        return Completable.error(new Exception());
+    public Single<Info> login() {
+        return Single.just(new Info("fb_token", FB_PROVIDER_ID));
     }
 }

@@ -1,10 +1,10 @@
 package com.levnovikov.postbus.root.home;
 
-import android.util.Log;
+import android.support.annotation.Nullable;
 
-import com.example.core_geo.Point;
-import com.levnovikov.feature_map.MapInteractor;
-import com.levnovikov.feature_map.map_wrapper.MapInterface;
+import com.google.android.gms.maps.GoogleMap;
+import com.levnovikov.feature_map.dependency.MapProvider;
+import com.levnovikov.feature_map.dependency.MapSetter;
 import com.levnovikov.postbus.root.home.di.HomeScope;
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraInteractor;
 import com.levnovikov.stream_state.AppState;
@@ -17,6 +17,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import io.reactivex.Maybe;
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 
@@ -27,10 +28,17 @@ import io.reactivex.subjects.BehaviorSubject;
 
 @HomeScope
 public class HomeInteractor extends Interactor<HomeRouter>
-        implements BookingExtraInteractor.Listener, MapInterface, MapInteractor.MapDataStream {
+        implements BookingExtraInteractor.Listener,
+        MapProvider, MapSetter {
 
     private final Observable<AppState> appStateStream;
     private final Lifecycle lifecycle;
+
+    private BehaviorSubject<GoogleMap> mapSubject = BehaviorSubject.create();
+    @Override
+    public Maybe<GoogleMap> getMap() {
+        return mapSubject.firstElement();
+    }
 
     @Inject
     HomeInteractor(
@@ -66,32 +74,8 @@ public class HomeInteractor extends Interactor<HomeRouter>
         return router.onBackPressed();
     }
 
-    private final BehaviorSubject<Point> pickUpPointStream = BehaviorSubject.create();
     @Override
-    public void setPickUp(Point point) {
-        Log.i(">>>MAP INTERFACE", "setPickUp");
-        pickUpPointStream.onNext(point);
-    }
-
-    private final BehaviorSubject<Point> dropOffPointStream = BehaviorSubject.create();
-    @Override
-    public void setDropOff(Point point) {
-        Log.i(">>>MAP INTERFACE", "setDropOff");
-        dropOffPointStream.onNext(point);
-    }
-
-    @Override
-    public void clear() {
-        Log.i(">>>MAP INTERFACE", "clear");
-    }
-
-    @Override
-    public Observable<Point> pickUpPointStream() {
-        return pickUpPointStream;
-    }
-
-    @Override
-    public Observable<Point> dropOffPointStream() {
-        return dropOffPointStream;
+    public void setMap(@Nullable GoogleMap map) {
+        mapSubject.onNext(map);
     }
 }

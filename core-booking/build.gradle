@@ -28,5 +28,5 @@ dependencies {
 }
 
 dependencies {
-    compile project(path: ':core-geo')
+    implementation project(path: ':core-geo')
 }

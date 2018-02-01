@@ -14,9 +14,9 @@ import io.reactivex.annotations.Nullable;
  * Date: 3/1/18.
  */
 
-public class MapWrapper implements MapInterface { //TODO move to separate module
+public class MapWrapper implements MapInterface {
 
-    private final GoogleMap map; //TODO remove link onDestroy
+    private GoogleMap map; //TODO remove link onDestroy
 
     @Nullable
     private Marker pickUpMarker;
@@ -24,7 +24,7 @@ public class MapWrapper implements MapInterface { //TODO move to separate module
     @Nullable
     private Marker dropOffMarker;
 
-    public MapWrapper(GoogleMap map) {
+    public MapWrapper(final GoogleMap map) {
         this.map = map;
     }
 

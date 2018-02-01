@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+android androidConfiguration
+
+dependencies {
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+    implementation libs.dagger
+
+    compileOnly "com.google.auto.value:auto-value:1.5"
+    annotationProcessor "com.google.auto.value:auto-value:1.5"
+    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.6'
+
+    //retrofit
+    api (libs.retrofit){
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
+    implementation libs.retrofitRxjavaAdapter
+    implementation libs.retrofitConverterGson
+    implementation libs.okHttp
+    implementation (libs.okhttpUrlconnection){
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
+    implementation libs.okhttpLoggingInterceptor
+}
+
+dependencies {
+    annotationProcessor libs.daggerCompiler
+}
+
+dependencies {
+    implementation project(path : ':core-auth')
+}
+
+dependencies {
+    testImplementation testLibs.jUnit
+    testImplementation testLibs.mockito
+    testImplementation testLibs.mockito_inline
+    testImplementation testLibs.mockitoKotlin
+    testImplementation testLibs.mockWebServer
+}

@@ -36,15 +36,17 @@ dependencies {
 }
 
 dependencies {
-    compile project(path: ':system-base')
-    compile project(path: ':core-profile')
-    compile project(path: ':feature-onboarding')
-    compile project(path: ':stream-state')
-    compile project(path: ':feature-ride')
-    compile project(path: ':core-geo')
-    compile project(path: ':core-location')
-    compile project(path: ':feature-promo')
-    compile project(path: ':feature-map')
+    implementation project(path: ':system-base')
+    implementation project(path: ':core-profile')
+    implementation project(path: ':stream-state')
+    implementation project(path: ':feature-ride')
+    implementation project(path: ':core-geo')
+    implementation project(path: ':core-location')
+    implementation project(path: ':core-booking')
+    implementation project(path: ':feature-promo')
+    implementation project(path: ':feature-map')
+    implementation project(path: ':feature-car-animation')
+    implementation project(path: ':feature-auth')
 }
 
 dependencies {

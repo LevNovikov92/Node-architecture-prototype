@@ -1,6 +1,6 @@
 package com.example.core_auth.provider;
 
-import io.reactivex.Completable;
+import io.reactivex.Single;
 
 /**
  * Created by lev.novikov
@@ -9,7 +9,15 @@ import io.reactivex.Completable;
 
 public interface AuthProvider {
 
-    Completable login();
+    class Info {
+        public final String token;
+        public final String providerId;
 
-    Completable signUp(String phoneNumber);
+        public Info(String token, String providerId) {
+            this.token = token;
+            this.providerId = providerId;
+        }
+    }
+
+    Single<Info> login();
 }

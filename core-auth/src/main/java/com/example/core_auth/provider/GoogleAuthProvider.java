@@ -1,6 +1,6 @@
 package com.example.core_auth.provider;
 
-import io.reactivex.Completable;
+import io.reactivex.Single;
 
 /**
  * Created by lev.novikov
@@ -9,13 +9,10 @@ import io.reactivex.Completable;
 
 public class GoogleAuthProvider implements AuthProvider {
 
-    @Override
-    public Completable login() {
-        return Completable.fromAction(() -> Thread.sleep(1000));
-    }
+    private final static String GOOGLE_PROVIDER_ID = "GOOGLE_PROVIDER_ID";
 
     @Override
-    public Completable signUp(String phoneNumber) {
-        return Completable.fromAction(() -> Thread.sleep(1000));
+    public Single<Info> login() {
+        return Single.just(new Info("google_token", GOOGLE_PROVIDER_ID));
     }
 }

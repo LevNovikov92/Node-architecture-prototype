@@ -12,6 +12,7 @@ dependencies {
     implementation libs.dagger
     implementation libs.constraintLayout
     implementation libs.appcompatV7
+    implementation libs.map
 
     compileOnly "com.google.auto.value:auto-value:1.5"
     annotationProcessor "com.google.auto.value:auto-value:1.5"
@@ -30,7 +31,8 @@ dependencies {
 }
 
 dependencies {
-    compile project(path: ':system-base')
-    compile project(path: ':core-auth')
-    compile project(path: ':core-booking')
+    implementation project(path: ':system-base')
+    implementation project(path: ':core-auth')
+    implementation project(path: ':core-booking')
+    implementation project(path: ':core-geo')
 }
