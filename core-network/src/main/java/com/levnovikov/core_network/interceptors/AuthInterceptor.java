@@ -4,6 +4,7 @@ import com.example.core_auth.AuthManager;
 import com.levnovikov.core_network.ResponseCodes;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -21,52 +22,40 @@ import okhttp3.Response;
 @Singleton
 public class AuthInterceptor implements Interceptor {
 
-    private static int RETRY_LIMIT = 3;
-    private static int MAX_REFRESH_TIME_MILLIS = 3000;
+    @SuppressWarnings("FieldCanBeLocal")
+    private static int MAX_REFRESH_TIME_SEC = 2;
     private final AuthManager authManager;
 
-    volatile boolean TOKEN_REFRESH_IN_PROGRESS = false;
-    volatile long LAST_TOKEN_UPDATE_TIME = 0;
+    private volatile boolean TOKEN_REFRESH_IN_PROGRESS = false;
+    private volatile long LAST_TOKEN_UPDATE_TIME = 0;
 
     @Nullable
     private Throwable error = null;
 
-    private int retryCounter = 0;
-
     @Inject
-    public AuthInterceptor(AuthManager authManager) {
+    AuthInterceptor(AuthManager authManager) {
         this.authManager = authManager;
     }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         final Request request = chain.request();
-        Response response = handleResponse(chain, request);
-        retryCounter = 0;
-        return response;
+        return handleResponse(chain, request);
     }
 
+    @SuppressWarnings("WeakerAccess")
     Response handleResponse(Chain chain, Request request) throws IOException {
-        if (TOKEN_REFRESH_IN_PROGRESS) waitForRefreshOrTimeout();
+        if (TOKEN_REFRESH_IN_PROGRESS) try {
+            this.wait();
+        } catch (InterruptedException e) { e.printStackTrace(); }
 
         final long requestStartTime = System.currentTimeMillis();
         final Response response = chain.proceed(request);
-        response.body();
-        System.out.println(Thread.currentThread().getName() + ": " + String.valueOf(System.currentTimeMillis()));
         switch (response.code()) {
             case ResponseCodes.NOT_AUTHORISED: {
                 synchronized (this) {
                     if (requestStartTime > LAST_TOKEN_UPDATE_TIME) {
-                        TOKEN_REFRESH_IN_PROGRESS = true;
-                        authManager.refreshToken(chain)
-                                .subscribe(() -> {
-                                    TOKEN_REFRESH_IN_PROGRESS = false;
-                                    LAST_TOKEN_UPDATE_TIME = System.currentTimeMillis();
-                                    error = null;
-                                }, e -> {
-                                    TOKEN_REFRESH_IN_PROGRESS = false;
-                                    error = e;
-                                });
+                        updateToken(chain);
                         if (error == null) {
                             return handleResponse(chain, request);
                         }
@@ -76,21 +65,22 @@ public class AuthInterceptor implements Interceptor {
                 }
             }
         }
-
-
         return response;
     }
 
-    void waitForRefreshOrTimeout() {
-        int refreshTime = 0;
-        while (TOKEN_REFRESH_IN_PROGRESS) {
-            try {
-                if (refreshTime > MAX_REFRESH_TIME_MILLIS) return;
-                Thread.sleep(100);
-                refreshTime += 100;
-            } catch (InterruptedException e) {
-                return;
-            }
-        }
+    private void updateToken(Chain chain) {
+        TOKEN_REFRESH_IN_PROGRESS = true;
+        authManager.refreshToken(chain)
+                .timeout(MAX_REFRESH_TIME_SEC, TimeUnit.SECONDS)
+                .subscribe(() -> {
+                    TOKEN_REFRESH_IN_PROGRESS = false;
+                    LAST_TOKEN_UPDATE_TIME = System.currentTimeMillis();
+                    error = null;
+                    this.notifyAll();
+                }, e -> {
+                    TOKEN_REFRESH_IN_PROGRESS = false;
+                    error = e;
+                    this.notifyAll();
+                });
     }
 }

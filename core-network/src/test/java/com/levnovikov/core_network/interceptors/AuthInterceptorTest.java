@@ -38,64 +38,19 @@ public class AuthInterceptorTest {
     }
 
     @Test
-    public void waitForRefreshOrTimeout_interruption() throws Exception {
-        System.out.println("Start interruption test");
-        final AuthInterceptor interceptor = new AuthInterceptor(authManager);
-        interceptor.TOKEN_REFRESH_IN_PROGRESS = true;
-
-        new Thread(() -> {
-            final double ticks = System.currentTimeMillis();
-            interceptor.waitForRefreshOrTimeout();
-
-            double time = System.currentTimeMillis() - ticks;
-            System.out.println("Time: " + time + " ms");
-        }).start();
-
-        new Thread(() -> {
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                //
-            }
-            interceptor.TOKEN_REFRESH_IN_PROGRESS = false;
-        }).start();
-        Thread.sleep(4000);
-    }
-
-
-    @Test
-    public void waitForRefreshOrTimeout_timeout() throws Exception {
-        System.out.println("Start timeout test");
-        final AuthInterceptor interceptor = new AuthInterceptor(authManager);
-        interceptor.TOKEN_REFRESH_IN_PROGRESS = true;
-
-        new Thread(() -> {
-            final double ticks = System.currentTimeMillis();
-            interceptor.waitForRefreshOrTimeout();
-
-            double time = System.currentTimeMillis() - ticks;
-            System.out.println("Time: " + time + " ms");
-        }).start();
-        Thread.sleep(4000);
-    }
-
-    @Test
     public void intercept() throws Exception {
         MockWebServer server = new MockWebServer();
         HttpUrl url = server.url("/");
-//        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 1").setBodyDelay(1, TimeUnit.SECONDS));
-//        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 2").setBodyDelay(2, TimeUnit.SECONDS));
-//        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 3").setBodyDelay(3, TimeUnit.SECONDS));
         server.enqueue(new MockResponse().setResponseCode(401).setBody("body 1").setBodyDelay(5, TimeUnit.SECONDS));
-        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 2").setBodyDelay(3, TimeUnit.SECONDS));
-        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 3").setBodyDelay(1, TimeUnit.SECONDS));
+        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 2").setBodyDelay(3100, TimeUnit.MILLISECONDS));
+        server.enqueue(new MockResponse().setResponseCode(401).setBody("body 3").setBodyDelay(3000, TimeUnit.MILLISECONDS));
         server.enqueue(new MockResponse().setResponseCode(200));
         server.enqueue(new MockResponse().setResponseCode(200));
         server.enqueue(new MockResponse().setResponseCode(200));
 
         Mockito.when(authManager.refreshToken(Mockito.any(Interceptor.Chain.class))).thenReturn(
-                Completable.fromAction(() ->
-                        Thread.sleep(1000)));
+                Completable.fromAction(() -> Thread.sleep(1000))
+        );
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new AuthInterceptor(authManager))
