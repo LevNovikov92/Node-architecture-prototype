@@ -7,6 +7,7 @@ import android.os.HandlerThread;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.levnovikov.feature_car_animation.CarAnimInteractor;
+import com.levnovikov.feature_car_animation.CarAnimNodeHolder;
 import com.levnovikov.feature_car_animation.CarAnimRouter;
 import com.levnovikov.feature_car_animation.R;
 import com.levnovikov.feature_car_animation.dependency.CarAnimDependency;
@@ -34,6 +35,8 @@ public interface CarAnimComponent {
     CarAnimInteractor interactor();
 
     CarAnimRouter router();
+
+    void inject(CarAnimNodeHolder carAnimNodeHolder);
 
     @Module
     class CarAnimModule {

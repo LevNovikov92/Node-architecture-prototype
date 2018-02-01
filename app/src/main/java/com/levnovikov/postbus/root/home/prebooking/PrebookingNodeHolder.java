@@ -24,6 +24,7 @@ public class PrebookingNodeHolder extends NodeHolder<PrebookingRouter> {
                 .homeComponent(component)
                 .build();
         cmp.interactor().onGetActive();
+        cmp.inject(this);
         return router;
     }
 }

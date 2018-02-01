@@ -24,6 +24,7 @@ public class CarAnimNodeHolder extends NodeHolder<CarAnimRouter> {
                 .carAnimDependency(dependency)
                 .build();
         component.interactor().onGetActive();
+        component.inject(this); //TODO not obvious, easy to forget
         return component.router();
     }
 }
