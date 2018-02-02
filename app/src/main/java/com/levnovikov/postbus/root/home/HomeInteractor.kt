@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.root.home
 
+import android.os.Parcelable
 import com.google.android.gms.maps.GoogleMap
 import com.levnovikov.feature_map.dependency.MapProvider
 import com.levnovikov.feature_map.dependency.MapSetter
@@ -54,5 +55,9 @@ internal constructor(
 
     override fun setMap(map: GoogleMap) {
         mapSubject.onNext(map)
+    }
+
+    fun getActivityState(): Parcelable? {
+        return activityState.copy(stateMap = state)
     }
 }

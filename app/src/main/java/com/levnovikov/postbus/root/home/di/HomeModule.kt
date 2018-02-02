@@ -33,79 +33,79 @@ class HomeModule(private val activity: HomeActivity, private val activityState: 
 
     @HomeScope
     @Provides
-    internal fun provideContext(): Context {
+    fun provideContext(): Context {
         return activity
     }
 
     @HomeScope
     @Provides
-    internal fun provideLifecycle(): Lifecycle {
+    fun provideLifecycle(): Lifecycle {
         return activity
     }
 
     @HomeScope
     @Provides
-    internal fun providePrebookingBuilder(component: HomeComponent): PrebookingNodeHolder {
+    fun providePrebookingBuilder(component: HomeComponent): PrebookingNodeHolder {
         return PrebookingNodeHolder(component)
     }
 
     @HomeScope
     @Provides
-    internal fun provideAllocatingBuilder(inflater: LayoutInflater, parent: HomeView, component: HomeComponent): AllocatingNodeHolder {
+    fun provideAllocatingBuilder(inflater: LayoutInflater, parent: HomeView, component: HomeComponent): AllocatingNodeHolder {
         return AllocatingNodeHolder(inflater, parent, component)
     }
 
     @HomeScope
     @Provides
-    internal fun provideMapBuilder(inflater: LayoutInflater, parent: HomeView, component: HomeComponent): MapNodeHolder {
+    fun provideMapBuilder(inflater: LayoutInflater, parent: HomeView, component: HomeComponent): MapNodeHolder {
         return MapNodeHolder(inflater, parent, component)
     }
 
     @HomeScope
     @Provides
-    internal fun provideView(inflater: LayoutInflater): HomeView {
+    fun provideView(inflater: LayoutInflater): HomeView {
         return inflater.inflate(R.layout.home_view, null, true) as HomeView
     }
 
     @HomeScope
     @Provides
-    internal fun provideAppStateStream(provider: AppStateStreamProvider): Observable<AppState> {
+    fun provideAppStateStream(provider: AppStateStreamProvider): Observable<AppState> {
         return provider.provideAppStateStream()
     }
 
     @HomeScope
     @Provides
-    internal fun provideMapLifecycleStream(): Observable<MapLifecycleEvent> {
+    fun provideMapLifecycleStream(): Observable<MapLifecycleEvent> {
         return activity.mapLifecycleStream
     }
 
     @HomeScope
     @Provides
-    internal fun provideInflater(): LayoutInflater {
+    fun provideInflater(): LayoutInflater {
         return activity.layoutInflater
     }
 
     @HomeScope
     @Provides
-    internal fun provideBookingListener(interactor: HomeInteractor): BookingExtraInteractor.Listener {
+    fun provideBookingListener(interactor: HomeInteractor): BookingExtraInteractor.Listener {
         return interactor
     }
 
     @HomeScope
     @Provides
-    internal fun provideMapSetter(interactor: HomeInteractor): MapSetter {
+    fun provideMapSetter(interactor: HomeInteractor): MapSetter {
         return interactor
     }
 
     @HomeScope
     @Provides
-    internal fun provideMapProvider(interactor: HomeInteractor): MapProvider {
+    fun provideMapProvider(interactor: HomeInteractor): MapProvider {
         return interactor
     }
 
     @HomeScope
     @Provides
-    internal fun provideActivityState(): ActivityState {
+    fun provideActivizxtyState(): ActivityState {
         return activityState
     }
 }

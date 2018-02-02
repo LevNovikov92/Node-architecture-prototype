@@ -55,8 +55,7 @@ class HomeActivity : LifecycleActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        val stateMap = interactor.state
-        outState.putParcelable(HOME_ACTIVITY_STATE, ActivityState(stateMap = stateMap))
+        outState.putParcelable(HOME_ACTIVITY_STATE, interactor.getActivityState())
     }
 
     override fun onBackPressed() {
