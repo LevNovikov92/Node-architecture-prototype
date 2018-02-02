@@ -13,6 +13,7 @@ import javax.inject.Inject
 
 abstract class NodeHolder<R : Router> {
 
+    @JvmField
     @Inject
     var router: R? = null
 

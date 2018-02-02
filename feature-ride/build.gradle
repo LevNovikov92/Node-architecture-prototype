@@ -20,7 +20,7 @@ dependencies {
 }
 
 dependencies {
-    annotationProcessor libs.daggerCompiler
+    kapt libs.daggerCompiler
 }
 
 dependencies {

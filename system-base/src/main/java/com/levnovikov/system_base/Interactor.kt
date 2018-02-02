@@ -14,7 +14,7 @@ abstract class Interactor<R : Router>(
     protected val nodeStateData: Parcelable?
         get() {
             val state = nodeState
-            return state?.data()
+            return state?.data
         }
 
     open fun onGetActive() {

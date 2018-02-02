@@ -28,13 +28,14 @@ abstract class ViewNodeHolder<out V : View, R : Router>(private val inflater: La
         destroyView()
     }
 
-    protected fun buildView(): V? {
+    protected fun buildView(): V {
         if (view != null) {
             throw UnsupportedOperationException("View already attached")
         }
         Log.i(">>>>", "buildView " + this.javaClass.simpleName)
-        view = inflater.inflate(layout, parent, false) as V
-        return view
+        val v = inflater.inflate(layout, parent, false) as V
+        view = v
+        return v
     }
 
     protected fun attachView() {

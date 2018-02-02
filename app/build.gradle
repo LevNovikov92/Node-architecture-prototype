@@ -22,9 +22,8 @@ dependencies {
 }
 
 dependencies {
-    annotationProcessor "com.google.auto.value:auto-value:1.5"
-    annotationProcessor aptLibs.databinding
-    annotationProcessor libs.daggerCompiler
+    kapt aptLibs.databinding
+    kapt libs.daggerCompiler
 }
 
 dependencies {

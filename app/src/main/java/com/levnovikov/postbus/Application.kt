@@ -19,10 +19,10 @@ class Application : android.app.Application(), SubComponentProvider {
     lateinit var appComponent: AppComponent
 
     @Inject
-    var rootInteractor: RootInteractor? = null
-
-    @Inject
-    lateinit var subComponents: Map<Class<out ComponentBuilder>, ComponentBuilder>
+    lateinit var rootInteractor: RootInteractor
+//
+//    @Inject
+//    lateinit var subComponents: Map<Class<out ComponentBuilder>, ComponentBuilder>
 
 
     override fun onCreate() {
@@ -38,6 +38,9 @@ class Application : android.app.Application(), SubComponentProvider {
     }
 
     override fun <C : ComponentBuilder> provide(key: Class<C>): C {
-        return subComponents[key] as C
+        appComponent.subComponentBuilders()?.let {
+            return it[key] as C
+        }
+        throw Exception("Sub components not found")
     }
 }

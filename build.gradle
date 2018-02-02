@@ -35,12 +35,6 @@ ext {
             minSdkVersion androidMinSdkVersion
             targetSdkVersion androidTargetSdkVersion
 
-            javaCompileOptions {
-                annotationProcessorOptions {
-                    includeCompileClasspath false
-                }
-            }
-
             multiDexEnabled true
 
             resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
