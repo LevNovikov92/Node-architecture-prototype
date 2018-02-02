@@ -17,6 +17,7 @@ dependencies {
     implementation libs.rxJava
     implementation libs.rxAndroid
     implementation libs.kotlin
+    implementation libs.supportMultidex
 
     implementation libs.dagger
 }
@@ -41,8 +42,6 @@ dependencies {
     implementation project(path: ':core-booking')
     implementation project(path: ':feature-promo')
     implementation project(path: ':feature-map')
-    implementation project(path: ':feature-car-animation')
-    implementation project(path: ':feature-auth')
 }
 
 dependencies {

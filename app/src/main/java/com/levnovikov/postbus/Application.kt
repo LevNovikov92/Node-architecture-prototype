@@ -1,5 +1,7 @@
 package com.levnovikov.postbus
 
+import android.content.Context
+import android.support.multidex.MultiDex
 import com.levnovikov.postbus.root.RootInteractor
 import com.levnovikov.postbus.root.di.AppComponent
 import com.levnovikov.postbus.root.di.AppModule
@@ -37,10 +39,11 @@ class Application : android.app.Application(), SubComponentProvider {
         appComponent.inject(this)
     }
 
-    override fun <C : ComponentBuilder> provide(key: Class<C>): C {
-        appComponent.subComponentBuilders()?.let {
-            return it[key] as C
-        }
-        throw Exception("Sub components not found")
+    override fun <C : ComponentBuilder> provide(key: Class<C>): C =
+        appComponent.subComponentBuilders()[key] as C
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 }
