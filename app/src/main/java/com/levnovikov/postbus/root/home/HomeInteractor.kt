@@ -58,6 +58,6 @@ internal constructor(
     }
 
     fun getActivityState(): Parcelable? {
-        return activityState.copy(stateMap = state)
+        return ActivityState(stateMap = state)
     }
 }

@@ -80,9 +80,11 @@ abstract class Router {
     abstract fun setState(state: NodeState)
 
     fun onBackPressed(): Boolean {
-        children.values
-                .filter { it.onBackPressed() }
-                .forEach { return true }
+        for (router in children.values) {
+            if (router.onBackPressed()) {
+                return true
+            }
+        }
         backHandler?.let {
             if (it.isLastInStack(this.javaClass)) {
                 it.popLastInStack()
