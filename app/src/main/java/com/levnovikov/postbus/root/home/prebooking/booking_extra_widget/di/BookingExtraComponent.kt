@@ -9,6 +9,7 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingE
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraRouter
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraView
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra.ExtraNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent
 import com.levnovikov.system_base.base_di.ActivityComponent
 import dagger.Component
@@ -62,6 +63,12 @@ interface BookingExtraComponent : ActivityComponent, PromoListDependency {
         @Provides
         internal fun providePromoListBuilder(inflater: LayoutInflater, parent: HomeView, parentComponent: PromoListDependency): PromoListNodeHolder {
             return PromoListNodeHolder(inflater, parent, parentComponent)
+        }
+
+        @BookingExtraScope
+        @Provides
+        internal fun provideExtraBuilder(inflater: LayoutInflater, parent: HomeView, parentComponent: BookingExtraComponent): ExtraNodeHolder {
+            return ExtraNodeHolder(inflater, parent, parentComponent)
         }
     }
 }

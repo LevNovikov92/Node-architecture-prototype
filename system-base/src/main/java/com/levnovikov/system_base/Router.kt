@@ -28,7 +28,7 @@ abstract class Router {
 
     fun getState(): Map<String, NodeState> {
         val state = getChildrenState()
-        val stateData = stateDataProvider?.run { this.stateData() }
+        val stateData = stateDataProvider?.run { this.onSaveData() }
         val nodeState = getNodeState(NodeState(this.javaClass.simpleName, stateData)) //TODO refactor to Kotlin class
         state[nodeState.routerClass] = nodeState
         return state

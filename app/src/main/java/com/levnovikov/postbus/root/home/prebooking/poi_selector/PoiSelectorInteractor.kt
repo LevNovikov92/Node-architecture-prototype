@@ -24,7 +24,7 @@ constructor(
         activityState: ActivityState,
         private val listener: PoiSelectionListener,
         private val lifecycle: Lifecycle) : BackStateInteractor<PoiSelectorRouter>(router, activityState) {
-    override fun stateData(): Parcelable? = null
+    override fun onSaveData(): Parcelable? = null
 
     interface PoiSelectionListener {
         fun onPoiSelected(point: Point)

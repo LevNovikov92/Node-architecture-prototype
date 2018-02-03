@@ -35,7 +35,7 @@ internal constructor(router: PrebookingRouter,
     /**
      * Router will save this data when activity will go to background
      */
-    override fun stateData(): Parcelable = prebookingRepo.data
+    override fun onSaveData(): Parcelable = prebookingRepo.data
 
     override fun onGetActive() {
         super.onGetActive()

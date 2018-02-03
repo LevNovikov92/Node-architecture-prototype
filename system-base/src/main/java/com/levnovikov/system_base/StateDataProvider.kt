@@ -8,5 +8,5 @@ import android.os.Parcelable
  */
 
 interface StateDataProvider {
-    fun stateData(): Parcelable?
+    fun onSaveData(): Parcelable?
 }

@@ -105,7 +105,7 @@ class HomeModule(private val activity: HomeActivity, private val activityState: 
 
     @HomeScope
     @Provides
-    fun provideActivizxtyState(): ActivityState {
+    fun provideActivityState(): ActivityState {
         return activityState
     }
 }

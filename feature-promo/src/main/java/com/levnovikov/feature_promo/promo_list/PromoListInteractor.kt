@@ -41,5 +41,5 @@ class PromoListInteractor @Inject constructor(
         return true
     }
 
-    override fun stateData(): Parcelable? = null
+    override fun onSaveData(): Parcelable? = null
 }
