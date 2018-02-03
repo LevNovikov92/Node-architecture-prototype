@@ -1,18 +1,23 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 android androidConfiguration
 
-dependencies {
-    implementation libs.rxJava
-    implementation libs.rxAndroid
-    implementation libs.dagger
-
-    compileOnly "com.google.auto.value:auto-value:1.5"
-    annotationProcessor "com.google.auto.value:auto-value:1.5"
-    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.6'
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
-    annotationProcessor libs.daggerCompiler
+    implementation libs.kotlin
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+    implementation libs.dagger
+}
+
+dependencies {
+    kapt libs.daggerCompiler
 }
 
 dependencies {
