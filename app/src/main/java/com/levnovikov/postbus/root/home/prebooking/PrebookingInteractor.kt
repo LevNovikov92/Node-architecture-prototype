@@ -49,13 +49,13 @@ internal constructor(router: PrebookingRouter,
 
     private fun bindMapAndPrebookingRepo() {
         lifecycle.subscribeUntilDestroy(
-                prebookingRepo.pickupPoint.stream
+                prebookingRepo.pickupPoint.stream()
                         .subscribe({ point ->
                             mapProvider.map
                                     .map { MapWrapper(it) }
                                     .subscribe({ map -> map.setPickUp(point) }) { e -> }
                         }) { e -> })
-        lifecycle.subscribeUntilDestroy(prebookingRepo.dropOffPoint.stream
+        lifecycle.subscribeUntilDestroy(prebookingRepo.dropOffPoint.stream()
                 .subscribe({ point ->
                     mapProvider.map
                             .map { MapWrapper(it) }

@@ -4,7 +4,6 @@ import com.levnovikov.feature_map.MapNodeHolder
 import com.levnovikov.postbus.root.home.allocating.AllocatingNodeHolder
 import com.levnovikov.postbus.root.home.di.HomeScope
 import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder
-import com.levnovikov.stream_state.AppState
 import com.levnovikov.system_base.Router
 import com.levnovikov.system_base.node_state.NodeState
 import javax.inject.Inject
@@ -19,7 +18,6 @@ constructor(
         private val prebookingBuilder: PrebookingNodeHolder,
         private val allocatingBuilder: AllocatingNodeHolder,
         private val mapBuilder: MapNodeHolder) : Router() {
-    private var currentState: AppState? = null
 
     fun startPrebooking() {
         detachNode(allocatingBuilder)
@@ -38,18 +36,6 @@ constructor(
     fun startTracking() {
         detachNode(allocatingBuilder)
         detachNode(prebookingBuilder)
-    }
-
-    fun switchState(state: AppState) {
-        if (state == currentState) {
-            return
-        }
-        when (state) {
-            AppState.PREBOOKING -> startPrebooking()
-            AppState.ALLOCATING -> startAllocating()
-            AppState.TRACKING -> startTracking()
-        }
-        currentState = state
     }
 
     override fun destroyNode() {

@@ -1,7 +1,7 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector
 
 import com.levnovikov.feature_ride.ride.RidePrebookingRepo
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListInteractor
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.TypeListListener
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorScope
 import com.levnovikov.system_base.Interactor
 import com.levnovikov.system_base.lifecycle.Lifecycle
@@ -23,7 +23,7 @@ internal constructor(
         private val prebookingRepo: RidePrebookingRepo,
         router: CarTypeSelectorRouter,
         activityState: ActivityState,
-        private val lifecycle: Lifecycle) : Interactor<CarTypeSelectorRouter>(router, activityState), CarTypeListInteractor.TypeListListener {
+        private val lifecycle: Lifecycle) : Interactor<CarTypeSelectorRouter>(router, activityState), TypeListListener {
 
     override fun onCancel() {
         router.detachTypeList()

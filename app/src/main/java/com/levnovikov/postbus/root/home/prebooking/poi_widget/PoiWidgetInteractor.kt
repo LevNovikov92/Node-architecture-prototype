@@ -30,10 +30,10 @@ constructor(
 
     init {
 
-        lifecycle.subscribeUntilDestroy(prebookingRepo.pickupPoint.stream
+        lifecycle.subscribeUntilDestroy(prebookingRepo.pickupPoint.stream()
                 .subscribe({ (_, title) -> presenter.setPickUp(title) }) { /*handle*/ e -> })
 
-        lifecycle.subscribeUntilDestroy(prebookingRepo.dropOffPoint.stream
+        lifecycle.subscribeUntilDestroy(prebookingRepo.dropOffPoint.stream()
                 .subscribe({ (_, title) -> presenter.setDropOff(title) }) { /*handle*/ e -> })
     }
 

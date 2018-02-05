@@ -1,11 +1,11 @@
-package com.levnovikov.stream_state;
+package com.levnovikov.stream_state
 
 /**
  * Created by lev.novikov
  * Date: 18/12/17.
  */
 
-public enum PrebookingState {
+enum class PrebookingState {
     INITIAL,
     PICK_UP_SELECTION,
     DROP_OFF_SELECTION,

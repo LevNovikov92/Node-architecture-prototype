@@ -40,8 +40,8 @@ class RidePrebookingRepo(private var data: RidePrebookingData) : PrebookingRepo<
 
     fun setData(data: RidePrebookingData) {
         this.data = data
-        pickupPoint.set(data.pickUpPoint)
-        dropOffPoint.set(data.dropOffPoint)
+        data.pickUpPoint?.let { pickupPoint.set(it) }
+        data.dropOffPoint?.let { dropOffPoint.set(it) }
         carType.set(data.carType)
         promo.set(data.promoCode)
     }

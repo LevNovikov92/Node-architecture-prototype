@@ -18,12 +18,12 @@ class CarTypeListInteractor @Inject
 constructor(router: CarTypeListRouter, activityState: ActivityState, private val listener: TypeListListener) : BackStateInteractor<CarTypeListRouter>(router, activityState) {
     override fun onSaveData(): Parcelable?  = null
 
-    interface TypeListListener {
-        fun onCancel()
-    }
-
     override fun onBackPressed(): Boolean {
         listener.onCancel()
         return true
     }
+}
+
+interface TypeListListener {
+    fun onCancel()
 }
