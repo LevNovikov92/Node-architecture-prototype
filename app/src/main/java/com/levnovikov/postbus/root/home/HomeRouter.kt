@@ -53,16 +53,16 @@ constructor(
     }
 
     override fun setState(state: NodeState) {
+        if (state.contains(mapBuilder.javaClass)) {
+            attachNode(mapBuilder)
+        }
+
         if (state.contains(prebookingBuilder.javaClass)) {
             attachNode(prebookingBuilder)
         }
 
         if (state.contains(allocatingBuilder.javaClass)) {
             attachNode(allocatingBuilder)
-        }
-
-        if (state.contains(mapBuilder.javaClass)) {
-            attachNode(mapBuilder)
         }
     }
 }

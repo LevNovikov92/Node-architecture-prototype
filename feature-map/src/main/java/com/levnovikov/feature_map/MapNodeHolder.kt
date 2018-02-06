@@ -26,6 +26,7 @@ class MapNodeHolder(inflater: LayoutInflater, parent: ViewGroup, private val par
                 .mapModule(MapComponent.MapModule(view))
                 .build()
         component.inject(view)
+        component.inject(this)
         attachView()
         return component.router()
     }

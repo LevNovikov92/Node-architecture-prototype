@@ -1,5 +1,6 @@
 package com.levnovikov.feature_map.di
 
+import com.levnovikov.feature_map.MapNodeHolder
 import com.levnovikov.feature_map.MapRouter
 import com.levnovikov.feature_map.MapView
 import com.levnovikov.feature_map.dependency.MapDependency
@@ -30,4 +31,6 @@ interface MapComponent {
             return view
         }
     }
+
+    fun inject(view: MapNodeHolder)
 }
