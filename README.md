@@ -3,10 +3,10 @@ Transportation app architecture example
 
 ## Overview ##
 
-![overview](https://lh4.googleusercontent.com/UOGnXkI76ku4iq-lkSh4FbFwQZfXaOSLQERGd53akoBgReytU9g3uG00BL15nO4_XSap39p4yG5hDOVmDOPi=w1807-h799-rw)
+![overview](https://raw.githubusercontent.com/LevNovikov92/Node-architecture-prototype/proto-master/system-base/readme-structure/Node%20architecture%20overview.png)
 
 ## Node structure ##
-![node structure](https://lh5.googleusercontent.com/_ccoEy0XYs09wVAq4cKBbroZdH9bJrNBsz00eP8YEe4BpJfMDM-UCj-MYHFVlWvr_V9l_DdYvj9HcFm0KK0L=w1807-h799-rw)
+![node structure](https://raw.githubusercontent.com/LevNovikov92/Node-architecture-prototype/proto-master/system-base/readme-structure/Node%20architecture%20-%20node%20structure.png)
 
 ## Communication ##
-![communication](https://lh6.googleusercontent.com/MkH7Tya9Q4nmmGAWtW9yAclLTLhxubUwkBvxsiZP6kQVs_O48XceIwyY_KtAkLvflyK76YdBkl7cbbRWqvrz=w1807-h799-rw)
+![communication](https://raw.githubusercontent.com/LevNovikov92/Node-architecture-prototype/proto-master/system-base/readme-structure/Node%20architecture%20-%20communiacation.png)
