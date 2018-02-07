@@ -9,7 +9,8 @@ abstract class StateInteractor<R : Router>(router: R, activityState: ActivitySta
          * If interactor need to store data after Activity recreation, we can set data source to router.
          * Router will get and save data when Activity will call onSaveInstanceState.
          */
-        router.setStateDataProvider(this) //TODO fix leak
+        @Suppress("LeakingThis")
+        router.setStateDataProvider(this)
     }
 
     override fun onGetActive() {

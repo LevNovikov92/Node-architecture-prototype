@@ -14,7 +14,8 @@ abstract class BackStateInteractor<R : Router>(router: R, activityState: Activit
         /*
          * If interactor need to handle onBackPressed
          */
-        router.setBackHandler(this) //TODO fix leak
+        @Suppress("LeakingThis")
+        router.setBackHandler(this)
         activityState.addToBackStack(router.javaClass)
     }
 

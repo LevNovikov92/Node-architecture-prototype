@@ -15,27 +15,27 @@ import javax.inject.Inject
 
 @HomeScope class HomeRouter @Inject
 constructor(
-        private val prebookingBuilder: PrebookingNodeHolder,
-        private val allocatingBuilder: AllocatingNodeHolder,
-        private val mapBuilder: MapNodeHolder) : Router() {
+        private val prebookingHolder: PrebookingNodeHolder,
+        private val allocatingHolder: AllocatingNodeHolder,
+        private val mapHolder: MapNodeHolder) : Router() {
 
     fun startPrebooking() {
-        detachNode(allocatingBuilder)
-        attachNode(prebookingBuilder)
+        detachNode(allocatingHolder)
+        attachNode(prebookingHolder)
     }
 
     fun startAllocating() {
-        detachNode(prebookingBuilder)
-        attachNode(allocatingBuilder)
+        detachNode(prebookingHolder)
+        attachNode(allocatingHolder)
     }
 
     fun loadMap() {
-        attachNode(mapBuilder)
+        attachNode(mapHolder)
     }
 
     fun startTracking() {
-        detachNode(allocatingBuilder)
-        detachNode(prebookingBuilder)
+        detachNode(allocatingHolder)
+        detachNode(prebookingHolder)
     }
 
     override fun destroyNode() {
@@ -43,26 +43,27 @@ constructor(
     }
 
     override fun getNodeState(nodeState: NodeState): NodeState {
-        if (prebookingBuilder.isActive())
-            nodeState.addNodeBuilder(prebookingBuilder.javaClass)
-        if (allocatingBuilder.isActive())
-            nodeState.addNodeBuilder(allocatingBuilder.javaClass)
-        if (mapBuilder.isActive())
-            nodeState.addNodeBuilder(mapBuilder.javaClass)
+        if (prebookingHolder.isActive())
+            nodeState.addNodeBuilder(prebookingHolder.javaClass)
+        if (allocatingHolder.isActive())
+            nodeState.addNodeBuilder(allocatingHolder.javaClass)
+        if (mapHolder.isActive())
+            nodeState.addNodeBuilder(mapHolder.javaClass)
         return nodeState
     }
 
+    /**
+     * Order is important
+     */
     override fun setState(state: NodeState) {
-        if (state.contains(mapBuilder.javaClass)) {
-            attachNode(mapBuilder)
+        if (state.contains(mapHolder.javaClass)) {
+            attachNode(mapHolder)
         }
-
-        if (state.contains(prebookingBuilder.javaClass)) {
-            attachNode(prebookingBuilder)
+        if (state.contains(prebookingHolder.javaClass)) {
+            attachNode(prebookingHolder)
         }
-
-        if (state.contains(allocatingBuilder.javaClass)) {
-            attachNode(allocatingBuilder)
+        if (state.contains(allocatingHolder.javaClass)) {
+            attachNode(allocatingHolder)
         }
     }
 }

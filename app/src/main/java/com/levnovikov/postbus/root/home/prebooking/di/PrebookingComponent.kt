@@ -32,7 +32,7 @@ import dagger.Provides
 @Component(dependencies = [(HomeComponent::class)], modules = [(PrebookingComponent.PrebookingModule::class)])
 interface PrebookingComponent : ActivityComponent {
 
-    fun inject(prebookingBuilder: PrebookingNodeHolder)
+    fun inject(prebookingNodeHolder: PrebookingNodeHolder)
 
     fun interactor(): PrebookingInteractor
     fun mapProvider(): MapProvider

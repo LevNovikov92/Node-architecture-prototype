@@ -24,8 +24,7 @@ import javax.inject.Inject
  */
 
 @PrebookingScope
-class PrebookingInteractor @Inject
-internal constructor(router: PrebookingRouter,
+class PrebookingInteractor @Inject constructor(router: PrebookingRouter,
                      private val prebookingRepo: RidePrebookingRepo,
                      activityState: ActivityState,
                      private val lifecycle: Lifecycle,
@@ -37,6 +36,9 @@ internal constructor(router: PrebookingRouter,
      */
     override fun onSaveData(): Parcelable = prebookingRepo.data
 
+    /**
+     * Start interactor job
+     */
     override fun onGetActive() {
         super.onGetActive()
         if (!hasSavedState()) {

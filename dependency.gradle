@@ -1,6 +1,6 @@
 ext {
     //Build
-    kotlinVersion = '1.2.10'
+    kotlinVersion = '1.2.20'
     gradlePluginVersion = "3.0.1"
     //Android
     androidBuildToolsVersion = "26.0.2"

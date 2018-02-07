@@ -56,13 +56,14 @@ internal constructor(
                 currentState = it.state
             }
         } ?: router.loadMap()
-        lifecycle.subscribeUntilDestroy(appStateStream  //TODO remove checking
+
+        lifecycle.subscribeUntilDestroy(appStateStream
                 .subscribe({ state -> switchState(state) }) { error ->
                     //TODO handle error
                 })
     }
 
-    fun switchState(state: AppState) {
+    private fun switchState(state: AppState) {
         if (state == currentState) {
             return
         }

@@ -18,66 +18,73 @@ import javax.inject.Inject
 @PrebookingScope
 class PrebookingRouter @Inject
 internal constructor(
-        private val poiWidgetBuilder: PoiWidgetNodeHolder,
-        private val poiSelectorBuilder: PoiSelectorNodeHolder,
-        private val carTypeSelectorBuilder: CarTypeSelectorNodeHolder,
-        private val bookingExtraBuilder: BookingExtraNodeHolder) : Router() {
+        private val poiWidgetHolder: PoiWidgetNodeHolder,
+        private val poiSelectorHolder: PoiSelectorNodeHolder,
+        private val carTypeSelectorHolder: CarTypeSelectorNodeHolder,
+        private val bookingExtraHolder: BookingExtraNodeHolder) : Router() {
 
     fun showPoiWidget() {
-        attachNode(poiWidgetBuilder)
+        attachNode(poiWidgetHolder)
     }
 
     fun startServiceType() {
-        detachNode(poiSelectorBuilder)
-        detachNode(poiWidgetBuilder)
+        detachNode(poiSelectorHolder)
+        detachNode(poiWidgetHolder)
 
-        attachNode(carTypeSelectorBuilder)
+        attachNode(carTypeSelectorHolder)
     }
 
     fun startBookingExtra() {
-        attachNode(bookingExtraBuilder)
+        attachNode(bookingExtraHolder)
     }
 
     fun startPoiChoice() {
-        attachNode(poiSelectorBuilder)
+        attachNode(poiSelectorHolder)
     }
 
     fun hidePoiChoice() {
-        detachNode(poiSelectorBuilder)
+        detachNode(poiSelectorHolder)
     }
 
     override fun destroyNode() {
-        detachNode(poiWidgetBuilder)
-        detachNode(poiSelectorBuilder)
-        detachNode(carTypeSelectorBuilder)
-        detachNode(bookingExtraBuilder)
+        detachNode(poiWidgetHolder)
+        detachNode(poiSelectorHolder)
+        detachNode(carTypeSelectorHolder)
+        detachNode(bookingExtraHolder)
         detachChildren()
     }
 
+    /**
+     * Method will be called before onSaveInstanceState. Should return state for saving.
+     * Router know only about attached children and should add this info.
+     */
     override fun getNodeState(nodeState: NodeState): NodeState {
-        if (poiWidgetBuilder.isActive())
-            nodeState.addNodeBuilder(poiWidgetBuilder.javaClass)
-        if (poiSelectorBuilder.isActive())
-            nodeState.addNodeBuilder(poiSelectorBuilder.javaClass)
-        if (carTypeSelectorBuilder.isActive())
-            nodeState.addNodeBuilder(carTypeSelectorBuilder.javaClass)
-        if (bookingExtraBuilder.isActive())
-            nodeState.addNodeBuilder(bookingExtraBuilder.javaClass)
+        if (poiWidgetHolder.isActive())
+            nodeState.addNodeBuilder(poiWidgetHolder.javaClass)
+        if (poiSelectorHolder.isActive())
+            nodeState.addNodeBuilder(poiSelectorHolder.javaClass)
+        if (carTypeSelectorHolder.isActive())
+            nodeState.addNodeBuilder(carTypeSelectorHolder.javaClass)
+        if (bookingExtraHolder.isActive())
+            nodeState.addNodeBuilder(bookingExtraHolder.javaClass)
         return nodeState
     }
 
+    /**
+     * After restoring router should restore state
+     */
     override fun setState(state: NodeState) {
-        if (state.contains(poiWidgetBuilder.javaClass)) {
-            attachNode(poiWidgetBuilder)
+        if (state.contains(poiWidgetHolder.javaClass)) {
+            attachNode(poiWidgetHolder)
         }
-        if (state.contains(poiSelectorBuilder.javaClass)) {
-            attachNode(poiSelectorBuilder)
+        if (state.contains(poiSelectorHolder.javaClass)) {
+            attachNode(poiSelectorHolder)
         }
-        if (state.contains(carTypeSelectorBuilder.javaClass)) {
-            attachNode(carTypeSelectorBuilder)
+        if (state.contains(carTypeSelectorHolder.javaClass)) {
+            attachNode(carTypeSelectorHolder)
         }
-        if (state.contains(bookingExtraBuilder.javaClass)) {
-            attachNode(bookingExtraBuilder)
+        if (state.contains(bookingExtraHolder.javaClass)) {
+            attachNode(bookingExtraHolder)
         }
     }
 }
