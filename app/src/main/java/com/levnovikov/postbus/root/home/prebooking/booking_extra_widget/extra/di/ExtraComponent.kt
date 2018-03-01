@@ -4,6 +4,7 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.Booki
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra.ExtraNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra.ExtraRouter
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra.ExtraView
+import com.levnovikov.system_base.base_di.ActivityComponent
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -15,7 +16,7 @@ import dagger.Provides
 
 @ExtraScope
 @Component(dependencies = [BookingExtraComponent::class], modules = [ExtraComponent.ExtraModule::class])
-interface ExtraComponent {
+interface ExtraComponent : ActivityComponent {
 
     @Module
     class ExtraModule(private val view: ExtraView) {

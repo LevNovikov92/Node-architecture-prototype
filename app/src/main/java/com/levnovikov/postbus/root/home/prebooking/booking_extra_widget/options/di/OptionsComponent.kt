@@ -5,9 +5,8 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsRouter
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsView
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.SubOptionsNodeHolder
-import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.SubOptionsRouter
-import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.SubOptionsView
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.di.SubOptionsDependencies
+import com.levnovikov.system_base.base_di.ActivityComponent
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
@@ -23,13 +22,13 @@ import javax.inject.Scope
 @Retention(AnnotationRetention.RUNTIME)
 annotation class OptionsScope
 
-interface OptionsDependencies {
+interface OptionsDependencies : ActivityComponent {
     fun inflater(): LayoutInflater
 }
 
 @OptionsScope
 @Component(dependencies = [OptionsDependencies::class], modules = [OptionsComponent.OptionsModule::class])
-interface OptionsComponent : SubOptionsDependencies {
+interface OptionsComponent : SubOptionsDependencies, ActivityComponent {
 
     @Module
     class OptionsModule {
