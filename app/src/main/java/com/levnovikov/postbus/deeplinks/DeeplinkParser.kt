@@ -1,5 +1,6 @@
 package com.levnovikov.postbus.deeplinks
 
+import com.levnovikov.postbus.root.home.HomeInteractor
 import com.levnovikov.postbus.root.home.HomeRouter
 import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.PrebookingRouter
@@ -7,6 +8,7 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingE
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraRouter
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorNodeHolder
+import com.levnovikov.stream_state.AppState
 import com.levnovikov.system_base.node_state.ActivityState
 import com.levnovikov.system_base.node_state.NodeState
 import java.net.URI
@@ -40,7 +42,7 @@ class PromoDeeplink : DeeplinkCase {
 
     override fun parseState(): ActivityState =
         ActivityState(stateMap = mapOf(
-            className<HomeRouter>() to NodeState(null, setOf(className<PrebookingNodeHolder>())),
+            className<HomeRouter>() to NodeState(HomeInteractor.HomeData(AppState.PREBOOKING), setOf(className<PrebookingNodeHolder>())),
             className<PrebookingRouter>() to NodeState(null, setOf(
                     className<BookingExtraNodeHolder>(), className<CarTypeSelectorNodeHolder>())),
             className<BookingExtraRouter>() to NodeState(null, setOf(

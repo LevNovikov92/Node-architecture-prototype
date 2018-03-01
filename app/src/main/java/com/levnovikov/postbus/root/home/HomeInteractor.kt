@@ -49,13 +49,13 @@ internal constructor(
         get() = router.getState()
 
     override fun onGetActive() {
+        super.onGetActive()
         nodeState?.let {
             val data: HomeData? = it.data as HomeData?
             data?.let {
                 currentState = it.state
             }
         } ?: router.loadMap()
-        super.onGetActive()
 
         lifecycle.subscribeUntilDestroy(appStateStream
                 .subscribe({ state -> switchState(state) }) { error ->
