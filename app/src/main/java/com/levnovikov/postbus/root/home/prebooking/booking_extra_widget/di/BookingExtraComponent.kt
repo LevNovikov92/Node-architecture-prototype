@@ -30,7 +30,6 @@ interface BookingExtraComponent : ActivityComponent, PromoListDependency, Option
     fun inject(bookingExtraBuilder: BookingExtraView)
 
     fun router(): BookingExtraRouter
-    fun inflater(): LayoutInflater
 
     fun inject(bookingExtraBuilder: BookingExtraNodeHolder)
 

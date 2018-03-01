@@ -1,4 +1,4 @@
-package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.di
+package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options
 
 import android.content.Context
 import android.util.AttributeSet
