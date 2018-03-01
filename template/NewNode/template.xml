@@ -1,0 +1,25 @@
+<template format="4"
+		revision="1"
+		name="Create new node"
+		description="Creates new Node with all DI and Dependencies">
+
+	<category value="Other"/>
+
+	<parameter id="className"
+		name="Node name"
+		type="string"
+		constraints="class|unique|nonempty"
+		default="Blank"
+		help="Node name"/>
+
+	<parameter id="xmlName"
+		name="XML layout name"
+		type="string"
+		constraints="class|unique|nonempty"
+		default="node_blank"
+		help="Node name"/>
+
+	<globals file="globals.xml.ftl" />
+  <execute file="recipe.xml.ftl" />
+
+</template>
