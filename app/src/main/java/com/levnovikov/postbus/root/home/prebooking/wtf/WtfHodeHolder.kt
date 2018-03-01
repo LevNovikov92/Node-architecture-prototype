@@ -62,10 +62,6 @@ class WtfRouter @Inject constructor() : Router() {
     override val holders: Set<NodeHolder<*>>
         get() = TODO("not implemented")
 
-    override fun setState(state: NodeState) {
-        TODO("not implemented")
-    }
-
     //TODO implement state logic here if it's needed
 }
 

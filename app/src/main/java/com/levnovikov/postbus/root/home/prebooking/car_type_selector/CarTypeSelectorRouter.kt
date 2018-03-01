@@ -26,9 +26,4 @@ internal constructor(private val carTypeListBuilder: CarTypeListNodeHolder) : Ro
         detachNode(carTypeListBuilder)
     }
 
-    override fun setState(state: NodeState) {
-        if (state.contains(carTypeListBuilder.javaClass)) {
-            attachNode(carTypeListBuilder)
-        }
-    }
 }

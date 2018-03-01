@@ -48,22 +48,4 @@ internal constructor(
     fun hidePoiChoice() {
         detachNode(poiSelectorHolder)
     }
-
-    /**
-     * After restoring router should restore state
-     */
-    override fun setState(state: NodeState) {
-        if (state.contains(poiWidgetHolder.javaClass)) {
-            attachNode(poiWidgetHolder)
-        }
-        if (state.contains(poiSelectorHolder.javaClass)) {
-            attachNode(poiSelectorHolder)
-        }
-        if (state.contains(carTypeSelectorHolder.javaClass)) {
-            attachNode(carTypeSelectorHolder)
-        }
-        if (state.contains(bookingExtraHolder.javaClass)) {
-            attachNode(bookingExtraHolder)
-        }
-    }
 }

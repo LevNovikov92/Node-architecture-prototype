@@ -1,8 +1,8 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra
 
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra.di.ExtraScope
-import com.levnovikov.system_base.LeafRouter
 import com.levnovikov.system_base.NodeHolder
+import com.levnovikov.system_base.Router
 import javax.inject.Inject
 
 /**
@@ -11,7 +11,7 @@ import javax.inject.Inject
  */
 
 @ExtraScope
-class ExtraRouter @Inject constructor() : LeafRouter() {
+class ExtraRouter @Inject constructor() : Router() {
     override val holders: Set<NodeHolder<*>>
         get() = emptySet()
 }

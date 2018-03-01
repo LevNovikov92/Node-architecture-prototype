@@ -11,5 +11,4 @@ import javax.inject.Inject
 class SubOptionsRouter @Inject constructor(): Router() {
     override val holders: Set<NodeHolder<*>> = emptySet()
 
-    override fun setState(state: NodeState) = Unit
 }

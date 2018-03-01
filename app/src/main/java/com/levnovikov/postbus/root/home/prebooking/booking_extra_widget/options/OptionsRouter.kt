@@ -16,10 +16,6 @@ import javax.inject.Inject
 class OptionsRouter @Inject constructor(val subOptionsNodeHolder: SubOptionsNodeHolder) : Router() {
     override val holders: Set<NodeHolder<*>> = setOf(subOptionsNodeHolder)
 
-    override fun setState(state: NodeState) {
-//        TODO("not implemented")
-    }
-
     fun showSubOptions() {
         attachNode(subOptionsNodeHolder)
     }

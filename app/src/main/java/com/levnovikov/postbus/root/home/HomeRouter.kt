@@ -42,18 +42,4 @@ constructor(
 
     override val holders: Set<NodeHolder<*>> = setOf(prebookingHolder, allocatingHolder, mapHolder)
 
-    /**
-     * Order is important
-     */
-    override fun setState(state: NodeState) {
-        if (state.contains(mapHolder.javaClass)) {
-            attachNode(mapHolder)
-        }
-        if (state.contains(prebookingHolder.javaClass)) {
-            attachNode(prebookingHolder)
-        }
-        if (state.contains(allocatingHolder.javaClass)) {
-            attachNode(allocatingHolder)
-        }
-    }
 }
