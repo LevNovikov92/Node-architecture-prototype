@@ -10,6 +10,8 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingE
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraRouter
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraView
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra.ExtraNodeHolder
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsNodeHolder
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.di.OptionsDependencies
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent
 import com.levnovikov.system_base.base_di.ActivityComponent
 import dagger.Component
@@ -23,7 +25,7 @@ import dagger.Provides
 
 @BookingExtraScope
 @Component(dependencies = [(PrebookingComponent::class)], modules = [(BookingExtraComponent.BookingExtraModule::class)])
-interface BookingExtraComponent : ActivityComponent, PromoListDependency {
+interface BookingExtraComponent : ActivityComponent, PromoListDependency, OptionsDependencies {
 
     fun inject(bookingExtraBuilder: BookingExtraView)
 
@@ -70,5 +72,11 @@ interface BookingExtraComponent : ActivityComponent, PromoListDependency {
         internal fun provideExtraBuilder(inflater: LayoutInflater, parent: HomeView, parentComponent: BookingExtraComponent): ExtraNodeHolder {
             return ExtraNodeHolder(inflater, parent, parentComponent)
         }
+
+        @BookingExtraScope
+        @Provides
+        internal fun provideOptionsBuilder(inflater: LayoutInflater, parent: HomeView, parentComponent: BookingExtraComponent) =
+                OptionsNodeHolder(inflater, parent, parentComponent)
+
     }
 }

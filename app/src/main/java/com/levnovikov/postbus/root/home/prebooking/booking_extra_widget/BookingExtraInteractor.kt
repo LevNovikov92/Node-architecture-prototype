@@ -26,7 +26,7 @@ constructor(
                 .subscribe({ _ -> listener.onBookClick() }) { e -> }
 
         presenter.promoClickStream()
-                .subscribe({ _ -> router.attachPromoList() }) { e -> }
+                .subscribe({ _ -> router.showOptions() }) { e -> }
     }
 
     override fun onPromoSelected(promo: Promo) {

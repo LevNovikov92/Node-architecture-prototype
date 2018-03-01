@@ -3,6 +3,7 @@ package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget
 import com.levnovikov.feature_promo.promo_list.PromoListNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra.ExtraNodeHolder
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsNodeHolder
 import com.levnovikov.system_base.Router
 import com.levnovikov.system_base.node_state.NodeState
 
@@ -17,10 +18,12 @@ import javax.inject.Inject
 class BookingExtraRouter @Inject
 constructor(
         private val promoListBuilder: PromoListNodeHolder,
-        private val extraNodeHolder: ExtraNodeHolder) : Router() {
+        private val extraNodeHolder: ExtraNodeHolder,
+        private val optionsNodeHolder: OptionsNodeHolder) : Router() {
 
     override fun destroyNode() {
         detachNode(promoListBuilder)
+        hideOptions()
     }
 
     override fun getNodeState(nodeState: NodeState): NodeState {
@@ -50,5 +53,13 @@ constructor(
 
     fun detachExtra() {
         detachNode(extraNodeHolder)
+    }
+
+    fun showOptions() {
+        attachNode(optionsNodeHolder)
+    }
+
+    fun hideOptions() {
+        detachNode(optionsNodeHolder)
     }
 }
