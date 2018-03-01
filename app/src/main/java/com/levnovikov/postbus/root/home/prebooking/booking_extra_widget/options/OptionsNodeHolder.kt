@@ -1,8 +1,8 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options
 
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.levnovikov.postbus.R
+import com.levnovikov.postbus.root.home.HomeView
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.di.DaggerOptionsComponent
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.di.OptionsDependencies
 import com.levnovikov.system_base.ViewNodeHolder
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class OptionsNodeHolder @Inject constructor(
         inflater: LayoutInflater,
-        parent: ViewGroup,
+        parent: HomeView,
         private val dependencies: OptionsDependencies) : ViewNodeHolder<OptionsView, OptionsRouter>(inflater, parent) {
 
     override val layout: Int

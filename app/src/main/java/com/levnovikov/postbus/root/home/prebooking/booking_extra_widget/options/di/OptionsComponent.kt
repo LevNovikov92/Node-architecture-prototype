@@ -1,11 +1,17 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.di
 
+import android.view.LayoutInflater
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsRouter
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsView
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.SubOptionsNodeHolder
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.SubOptionsRouter
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.SubOptionsView
+import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.di.SubOptionsDependencies
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
+import dagger.Provides
 import javax.inject.Scope
 
 /**
@@ -18,16 +24,18 @@ import javax.inject.Scope
 annotation class OptionsScope
 
 interface OptionsDependencies {
-
+    fun inflater(): LayoutInflater
 }
 
 @OptionsScope
 @Component(dependencies = [OptionsDependencies::class], modules = [OptionsComponent.OptionsModule::class])
-interface OptionsComponent {
+interface OptionsComponent : SubOptionsDependencies {
 
     @Module
     class OptionsModule {
-
+        @Provides
+        fun subOptionsNodeHolder(view: OptionsView, layoutInflater: LayoutInflater, component: OptionsComponent): SubOptionsNodeHolder =
+                SubOptionsNodeHolder(view, layoutInflater, component)
     }
 
     @Component.Builder
@@ -41,4 +49,5 @@ interface OptionsComponent {
     fun inject(view: OptionsView)
     fun inject(view: OptionsNodeHolder)
     fun router(): OptionsRouter
+    fun dependencies(): OptionsDependencies
 }
