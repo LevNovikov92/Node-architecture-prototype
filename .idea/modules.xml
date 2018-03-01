@@ -5,27 +5,16 @@
       <module fileurl="file://$PROJECT_DIR$/Node-architecture-prototype.iml" filepath="$PROJECT_DIR$/Node-architecture-prototype.iml" />
       <module fileurl="file://$PROJECT_DIR$/PostBusApp.iml" filepath="$PROJECT_DIR$/PostBusApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core-auth/core-auth.iml" filepath="$PROJECT_DIR$/core-auth/core-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-auth/core-auth.iml" filepath="$PROJECT_DIR$/core-auth/core-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-booking/core-booking.iml" filepath="$PROJECT_DIR$/core-booking/core-booking.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core-booking/core-booking.iml" filepath="$PROJECT_DIR$/core-booking/core-booking.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core-geo/core-geo.iml" filepath="$PROJECT_DIR$/core-geo/core-geo.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-geo/core-geo.iml" filepath="$PROJECT_DIR$/core-geo/core-geo.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-location/core-location.iml" filepath="$PROJECT_DIR$/core-location/core-location.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core-location/core-location.iml" filepath="$PROJECT_DIR$/core-location/core-location.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core-profile/core-profile.iml" filepath="$PROJECT_DIR$/core-profile/core-profile.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-profile/core-profile.iml" filepath="$PROJECT_DIR$/core-profile/core-profile.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-map/feature-map.iml" filepath="$PROJECT_DIR$/feature-map/feature-map.iml" />
-      <module fileurl="file://$PROJECT_DIR$/feature-map/feature-map.iml" filepath="$PROJECT_DIR$/feature-map/feature-map.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-promo/feature-promo.iml" filepath="$PROJECT_DIR$/feature-promo/feature-promo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/feature-promo/feature-promo.iml" filepath="$PROJECT_DIR$/feature-promo/feature-promo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/feature-ride/feature-ride.iml" filepath="$PROJECT_DIR$/feature-ride/feature-ride.iml" />
       <module fileurl="file://$PROJECT_DIR$/feature-ride/feature-ride.iml" filepath="$PROJECT_DIR$/feature-ride/feature-ride.iml" />
       <module fileurl="file://$PROJECT_DIR$/post-bus.iml" filepath="$PROJECT_DIR$/post-bus.iml" />
       <module fileurl="file://$PROJECT_DIR$/stream-state/stream-state.iml" filepath="$PROJECT_DIR$/stream-state/stream-state.iml" />
-      <module fileurl="file://$PROJECT_DIR$/stream-state/stream-state.iml" filepath="$PROJECT_DIR$/stream-state/stream-state.iml" />
-      <module fileurl="file://$PROJECT_DIR$/system-base/system-base.iml" filepath="$PROJECT_DIR$/system-base/system-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/system-base/system-base.iml" filepath="$PROJECT_DIR$/system-base/system-base.iml" />
     </modules>
   </component>

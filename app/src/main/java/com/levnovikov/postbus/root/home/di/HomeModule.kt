@@ -8,6 +8,8 @@ import com.levnovikov.feature_map.dependency.MapProvider
 import com.levnovikov.feature_map.dependency.MapSetter
 import com.levnovikov.feature_map.lifecycle.MapLifecycleEvent
 import com.levnovikov.postbus.R
+import com.levnovikov.postbus.deeplinks.DeeplinkParser
+import com.levnovikov.postbus.deeplinks.DeeplinkParserImpl
 import com.levnovikov.postbus.root.home.HomeActivity
 import com.levnovikov.postbus.root.home.HomeInteractor
 import com.levnovikov.postbus.root.home.HomeView
@@ -108,4 +110,8 @@ class HomeModule(private val activity: HomeActivity, private val activityState: 
     fun provideActivityState(): ActivityState {
         return activityState
     }
+
+    @HomeScope
+    @Provides
+    fun provideDeeplinkParser(impl: DeeplinkParserImpl): DeeplinkParser = impl
 }
