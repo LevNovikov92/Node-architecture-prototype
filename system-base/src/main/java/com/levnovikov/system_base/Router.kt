@@ -84,10 +84,9 @@ abstract class Router {
             .map { it::class.java.simpleName }
             .toSet()
 
-    fun setState(state: NodeState) {
-        holders.filter { state.contains(it.javaClass) }
-                .forEach(::attachNode)
-    }
+    fun setState(state: NodeState) = holders
+            .filter { state.contains(it.javaClass) }
+            .forEach(::attachNode)
 
     fun onBackPressed(): Boolean {
         for (router in children.values) {
