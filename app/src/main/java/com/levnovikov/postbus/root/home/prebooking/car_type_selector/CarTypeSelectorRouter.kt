@@ -18,10 +18,6 @@ class CarTypeSelectorRouter @Inject
 internal constructor(private val carTypeListBuilder: CarTypeListNodeHolder) : Router() {
     override val holders: Set<NodeHolder<*>> = setOf(carTypeListBuilder)
 
-    override fun destroyNode() {
-        detachNode(carTypeListBuilder)
-    }
-
     internal fun attachTypeList() {
         attachNode(carTypeListBuilder)
     }

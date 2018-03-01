@@ -24,11 +24,6 @@ constructor(
 
     override val holders: Set<NodeHolder<*>> = setOf(promoListBuilder, extraNodeHolder, optionsNodeHolder)
 
-    override fun destroyNode() {
-        detachNode(promoListBuilder)
-        hideOptions()
-    }
-
     override fun setState(state: NodeState) {
         if (state.contains(PromoListNodeHolder::class.java)) {
             attachNode(promoListBuilder)

@@ -7,9 +7,6 @@ import com.levnovikov.system_base.node_state.NodeState
  * Date: 3/2/18.
  */
 abstract class LeafRouter : Router() {
-    override fun destroyNode() {
-        //do nothing for leaf routers
-    }
 
     override fun setState(state: NodeState) {
         //do nothing for leaf routers

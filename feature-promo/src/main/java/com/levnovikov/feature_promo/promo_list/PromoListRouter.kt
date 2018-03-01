@@ -17,7 +17,6 @@ class PromoListRouter @Inject constructor() : Router() {
 
     override val holders: Set<NodeHolder<*>> = emptySet()
 
-    override fun destroyNode() = Unit
 
     override fun setState(state: NodeState) = Unit
 }

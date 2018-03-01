@@ -11,9 +11,5 @@ class SubOptionsRouter: Router() {
     override val holders: Set<NodeHolder<*>>
         get() = emptySet()
 
-    override fun destroyNode() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun setState(state: NodeState) = Unit
 }

@@ -40,10 +40,6 @@ constructor(
         detachNode(prebookingHolder)
     }
 
-    override fun destroyNode() {
-        //root node will be destroyed with activity
-    }
-
     override val holders: Set<NodeHolder<*>> = setOf(prebookingHolder, allocatingHolder, mapHolder)
 
     /**

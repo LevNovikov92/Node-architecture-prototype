@@ -16,10 +16,6 @@ class OptionsRouter @Inject constructor() : Router() {
     override val holders: Set<NodeHolder<*>>
         get() = emptySet()
 
-    override fun destroyNode() {
-//        TODO("not implemented")
-    }
-
     override fun setState(state: NodeState) {
 //        TODO("not implemented")
     }

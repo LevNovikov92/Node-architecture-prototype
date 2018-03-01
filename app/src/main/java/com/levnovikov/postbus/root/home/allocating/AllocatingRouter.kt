@@ -18,10 +18,6 @@ internal constructor() : Router() {
     override val holders: Set<NodeHolder<*>>
         get() = emptySet()
 
-    override fun destroyNode() {
-
-    }
-
     override fun setState(state: NodeState) {
 
     }

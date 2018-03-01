@@ -49,14 +49,6 @@ internal constructor(
         detachNode(poiSelectorHolder)
     }
 
-    override fun destroyNode() {
-        detachNode(poiWidgetHolder)
-        detachNode(poiSelectorHolder)
-        detachNode(carTypeSelectorHolder)
-        detachNode(bookingExtraHolder)
-        detachChildren()
-    }
-
     /**
      * After restoring router should restore state
      */

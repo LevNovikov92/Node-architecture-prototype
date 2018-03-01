@@ -73,7 +73,10 @@ abstract class Router {
         children.clear()
     }
 
-    abstract fun destroyNode()
+    fun destroyNode() {
+        holders.forEach(::detachNode)
+        detachChildren()
+    }
 
     abstract val holders: Set<NodeHolder<*>>
 

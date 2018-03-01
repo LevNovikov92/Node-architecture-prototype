@@ -18,9 +18,6 @@ internal constructor() : Router() {
 
     override val holders: Set<NodeHolder<*>> = setOf()
 
-    override fun destroyNode() {
-        //do nothing for leaf routers
-    }
 
     override fun setState(state: NodeState) {
 

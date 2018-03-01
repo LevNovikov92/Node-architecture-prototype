@@ -17,9 +17,6 @@ constructor() : Router() {
 
     override val holders: Set<NodeHolder<*>> = setOf()
 
-    override fun destroyNode() {
-
-    }
 
     override fun setState(state: NodeState) {
 
