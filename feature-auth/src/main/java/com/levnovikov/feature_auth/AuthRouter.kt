@@ -15,12 +15,10 @@ import javax.inject.Inject
 class AuthRouter @Inject
 constructor() : Router() {
 
+    override val holders: Set<NodeHolder<*>> = setOf()
+
     override fun destroyNode() {
 
-    }
-
-    override fun getNodeState(nodeState: NodeState): NodeState {
-        return nodeState
     }
 
     override fun setState(state: NodeState) {

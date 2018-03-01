@@ -4,6 +4,7 @@ import com.levnovikov.feature_map.MapNodeHolder
 import com.levnovikov.postbus.root.home.allocating.AllocatingNodeHolder
 import com.levnovikov.postbus.root.home.di.HomeScope
 import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder
+import com.levnovikov.system_base.NodeHolder
 import com.levnovikov.system_base.Router
 import com.levnovikov.system_base.node_state.NodeState
 import javax.inject.Inject
@@ -13,7 +14,8 @@ import javax.inject.Inject
  * Date: 14/12/17.
  */
 
-@HomeScope class HomeRouter @Inject
+@HomeScope
+class HomeRouter @Inject
 constructor(
         private val prebookingHolder: PrebookingNodeHolder,
         private val allocatingHolder: AllocatingNodeHolder,
@@ -42,15 +44,7 @@ constructor(
         //root node will be destroyed with activity
     }
 
-    override fun getNodeState(nodeState: NodeState): NodeState {
-        if (prebookingHolder.isActive())
-            nodeState.addNodeBuilder(prebookingHolder.javaClass)
-        if (allocatingHolder.isActive())
-            nodeState.addNodeBuilder(allocatingHolder.javaClass)
-        if (mapHolder.isActive())
-            nodeState.addNodeBuilder(mapHolder.javaClass)
-        return nodeState
-    }
+    override val holders: Set<NodeHolder<*>> = setOf(prebookingHolder, allocatingHolder, mapHolder)
 
     /**
      * Order is important

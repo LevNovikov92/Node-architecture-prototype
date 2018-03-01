@@ -4,6 +4,7 @@ import com.levnovikov.feature_promo.promo_list.PromoListNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.extra.ExtraNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsNodeHolder
+import com.levnovikov.system_base.NodeHolder
 import com.levnovikov.system_base.Router
 import com.levnovikov.system_base.node_state.NodeState
 
@@ -21,16 +22,11 @@ constructor(
         private val extraNodeHolder: ExtraNodeHolder,
         private val optionsNodeHolder: OptionsNodeHolder) : Router() {
 
+    override val holders: Set<NodeHolder<*>> = setOf(promoListBuilder, extraNodeHolder, optionsNodeHolder)
+
     override fun destroyNode() {
         detachNode(promoListBuilder)
         hideOptions()
-    }
-
-    override fun getNodeState(nodeState: NodeState): NodeState {
-        if (promoListBuilder.isActive()) {
-            nodeState.addNodeBuilder(promoListBuilder.javaClass) //TODO refactor it
-        }
-        return nodeState
     }
 
     override fun setState(state: NodeState) {

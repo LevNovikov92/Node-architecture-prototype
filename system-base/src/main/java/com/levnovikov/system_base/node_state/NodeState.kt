@@ -16,13 +16,9 @@ import java.util.*
 data class NodeState(
         val routerClass: String,
         val data: Parcelable?,
-        private val activeNodes: HashSet<String> = HashSet()) : Parcelable {
+        private val activeNodes: Set<String> = emptySet()) : Parcelable {
 
     fun contains(_class: Class<*>): Boolean {
         return activeNodes.contains(_class.simpleName) //TODO change to canonical after testing
-    }
-
-    fun <T : NodeHolder<*>> addNodeBuilder(_class: Class<T>) {
-        activeNodes.add(_class.simpleName) //TODO change to canonical after testing
     }
 }

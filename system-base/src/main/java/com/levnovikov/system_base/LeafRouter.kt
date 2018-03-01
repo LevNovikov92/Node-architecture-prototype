@@ -11,8 +11,6 @@ abstract class LeafRouter : Router() {
         //do nothing for leaf routers
     }
 
-    override fun getNodeState(nodeState: NodeState): NodeState = nodeState
-
     override fun setState(state: NodeState) {
         //do nothing for leaf routers
     }

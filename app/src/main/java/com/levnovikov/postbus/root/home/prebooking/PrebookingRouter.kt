@@ -5,6 +5,7 @@ import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSele
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetNodeHolder
+import com.levnovikov.system_base.NodeHolder
 import com.levnovikov.system_base.Router
 import com.levnovikov.system_base.node_state.NodeState
 
@@ -22,6 +23,8 @@ internal constructor(
         private val poiSelectorHolder: PoiSelectorNodeHolder,
         private val carTypeSelectorHolder: CarTypeSelectorNodeHolder,
         private val bookingExtraHolder: BookingExtraNodeHolder) : Router() {
+
+    override val holders: Set<NodeHolder<*>> = setOf(poiWidgetHolder, poiSelectorHolder, carTypeSelectorHolder, bookingExtraHolder)
 
     fun showPoiWidget() {
         attachNode(poiWidgetHolder)
@@ -52,22 +55,6 @@ internal constructor(
         detachNode(carTypeSelectorHolder)
         detachNode(bookingExtraHolder)
         detachChildren()
-    }
-
-    /**
-     * Method will be called before onSaveInstanceState. Should return state for saving.
-     * Router know only about attached children and should add this info.
-     */
-    override fun getNodeState(nodeState: NodeState): NodeState {
-        if (poiWidgetHolder.isActive())
-            nodeState.addNodeBuilder(poiWidgetHolder.javaClass)
-        if (poiSelectorHolder.isActive())
-            nodeState.addNodeBuilder(poiSelectorHolder.javaClass)
-        if (carTypeSelectorHolder.isActive())
-            nodeState.addNodeBuilder(carTypeSelectorHolder.javaClass)
-        if (bookingExtraHolder.isActive())
-            nodeState.addNodeBuilder(bookingExtraHolder.javaClass)
-        return nodeState
     }
 
     /**

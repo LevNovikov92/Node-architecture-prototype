@@ -29,8 +29,8 @@ abstract class Router {
     fun getState(): Map<String, NodeState> {
         val state = getChildrenState()
         val stateData = stateDataProvider?.run { this.onSaveData() }
-        val nodeState = getNodeState(NodeState(this.javaClass.simpleName, stateData)) //TODO refactor to Kotlin class
-        state[nodeState.routerClass] = nodeState
+        val routerClass = this.javaClass.simpleName
+        state[routerClass] = NodeState(routerClass, stateData, nodes())
         return state
     }
 
@@ -75,7 +75,12 @@ abstract class Router {
 
     abstract fun destroyNode()
 
-    abstract fun getNodeState(nodeState: NodeState): NodeState
+    abstract val holders: Set<NodeHolder<*>>
+
+    fun nodes(): Set<String> = holders
+            .filter(NodeHolder<*>::isActive)
+            .map { it::class.java.simpleName }
+            .toSet()
 
     abstract fun setState(state: NodeState)
 
