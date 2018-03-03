@@ -13,7 +13,7 @@ abstract class StateInteractor<R : Router>(router: R, activityState: ActivitySta
         router.setStateDataProvider(this)
     }
 
-    override fun onGetActive() {
+    override fun restoreState() {
         val state = nodeState
         if (state != null) {
             router.setState(state)

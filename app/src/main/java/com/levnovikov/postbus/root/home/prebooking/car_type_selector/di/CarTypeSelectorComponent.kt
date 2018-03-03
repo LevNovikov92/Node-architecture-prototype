@@ -42,12 +42,6 @@ interface CarTypeSelectorComponent : ActivityComponent {
 
         @CarTypeSelectorScope
         @Provides
-        internal fun providePresenter(): CarTypeSelectorInteractor.Presenter {
-            return view
-        }
-
-        @CarTypeSelectorScope
-        @Provides
         internal fun provideTypeListListener(interactor: CarTypeSelectorInteractor): TypeListListener {
             return interactor
         }

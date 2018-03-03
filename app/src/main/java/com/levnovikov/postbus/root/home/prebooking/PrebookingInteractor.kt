@@ -12,7 +12,6 @@ import com.levnovikov.postbus.root.home.prebooking.di.PrebookingScope
 import com.levnovikov.postbus.root.home.prebooking.poi_selector.PoiSelectorInteractor
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor
 import com.levnovikov.stream_state.PrebookingState
-import com.levnovikov.system_base.StateDataProvider
 import com.levnovikov.system_base.StateInteractor
 import com.levnovikov.system_base.lifecycle.Lifecycle
 import com.levnovikov.system_base.node_state.ActivityState
@@ -28,7 +27,7 @@ class PrebookingInteractor @Inject constructor(router: PrebookingRouter,
                      private val prebookingRepo: RidePrebookingRepo,
                      activityState: ActivityState,
                      private val lifecycle: Lifecycle,
-                     private val mapProvider: MapProvider) : StateInteractor<PrebookingRouter>(router, activityState), PoiSelectorInteractor.PoiSelectionListener, PoiWidgetInteractor.PoiClickListener, CarTypeSelectorInteractor.Listener, StateDataProvider {
+                     private val mapProvider: MapProvider) : StateInteractor<PrebookingRouter>(router, activityState), PoiSelectorInteractor.PoiSelectionListener, PoiWidgetInteractor.PoiClickListener, CarTypeSelectorInteractor.Listener {
     private var state = PrebookingState.INITIAL
 
     /**
@@ -39,8 +38,8 @@ class PrebookingInteractor @Inject constructor(router: PrebookingRouter,
     /**
      * Start interactor job
      */
-    override fun onGetActive() {
-        super.onGetActive()
+    override fun restoreState() {
+        super.restoreState()
         if (!hasSavedState()) {
             router.showPoiWidget()
         } else {

@@ -13,7 +13,11 @@ import javax.inject.Inject
 @OptionsScope
 class OptionsInteractor @Inject constructor(router: OptionsRouter, activityState: ActivityState) : Interactor<OptionsRouter>(router, activityState) {
 
-    override fun onGetActive() {
-        router.showSubOptions()
+    init {
+        if (hasSavedState()) {
+            restoreState()
+        } else {
+            router.showSubOptions()
+        }
     }
 }

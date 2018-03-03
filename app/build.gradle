@@ -9,6 +9,12 @@ androidExtensions {
     experimental = true
 }
 
+android {
+    dataBinding {
+        enabled = true
+    }
+}
+
 dependencies {
     implementation libs.appcompatV7
     implementation libs.constraintLayout

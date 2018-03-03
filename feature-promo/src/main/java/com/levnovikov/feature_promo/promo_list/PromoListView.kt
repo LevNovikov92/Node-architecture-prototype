@@ -37,7 +37,7 @@ class PromoListView : LinearLayout, PromoListPresenter {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         initView()
-        interactor.onGetActive()
+        interactor.restoreState()
     }
 
     private fun initView() {

@@ -8,6 +8,8 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingE
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.BookingExtraRouter
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.OptionsNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorNodeHolder
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorRouter
+import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListNodeHolder
 import com.levnovikov.stream_state.AppState
 import com.levnovikov.system_base.node_state.ActivityState
 import com.levnovikov.system_base.node_state.NodeState
@@ -46,7 +48,8 @@ class PromoDeeplink : DeeplinkCase {
             className<PrebookingRouter>() to NodeState(null, setOf(
                     className<BookingExtraNodeHolder>(), className<CarTypeSelectorNodeHolder>())),
             className<BookingExtraRouter>() to NodeState(null, setOf(
-                    className<OptionsNodeHolder>()))))
+                    className<OptionsNodeHolder>())),
+            className<CarTypeSelectorRouter>() to NodeState(null, setOf(className<CarTypeListNodeHolder>()))))
 
 
     inline fun <reified T> className() = T::class.java.simpleName

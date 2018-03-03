@@ -18,6 +18,6 @@ class OptionsView @JvmOverloads constructor(
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        interactor.onGetActive()
+        interactor.restoreState()
     }
 }

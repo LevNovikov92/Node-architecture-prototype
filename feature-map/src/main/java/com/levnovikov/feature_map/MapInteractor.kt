@@ -19,6 +19,10 @@ class MapInteractor @Inject constructor(
         activityState: ActivityState,
         private val mapSetter: MapSetter) : Interactor<MapRouter>(router, activityState), OnMapReadyCallback {
 
+    init {
+        restoreState()
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mapSetter.setMap(googleMap)
     }

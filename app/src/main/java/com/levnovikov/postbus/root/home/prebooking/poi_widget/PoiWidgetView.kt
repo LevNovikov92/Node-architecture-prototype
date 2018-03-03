@@ -1,14 +1,10 @@
 package com.levnovikov.postbus.root.home.prebooking.poi_widget
 
 import android.content.Context
+import android.databinding.DataBindingUtil
 import android.util.AttributeSet
-import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
-import com.levnovikov.postbus.R
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
+import com.levnovikov.postbus.databinding.PoiWidgetBinding
 import javax.inject.Inject
 
 /**
@@ -16,47 +12,19 @@ import javax.inject.Inject
  * Date: 19/12/17.
  */
 
-class PoiWidgetView : LinearLayout, PoiWidgetInteractor.Presenter {
+class PoiWidgetView @JvmOverloads constructor(
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : LinearLayout(context, attrs, defStyleAttr) {
 
     @Inject
-    lateinit var interactor: PoiWidgetInteractor
-
-    private val pickUpSubject = PublishSubject.create<Any>()
-    private val dropOffSubject = PublishSubject.create<Any>()
-
-    constructor(context: Context) : super(context) {}
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {}
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
-
-    override fun onPickUpClick(): Observable<Any> {
-        return pickUpSubject
-    }
-
-    override fun onDropOffClick(): Observable<Any> {
-        return dropOffSubject
-    }
-
-    override fun setPickUp(placeTitle: String) {
-        (findViewById<View>(R.id.pickUpButton) as Button).text = placeTitle
-    }
-
-    override fun setDropOff(placeTitle: String) {
-        (findViewById<View>(R.id.dropOffButton) as Button).text = placeTitle
-    }
+    lateinit var vm: PoiWidgetVM
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        initView()
-        interactor.onGetActive()
+        setupBinding()
     }
 
-    private fun initView() {
-        findViewById<View>(R.id.pickUpButton).setOnClickListener({ v ->
-            Log.i(">>>", "click")
-            pickUpSubject.onNext(Any())
-        })
-        findViewById<View>(R.id.dropOffButton).setOnClickListener({ v -> dropOffSubject.onNext(Any()) })
+    private fun setupBinding() {
+        DataBindingUtil.bind<PoiWidgetBinding>(this).vm = vm
     }
 }

@@ -5,7 +5,6 @@ import com.levnovikov.feature_promo.promo_list.dependency.OnPromoSelectedListene
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.di.BookingExtraScope
 import com.levnovikov.system_base.Interactor
 import com.levnovikov.system_base.node_state.ActivityState
-import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
@@ -16,18 +15,9 @@ import javax.inject.Inject
 @BookingExtraScope
 class BookingExtraInteractor @Inject
 constructor(
-        presenter: Presenter,
-        listener: Listener,
+        private val listener: Listener,
         router: BookingExtraRouter,
         activityState: ActivityState) : Interactor<BookingExtraRouter>(router, activityState), OnPromoSelectedListener {
-
-    init {
-        presenter.bookingClickStream()
-                .subscribe({ _ -> listener.onBookClick() }) { e -> }
-
-        presenter.promoClickStream()
-                .subscribe({ _ -> router.showOptions() }) { e -> }
-    }
 
     override fun onPromoSelected(promo: Promo) {
         router.detachPromoList()
@@ -37,13 +27,15 @@ constructor(
         router.detachPromoList()
     }
 
-    interface Listener {
-        fun onBookClick()
+    fun onBookClick() {
+        listener.onBookClick()
     }
 
-    interface Presenter {
-        fun bookingClickStream(): Observable<Any>
+    fun showPromo() {
+        router.showOptions()
+    }
 
-        fun promoClickStream(): Observable<Any>
+    interface Listener {
+        fun onBookClick()
     }
 }

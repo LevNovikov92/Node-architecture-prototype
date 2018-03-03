@@ -44,12 +44,6 @@ interface BookingExtraComponent : ActivityComponent, PromoListDependency, Option
 
         @BookingExtraScope
         @Provides
-        internal fun providePresenter(): BookingExtraInteractor.Presenter {
-            return view
-        }
-
-        @BookingExtraScope
-        @Provides
         internal fun provideOnPromoSelectedListener(interactor: BookingExtraInteractor): OnPromoSelectedListener {
             return interactor
         }

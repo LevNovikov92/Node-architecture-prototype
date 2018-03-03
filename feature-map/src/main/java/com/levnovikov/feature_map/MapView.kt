@@ -28,7 +28,7 @@ class MapView : com.google.android.gms.maps.MapView, MapLifecycleListener {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        interactor.onGetActive()
+        interactor.restoreState()
         initMap()
     }
 

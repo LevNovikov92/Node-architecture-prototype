@@ -6,7 +6,6 @@ import com.levnovikov.postbus.root.home.di.HomeScope
 import com.levnovikov.postbus.root.home.prebooking.PrebookingNodeHolder
 import com.levnovikov.system_base.NodeHolder
 import com.levnovikov.system_base.Router
-import com.levnovikov.system_base.node_state.NodeState
 import javax.inject.Inject
 
 /**
@@ -40,6 +39,6 @@ constructor(
         detachNode(prebookingHolder)
     }
 
-    override val holders: Set<NodeHolder<*>> = setOf(prebookingHolder, allocatingHolder, mapHolder)
+    override val holders: Set<NodeHolder<*>> = setOf(mapHolder, prebookingHolder, allocatingHolder)
 
 }

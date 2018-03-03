@@ -3,7 +3,6 @@ package com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_l
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
-
 import javax.inject.Inject
 
 /**
@@ -11,19 +10,11 @@ import javax.inject.Inject
  * Date: 25/12/17.
  */
 
-class CarTypeListView : ConstraintLayout {
+class CarTypeListView @JvmOverloads constructor(
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     @Inject
     lateinit var interactor: CarTypeListInteractor
 
-    constructor(context: Context) : super(context) {}
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        interactor.onGetActive()
-    }
 }

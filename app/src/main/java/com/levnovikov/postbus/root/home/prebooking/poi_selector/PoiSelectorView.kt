@@ -43,7 +43,7 @@ class PoiSelectorView : LinearLayout, PoiSelectorInteractor.Presenter {
         super.onAttachedToWindow()
         adapter = Adapter(this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
         initView()
-        interactor.onGetActive()
+        interactor.restoreState()
     }
 
     private fun initView() {
