@@ -2,7 +2,6 @@ package com.levnovikov.postbus.root.home.prebooking.poi_widget.di;
 
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetNodeHolder;
-import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetInteractor;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetRouter;
 import com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetView;
 import com.levnovikov.system_base.base_di.ActivityComponent;
@@ -41,11 +40,6 @@ public interface PoiWidgetComponent extends ActivityComponent {
             return view;
         }
 
-        @PoiWidgetScope
-        @Provides
-        PoiWidgetInteractor.Presenter providePresenter() {
-            return view;
-        }
     }
 
 }

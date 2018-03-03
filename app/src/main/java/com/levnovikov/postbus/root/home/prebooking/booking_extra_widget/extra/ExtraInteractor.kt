@@ -15,8 +15,7 @@ class ExtraInteractor @Inject constructor(
         router: ExtraRouter,
         activityState: ActivityState) : Interactor<ExtraRouter>(router, activityState) {
 
-    override fun onGetActive() {
-        super.onGetActive()
-
+    init {
+        restoreState()
     }
 }

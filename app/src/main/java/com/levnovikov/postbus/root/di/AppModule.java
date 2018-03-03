@@ -3,6 +3,7 @@ package com.levnovikov.postbus.root.di;
 import android.content.Context;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -22,7 +23,7 @@ public class AppModule {
     }
 
     @Provides
-    @RootScope
+    @Singleton
     @Named("AppContext")
     Context provideContext() {
         return appContext;

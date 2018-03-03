@@ -27,7 +27,7 @@ class HomeActivity : LifecycleActivity() {
     @Inject
     lateinit var interactor: HomeInteractor
 
-    val deeplinkParser: DeeplinkParser = DeeplinkParserImpl()
+    private val deeplinkParser: DeeplinkParser = DeeplinkParserImpl()
 
     private val mapLifecycleEmitter = ReplaySubject.create<MapLifecycleEvent>()
 
@@ -37,13 +37,17 @@ class HomeActivity : LifecycleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var activityState: ActivityState? = null
-//        if (savedInstanceState != null) {
-//            activityState = savedInstanceState.getParcelable(HOME_ACTIVITY_STATE)
-//        }
-        activityState = deeplinkParser.parseDeeplink(URI("grab://grab.com/prebooking/extra/options"))
+        val deeplink = false
+        if (deeplink) {
+            activityState = deeplinkParser.parseDeeplink(URI("grab://grab.com/prebooking/extra/options"))
+        } else {
+            if (savedInstanceState != null) {
+                activityState = savedInstanceState.getParcelable(HOME_ACTIVITY_STATE)
+            }
+        }
         injectDependencies(activityState)
         setContentView(view)
-        interactor.onGetActive()
+        interactor.restoreState()
         mapLifecycleEmitter.onNext(MapLifecycleEvent.CREATE)
     }
 

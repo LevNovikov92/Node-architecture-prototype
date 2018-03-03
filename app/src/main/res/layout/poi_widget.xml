@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="vm"
+            type="com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetVM"/>
+    </data>
 
-
-    <Button
-        android:id="@+id/pickUpButton"
-        android:layout_width="match_parent"
+    <com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetView
+        android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@mipmap/ic_launcher_round"
-        android:drawableStart="@mipmap/ic_launcher_round"
-        android:text="PICK-UP POINT" />
+        android:background="@color/colorPrimaryDark">
 
-    <Button
-        android:id="@+id/dropOffButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@mipmap/ic_launcher_round"
-        android:drawableStart="@mipmap/ic_launcher_round"
-        android:text="DROP-OFF POINT" />
-</com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetView>
+
+        <Button
+            android:id="@+id/pickUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_launcher_round"
+            android:drawableStart="@mipmap/ic_launcher_round"
+            android:text="@{vm.pickUpPoint}"
+            android:onClick="@{() -> vm.onPickupSelected()}"/>
+
+        <Button
+            android:id="@+id/dropOffButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_launcher_round"
+            android:drawableStart="@mipmap/ic_launcher_round"
+            android:text="@{vm.dropOffPoint}"
+            android:onClick="@{() -> vm.onDropOffSelected()}"/>
+    </com.levnovikov.postbus.root.home.prebooking.poi_widget.PoiWidgetView>
+</layout>

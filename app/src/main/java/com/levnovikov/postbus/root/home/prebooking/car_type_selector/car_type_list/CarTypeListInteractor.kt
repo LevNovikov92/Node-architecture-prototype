@@ -16,6 +16,7 @@ import javax.inject.Inject
 @CarTypeListScope
 class CarTypeListInteractor @Inject
 constructor(router: CarTypeListRouter, activityState: ActivityState, private val listener: TypeListListener) : BackStateInteractor<CarTypeListRouter>(router, activityState) {
+
     override fun onSaveData(): Parcelable?  = null
 
     override fun onBackPressed(): Boolean {

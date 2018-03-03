@@ -2,6 +2,8 @@ package com.levnovikov.system_base
 
 import android.util.Log
 import com.levnovikov.system_base.back_handling.BackHandler
+import com.levnovikov.system_base.exceptions.NodeAlreadyAttachedException
+import com.levnovikov.system_base.exceptions.RouterAlreadyAttachedException
 import com.levnovikov.system_base.node_state.NodeState
 import java.util.*
 
@@ -42,7 +44,11 @@ abstract class Router {
     }
 
     protected fun attachNode(nodeHolder: NodeHolder<*>) {
-        attachRouter(nodeHolder.build())
+        try {
+            attachRouter(nodeHolder.build())
+        } catch (e: NodeAlreadyAttachedException) {
+            Log.i(">>>>", e.message)
+        }
     }
 
     protected fun detachNode(nodeHolder: NodeHolder<out Router>) {
@@ -56,7 +62,7 @@ abstract class Router {
         Log.i(">>>>", "attachRouter " + router.javaClass.simpleName + " from " +
                 this.javaClass.simpleName)
         if (children.containsKey(router.javaClass)) {
-            throw UnsupportedOperationException(String.format("%s already attached", router.javaClass))
+            throw RouterAlreadyAttachedException(router)
         }
         children[router.javaClass] = router
     }

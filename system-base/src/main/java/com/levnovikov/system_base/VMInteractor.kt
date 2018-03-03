@@ -5,7 +5,7 @@ import android.os.Parcelable
 import com.levnovikov.system_base.node_state.ActivityState
 import com.levnovikov.system_base.node_state.NodeState
 
-abstract class Interactor<R : Router>(
+abstract class VMInteractor<R : Router>(
         protected var router: R,
         protected var activityState: ActivityState) {
 
@@ -17,11 +17,11 @@ abstract class Interactor<R : Router>(
             return state?.data
         }
 
-    open fun restoreState() {
-        nodeState?.let { router.setState(it) }
+    init {
+
     }
 
-    fun hasSavedState(): Boolean {
+    protected fun hasSavedState(): Boolean {
         return activityState.findNodeState(router.javaClass) != null
     }
 }

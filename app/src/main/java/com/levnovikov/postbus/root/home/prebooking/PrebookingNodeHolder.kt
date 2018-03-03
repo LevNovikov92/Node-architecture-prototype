@@ -16,7 +16,7 @@ class PrebookingNodeHolder(private val component: HomeComponent) : NodeHolder<Pr
                 .homeComponent(component)
                 .build()
         cmp.inject(this) //TODO add lint checking
-        cmp.interactor().onGetActive()
+        cmp.interactor().restoreState()
         return cmp.getRouter()
     }
 }

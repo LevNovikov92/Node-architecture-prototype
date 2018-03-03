@@ -31,8 +31,8 @@ constructor(
         fun onPoiSelectionCanceled()
     }
 
-    override fun onGetActive() {
-        super.onGetActive()
+    override fun restoreState() {
+        super.restoreState()
         lifecycle.subscribeUntilDestroy(presenter.placeTitleStream()
                 .subscribe({ title -> poiProvider.updatePlace(title) }
                 ) { /*handle error*/ error -> })

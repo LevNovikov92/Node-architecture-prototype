@@ -19,6 +19,6 @@ class ExtraView : FrameLayout {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        interactor.onGetActive()
+        interactor.restoreState()
     }
 }

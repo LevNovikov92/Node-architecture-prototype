@@ -31,8 +31,8 @@ class PromoListInteractor @Inject constructor(
             return promoList
         }
 
-    override fun onGetActive() {
-        super.onGetActive()
+    override fun restoreState() {
+        super.restoreState()
         presenter.setData(promoList)
     }
 

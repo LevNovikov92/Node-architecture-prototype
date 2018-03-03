@@ -48,8 +48,8 @@ internal constructor(
     val state: Map<String, NodeState>
         get() = router.getState()
 
-    override fun onGetActive() {
-        super.onGetActive()
+    override fun restoreState() {
+        super.restoreState()
         nodeState?.let {
             val data: HomeData? = it.data as HomeData?
             data?.let {
