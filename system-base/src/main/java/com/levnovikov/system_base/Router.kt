@@ -33,7 +33,7 @@ abstract class Router {
     fun getState(): Map<String, NodeState> {
         val state = getChildrenState()
         val stateData = stateDataProvider?.run { this.onSaveData() }
-        state[this.javaClass.simpleName] = NodeState(stateData, nodes())
+        state[this.javaClass.simpleName] = NodeState(stateData, activeNodes())
         return state
     }
 
@@ -81,7 +81,7 @@ abstract class Router {
 
     abstract val holders: Set<NodeHolder<*>>
 
-    internal fun nodes(): Set<String> = holders
+    private fun activeNodes(): Set<String> = holders
             .filter(NodeHolder<*>::isActive)
             .map { it::class.java.simpleName }
             .toSet()
@@ -92,13 +92,11 @@ abstract class Router {
 
     fun onBackPressed(): Boolean {
         for (router in children.values) {
-            if (router.onBackPressed()) {
-                return true
-            }
+            if (router.onBackPressed()) return true
         }
         backHandler?.let {
-            if (it.isLastInStack(this.javaClass)) {
-                it.popLastInStack()
+            if (it.isLastInBackStack(this.javaClass)) {
+                it.popLastInBackStack()
                 return it.onBackPressed()
             }
         }
