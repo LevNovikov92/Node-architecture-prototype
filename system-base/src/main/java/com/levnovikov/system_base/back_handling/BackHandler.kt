@@ -7,12 +7,9 @@ import com.levnovikov.system_base.Router
  * Date: 1/1/18.
  */
 
-interface BackHandler {
+internal interface BackHandler {
     fun onBackPressed(): Boolean
-
-    fun isLastInStack(_class: Class<out Router>): Boolean
-
-    fun popLastInStack()
-
+    fun isLastInBackStack(_class: Class<out Router>): Boolean
+    fun popLastInBackStack()
     fun removeFromBackStack(_class: Class<out Router>)
 }

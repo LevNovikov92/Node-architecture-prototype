@@ -1,13 +1,17 @@
 package com.levnovikov.system_base
 
+import com.levnovikov.system_base.back_handling.BackHandler
 import com.levnovikov.system_base.exceptions.RouterAlreadyAttachedException
+import com.levnovikov.system_base.node_state.ActivityState
 import com.levnovikov.system_base.node_state.NodeState
 import com.nhaarman.mockito_kotlin.spy
 import com.nhaarman.mockito_kotlin.verify
 import junit.framework.Assert
+import junit.framework.AssertionFailedError
 import org.junit.Before
 import org.junit.Test
 import org.mockito.internal.verification.Times
+import java.util.*
 
 /**
  * Author: lev.novikov
@@ -114,27 +118,91 @@ class RouterTest {
     }
 
     @Test
-    fun detachChildren() {
-    }
+    fun detachAllChildren() {
+        router.attachTestNode(nodeHolder1)
+        router.attachTestNode(nodeHolder2)
+        Assert.assertEquals(2, router.testChildren().size)
 
-    @Test
-    fun destroyNode() {
-    }
-
-    @Test
-    fun getHolders() {
-    }
-
-    @Test
-    fun nodes() {
+        router.detachAllChildren()
+        Assert.assertEquals(0, router.testChildren().size)
     }
 
     @Test
     fun setState() {
+        val state = NodeState(null, setOf(nodeHolder1.javaClass.simpleName, nodeHolder2.javaClass.simpleName))
+        router.setState(state)
+        val routerState = router.getState()[router.javaClass.simpleName] ?: throw AssertionFailedError("Router state not found")
+        Assert.assertTrue(routerState.contains(nodeHolder1.javaClass))
+        Assert.assertTrue(routerState.contains(nodeHolder2.javaClass))
     }
 
     @Test
     fun onBackPressed() {
+        router.attachTestNode(nodeHolder1)
+        router.attachTestNode(nodeHolder2)
+
+        val backStack = Stack<String>()
+        backStack.push(router.javaClass.simpleName)
+        val activityState = ActivityState(backStack, emptyMap())
+        var routerBackHandler = spy(getBackHandler(activityState, true))
+        var backHandler1 = spy(getBackHandler(activityState, false))
+        var backHandler2 = spy(getBackHandler(activityState, false))
+        child1.setBackHandler(backHandler1)
+        child2.setBackHandler(backHandler2)
+        router.setBackHandler(routerBackHandler)
+
+        router.onBackPressed()
+        verify(backHandler1, Times(0)).onBackPressed()
+        verify(backHandler2, Times(0)).onBackPressed()
+        verify(routerBackHandler, Times(1)).onBackPressed()
+
+
+
+        routerBackHandler = spy(getBackHandler(activityState, true))
+        backHandler1 = spy(getBackHandler(activityState, false))
+        backHandler2 = spy(getBackHandler(activityState, true))
+        child1.setBackHandler(backHandler1)
+        child2.setBackHandler(backHandler2)
+        router.setBackHandler(routerBackHandler)
+
+        backStack.clear()
+        backStack.push(router.javaClass.simpleName)
+        backStack.push(child2.javaClass.simpleName)
+
+        router.onBackPressed()
+        verify(backHandler1, Times(0)).onBackPressed()
+        verify(backHandler2, Times(1)).onBackPressed()
+        verify(routerBackHandler, Times(0)).onBackPressed()
+
+
+
+        routerBackHandler = spy(getBackHandler(activityState, true))
+        backHandler1 = spy(getBackHandler(activityState, true))
+        backHandler2 = spy(getBackHandler(activityState, true))
+        child1.setBackHandler(backHandler1)
+        child2.setBackHandler(backHandler2)
+        router.setBackHandler(routerBackHandler)
+
+        backStack.clear()
+        backStack.push(router.javaClass.simpleName)
+        backStack.push(child2.javaClass.simpleName)
+        backStack.push(child1.javaClass.simpleName)
+
+        router.onBackPressed()
+        verify(backHandler1, Times(1)).onBackPressed()
+        verify(backHandler2, Times(0)).onBackPressed()
+        verify(routerBackHandler, Times(0)).onBackPressed()
+
+        router.onBackPressed()
+        verify(backHandler1, Times(1)).onBackPressed()
+        verify(backHandler2, Times(1)).onBackPressed()
+        verify(routerBackHandler, Times(0)).onBackPressed()
+
+        router.onBackPressed()
+        verify(backHandler1, Times(1)).onBackPressed()
+        verify(backHandler2, Times(1)).onBackPressed()
+        verify(routerBackHandler, Times(1)).onBackPressed()
+
     }
 
     @Test
@@ -169,6 +237,22 @@ class RouterTest {
         expected.forEach { entry ->
             if (!actual.containsKey(entry.key) || actual[entry.key] != entry.value) {
                 throw AssertionError("State map not match: \n expected $expected \n actual $actual")
+            }
+        }
+    }
+
+    private fun getBackHandler(activityState: ActivityState, isHandlingBackStack: Boolean): BackHandler {
+        return object : BackHandler {
+            override fun onBackPressed(): Boolean = isHandlingBackStack
+
+            override fun isLastInBackStack(_class: Class<out Router>): Boolean = activityState.isLastInBackStack(_class)
+
+            override fun popLastInBackStack() {
+                activityState.popLastInBackStack()
+            }
+
+            override fun removeFromBackStack(_class: Class<out Router>) {
+                activityState.removeFromBackStack(_class)
             }
         }
     }

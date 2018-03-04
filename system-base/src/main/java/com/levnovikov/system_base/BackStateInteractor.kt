@@ -8,7 +8,9 @@ package com.levnovikov.system_base
 import com.levnovikov.system_base.back_handling.BackHandler
 import com.levnovikov.system_base.node_state.ActivityState
 
-abstract class BackStateInteractor<R : Router>(router: R, activityState: ActivityState) : StateInteractor<R>(router, activityState), BackHandler {
+abstract class BackStateInteractor<R : Router>(
+        router: R, activityState: ActivityState
+) : StateInteractor<R>(router, activityState), BackHandler {
 
     init {
         /*
@@ -19,11 +21,11 @@ abstract class BackStateInteractor<R : Router>(router: R, activityState: Activit
         activityState.addToBackStack(router.javaClass)
     }
 
-    override fun isLastInStack(_class: Class<out Router>): Boolean {
+    override fun isLastInBackStack(_class: Class<out Router>): Boolean {
         return activityState.isLastInBackStack(_class)
     }
 
-    override fun popLastInStack() {
+    override fun popLastInBackStack() {
         activityState.popLastInBackStack()
     }
 
