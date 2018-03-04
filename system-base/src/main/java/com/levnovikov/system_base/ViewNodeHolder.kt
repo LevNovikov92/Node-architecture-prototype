@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.levnovikov.system_base.exceptions.NodeAlreadyAttachedException
+import com.levnovikov.system_base.exceptions.ViewIsAlreadyAttachedException
 
 /**
  * Created by lev.novikov
@@ -31,7 +31,7 @@ abstract class ViewNodeHolder<out V : View, R : Router>(private val inflater: La
 
     protected fun buildView(): V {
         if (view != null) {
-            throw NodeAlreadyAttachedException(this)
+            throw ViewIsAlreadyAttachedException(this)
         }
         Log.i(">>>>", "buildView " + this.javaClass.simpleName)
         val v = inflater.inflate(layout, parent, false) as V

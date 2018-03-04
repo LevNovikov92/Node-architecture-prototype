@@ -11,11 +11,7 @@ abstract class Interactor<R : Router>(
 
     protected val nodeState: NodeState? = activityState.findNodeState(router.javaClass)
 
-    protected val nodeStateData: Parcelable?
-        get() {
-            val state = nodeState
-            return state?.data
-        }
+    protected val nodeStateData: Parcelable? = nodeState?.data
 
     open fun restoreState() {
         nodeState?.let { router.setState(it) }

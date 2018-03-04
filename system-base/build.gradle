@@ -15,6 +15,7 @@ dependencies {
     implementation libs.rxAndroid
     implementation libs.dagger
     implementation libs.appcompatV7
+    implementation libs.timber
 }
 
 dependencies {

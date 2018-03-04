@@ -21,6 +21,7 @@ constructor(
 
     override fun onPromoSelected(promo: Promo) {
         router.detachPromoList()
+        router.getState()
     }
 
     override fun onCancel() {

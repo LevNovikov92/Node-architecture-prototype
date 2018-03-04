@@ -15,16 +15,16 @@ abstract class NodeHolder<R : Router> {
 
     @JvmField
     @Inject
-    var router: R? = null
+    internal var router: R? = null
 
-    fun isActive(): Boolean = router != null
+    internal fun isActive(): Boolean = router != null
 
     abstract fun build(): R
 
     open fun destroy() {
         Log.i(">>>>", "destroy " + this.javaClass.simpleName)
         router?.run {
-            destroyNode()
+            detachAllChildren()
             removeFromBackStack()
             router = null
         }

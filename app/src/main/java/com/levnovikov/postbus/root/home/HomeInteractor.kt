@@ -45,7 +45,7 @@ internal constructor(
     override val map: Maybe<GoogleMap>
         get() = mapSubject.firstElement()
 
-    val state: Map<String, NodeState>
+    private val state: Map<String, NodeState>
         get() = router.getState()
 
     override fun restoreState() {
