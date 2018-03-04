@@ -1,8 +1,11 @@
 package com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options
 
 import android.content.Context
+import android.databinding.DataBindingUtil
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import com.levnovikov.postbus.databinding.OptionsViewBinding
+import dagger.Lazy
 import javax.inject.Inject
 
 /**
@@ -14,10 +17,14 @@ class OptionsView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     @Inject
-    lateinit var interactor: OptionsInteractor
+    lateinit var vm: Lazy<OptionsVM>
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        interactor.restoreState()
+        setupBinding()
+    }
+
+    private fun setupBinding() {
+        DataBindingUtil.bind<OptionsViewBinding>(this).vm = vm.get()
     }
 }
