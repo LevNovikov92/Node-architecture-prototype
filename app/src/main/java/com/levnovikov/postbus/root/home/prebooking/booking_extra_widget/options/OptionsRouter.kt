@@ -4,7 +4,6 @@ import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.
 import com.levnovikov.postbus.root.home.prebooking.booking_extra_widget.options.sub_options.SubOptionsNodeHolder
 import com.levnovikov.system_base.NodeHolder
 import com.levnovikov.system_base.Router
-import com.levnovikov.system_base.node_state.NodeState
 import javax.inject.Inject
 
 /**
@@ -13,7 +12,7 @@ import javax.inject.Inject
  */
 
 @OptionsScope
-class OptionsRouter @Inject constructor(val subOptionsNodeHolder: SubOptionsNodeHolder) : Router() {
+class OptionsRouter @Inject constructor(private val subOptionsNodeHolder: SubOptionsNodeHolder) : Router() {
     override val holders: Set<NodeHolder<*>> = setOf(subOptionsNodeHolder)
 
     fun showSubOptions() {
