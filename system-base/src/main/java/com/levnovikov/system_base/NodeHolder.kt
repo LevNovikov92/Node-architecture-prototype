@@ -26,6 +26,7 @@ abstract class NodeHolder<R : Router> {
         router?.run {
             detachAllChildren()
             removeFromBackStack()
+            this.setBackHandler(null)
             router = null
         }
     }

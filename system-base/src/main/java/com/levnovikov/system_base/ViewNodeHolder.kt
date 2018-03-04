@@ -11,7 +11,10 @@ import com.levnovikov.system_base.exceptions.ViewIsAlreadyAttachedException
  * Date: 30/11/17.
  */
 
-abstract class ViewNodeHolder<out V : View, R : Router>(private val inflater: LayoutInflater, protected val parent: ViewGroup) : NodeHolder<R>() {
+abstract class ViewNodeHolder<out V : View, R : Router>(
+        private val inflater: LayoutInflater,
+        protected val parent: ViewGroup
+) : NodeHolder<R>() {
 
     private var view: V? = null
 
@@ -29,6 +32,7 @@ abstract class ViewNodeHolder<out V : View, R : Router>(private val inflater: La
         destroyView()
     }
 
+    @Suppress("UNCHECKED_CAST")
     protected fun buildView(): V {
         if (view != null) {
             throw ViewIsAlreadyAttachedException(this)
