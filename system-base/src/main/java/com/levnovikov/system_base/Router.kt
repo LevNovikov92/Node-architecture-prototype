@@ -24,7 +24,7 @@ abstract class Router {
         return stateMap
     }
 
-    private var stateDataProvider: StateDataProvider? = null //TODO set to null on node destroy
+    private var stateDataProvider: StateDataProvider? = null
 
     internal fun setStateDataProvider(provider: StateDataProvider) {
         stateDataProvider = provider
@@ -39,7 +39,7 @@ abstract class Router {
 
     private var backHandler: BackHandler? = null
 
-    internal fun setBackHandler(handler: BackHandler) {
+    internal fun setBackHandler(handler: BackHandler?) {
         backHandler = handler
     }
 
