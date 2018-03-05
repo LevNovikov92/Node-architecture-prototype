@@ -5,7 +5,6 @@ import com.levnovikov.postbus.root.home.HomeView
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorInteractor
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorRouter
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorView
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.CarTypeListNodeHolder
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.car_type_list.TypeListListener
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent
@@ -23,8 +22,6 @@ import dagger.Provides
 @Component(dependencies = [(PrebookingComponent::class)], modules = [(CarTypeSelectorComponent.CarTypeModule::class)])
 interface CarTypeSelectorComponent : ActivityComponent {
 
-    fun inject(view: CarTypeSelectorView)
-
     fun router(): CarTypeSelectorRouter
 
     fun typeListListener(): TypeListListener
@@ -32,13 +29,7 @@ interface CarTypeSelectorComponent : ActivityComponent {
     fun inject(carTypeSelectorBuilder: CarTypeSelectorNodeHolder)
 
     @Module
-    class CarTypeModule(private val view: CarTypeSelectorView) {
-
-        @CarTypeSelectorScope
-        @Provides
-        internal fun provideView(): CarTypeSelectorView {
-            return view
-        }
+    class CarTypeModule {
 
         @CarTypeSelectorScope
         @Provides

@@ -8,7 +8,8 @@
             name="vm"
             type="com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorVM"/>
     </data>
-    <com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorView
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"
@@ -57,5 +58,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_more" />
-    </com.levnovikov.postbus.root.home.prebooking.car_type_selector.CarTypeSelectorView>
+    </android.support.constraint.ConstraintLayout>
 </layout>
