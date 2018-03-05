@@ -9,6 +9,12 @@ androidExtensions {
     experimental = true
 }
 
+android {
+    dataBinding {
+        enabled = true
+    }
+}
+
 dependencies {
     implementation libs.kotlin
     implementation libs.rxJava
@@ -20,6 +26,7 @@ dependencies {
 
 dependencies {
     kapt libs.daggerCompiler
+    kapt aptLibs.databinding
 }
 
 dependencies {

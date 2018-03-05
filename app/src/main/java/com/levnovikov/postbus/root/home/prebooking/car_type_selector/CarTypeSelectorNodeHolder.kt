@@ -1,16 +1,15 @@
 package com.levnovikov.postbus.root.home.prebooking.car_type_selector
 
 import android.content.Context
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.FrameLayout
-
+import com.levnovikov.postbus.BR
 import com.levnovikov.postbus.R
-import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.CarTypeSelectorComponent
+import com.levnovikov.postbus.databinding.CarTypeSelectorBinding
 import com.levnovikov.postbus.root.home.prebooking.car_type_selector.di.DaggerCarTypeSelectorComponent
 import com.levnovikov.postbus.root.home.prebooking.di.PrebookingComponent
-import com.levnovikov.system_base.ViewNodeHolder
+import com.levnovikov.system_base.BindingNodeHolder
+import javax.inject.Inject
 
 /**
  * Created by lev.novikov
@@ -20,25 +19,27 @@ import com.levnovikov.system_base.ViewNodeHolder
 class CarTypeSelectorNodeHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
-        private val parentComponent: PrebookingComponent) : ViewNodeHolder<CarTypeSelectorView, CarTypeSelectorRouter>(inflater, parent) {
+        private val parentComponent: PrebookingComponent
+) : BindingNodeHolder<CarTypeSelectorRouter, CarTypeSelectorBinding>(inflater, parent) {
+
+    @Inject
+    lateinit var vm: CarTypeSelectorVM
 
     override val layout: Int
         get() = R.layout.car_type_selector
 
     override fun build(): CarTypeSelectorRouter {
-        val view = buildView()
-        val params = view.layoutParams as FrameLayout.LayoutParams
-        params.gravity = Gravity.BOTTOM
-        params.setMargins(0, 0, 0, getDp(view.context, 180))
-        view.layoutParams = params
+//        val view = buildView()
+//        val params = view.layoutParams as FrameLayout.LayoutParams
+//        params.gravity = Gravity.BOTTOM
+//        params.setMargins(0, 0, 0, getDp(view.context, 180))
+//        view.layoutParams = params
 
         val component = DaggerCarTypeSelectorComponent.builder()
                 .prebookingComponent(parentComponent)
-                .carTypeModule(CarTypeSelectorComponent.CarTypeModule(view))
                 .build()
-        component.inject(view)
         component.inject(this)
-        attachView()
+        buildAndAttachView(vm, BR.vm)
         return component.router()
     }
 
