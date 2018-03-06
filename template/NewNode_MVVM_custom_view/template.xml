@@ -1,9 +1,9 @@
 <template format="4"
 		revision="1"
-		name="Create new node data binding"
+		name="Create new node (MVVM custom view)"
 		description="Creates new Node with all DI and Dependencies">
 
-	<category value="Other"/>
+	<category value="Grab"/>
 
 	<parameter id="className"
 		name="Node name"
